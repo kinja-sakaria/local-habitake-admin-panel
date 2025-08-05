@@ -1,4 +1,5 @@
 import { lazy } from 'react';
+import { Navigate } from 'react-router-dom';
 
 // project-imports
 import AuthLayout from 'layout/Auth';
@@ -20,6 +21,10 @@ const LoginRoutes = {
       path: '/',
       element: <AuthLayout />,
       children: [
+        {
+          index: true, // <== this is the redirect from "/"
+          element: <Navigate to="/login" replace />
+        },
         {
           path: 'login',
           element: <AuthLogin />
