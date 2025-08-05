@@ -4,15 +4,12 @@ import jsconfigPaths from 'vite-jsconfig-paths';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  const API_URL = `${env.VITE_APP_BASE_NAME}`;
-  const PORT = 3000;
+  const isProduction = mode === 'production';
 
   return {
     server: {
-      // this ensures that the browser opens upon server start
       open: true,
-      // this sets a default port to 3000
-      port: PORT,
+      port: 3000,
       host: true
     },
     preview: {
@@ -22,24 +19,7 @@ export default defineConfig(({ mode }) => {
     define: {
       global: 'window'
     },
-    resolve: {
-      alias: [
-        // { find: '', replacement: path.resolve(__dirname, 'src') },
-        // {
-        //   find: /^~(.+)/,
-        //   replacement: path.join(process.cwd(), 'node_modules/$1')
-        // },
-        // {
-        //   find: /^src(.+)/,
-        //   replacement: path.join(process.cwd(), 'src/$1')
-        // }
-        // {
-        //   find: 'assets',
-        //   replacement: path.join(process.cwd(), 'src/assets')
-        // },
-      ]
-    },
-    base: API_URL,
+    base: isProduction ? './' : '/', // ✅ important
     plugins: [react(), jsconfigPaths()]
   };
 });
