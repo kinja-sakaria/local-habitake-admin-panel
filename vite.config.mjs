@@ -1,7 +1,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import jsconfigPaths from 'vite-jsconfig-paths';
-import open from 'vite-plugin-open';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -9,18 +8,18 @@ export default defineConfig(({ mode }) => {
 
   return {
     server: {
-      open: false, // disable default open
+      open: true,
       port: 3000,
       host: true
     },
-    plugins: [
-      react(),
-      jsconfigPaths(),
-      open({ path: '/login' }) // open directly to /login
-    ],
+    preview: {
+      open: true,
+      host: true
+    },
     define: {
       global: 'window'
     },
-    base: isProduction ? './' : '/'
+    base: isProduction ? './' : '/', // 
+    plugins: [react(), jsconfigPaths()]
   };
 });
