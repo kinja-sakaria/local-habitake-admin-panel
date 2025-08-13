@@ -5,10 +5,11 @@ export default function Default(mode) {
 
   let primaryColors = ['#E9F0FF', '#C8D9FF', '#A3C0FF', '#7EA6FF', '#6293FF', '#34216B', '#3F78FF', '#376DFF', '#2F63FF', '#2050FF'];
   let secondaryColors = ['#F8F9FA', '#F8F9FA', '#F3F5F7', '#DBE0E5', '#BEC8D0', '#8996A4', '#5B6B79', '#3E4853', '#1D2630', '#131920'];
-  let errorColors = ['#f5bebe', '#e76767', '#FF0000', '#d31c1c', '#c50d0d'];
+  let errorColors = ['#f5bebe', '#e76767', '#DC2626', '#d31c1c', '#c50d0d'];
   let warningColors = ['#f7dcb3', '#edad4d', '#e58a00', '#de7700', '#d35a00'];
-  let infoColors = ['#c5eff3', '#78d9e2', '#3ec9d6', '#30bccc', '#1ba9bc'];
-  let successColors = ['#c0e5d9', '#6bc2a5', '#2ca87f', '#21976c', '#107d4f'];
+  let infoColors = ['#c5eff3', '#78d9e2', '#3ec9d6', '#30bccc', '#1ba9bc', '#000929'];
+  let successColors = ['#c0e5d9', '#6bc2a5', '#01A669', '#21976c', '#107d4f'];
+  let revenueColors = ['#FACC15', '#14B8A6', '#EC4899', '#F59E0B'];
 
   return {
     primary: {
@@ -59,6 +60,7 @@ export default function Default(mode) {
       main: infoColors[2],
       dark: infoColors[3],
       darker: infoColors[4],
+      100: infoColors[5],
       contrastText
     },
     success: {
@@ -67,6 +69,13 @@ export default function Default(mode) {
       main: successColors[2],
       dark: successColors[3],
       darker: successColors[4],
+      contrastText
+    },
+    revenue: {
+      lighter: revenueColors[0],
+      light: revenueColors[1],
+      main: revenueColors[2],
+      dark: revenueColors[3],
       contrastText
     }
   };

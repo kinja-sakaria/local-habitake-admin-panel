@@ -9,7 +9,6 @@ import Box from '@mui/material/Box';
 // project-imports
 import Drawer from './Drawer';
 import Header from './Header';
-import Footer from './Footer';
 import Breadcrumbs from 'components/@extended/Breadcrumbs';
 import Loader from 'components/Loader';
 
@@ -47,7 +46,6 @@ export default function MainLayout() {
         >
           <Breadcrumbs />
           <Outlet />
-          <Footer />
         </Box>
       </Box>
     </Box>

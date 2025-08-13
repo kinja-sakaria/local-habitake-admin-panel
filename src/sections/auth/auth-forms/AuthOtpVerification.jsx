@@ -39,7 +39,7 @@ export default function AuthOtpVerification() {
       })}
       onSubmit={(values) => {
         console.log('OTP submitted:', values.otp);
-        navigate('/reset-password')
+        navigate('/reset-password');
       }}
     >
       {({ handleSubmit, errors, touched, setFieldValue }) => (
@@ -109,7 +109,7 @@ export default function AuthOtpVerification() {
             </Grid>
 
             <Grid item xs={12} sx={{ textAlign: 'center' }}>
-              <Typography sx={{ fontSize: 20, lineHeight: '100%' , fontWeight:400 }}>
+              <Typography sx={{ fontSize: 20, lineHeight: '100%', fontWeight: 400 }}>
                 Didn’t receive the code?{' '}
                 <Link href="#" underline="hover" color="primary.main">
                   Resend

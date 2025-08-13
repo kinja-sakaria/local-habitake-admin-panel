@@ -31,7 +31,7 @@ export default function RepeatCustomerRate() {
   return (
     <MainCard>
       <Stack direction="row" sx={{ gap: 1, alignItems: 'center', justifyContent: 'space-between' }}>
-        <Typography variant="h5">Repeat customer rate</Typography>
+        <Typography variant="h5">Transactions</Typography>
         <IconButton
           color="secondary"
           id="wallet-button"
@@ -58,7 +58,7 @@ export default function RepeatCustomerRate() {
             horizontal: 'right'
           }}
         >
-          <ListItemButton onClick={handleClose}>Today</ListItemButton>
+          <ListItemButton onClick={handleClose}>Daily</ListItemButton>
           <ListItemButton onClick={handleClose}>Weekly</ListItemButton>
           <ListItemButton onClick={handleClose}>Monthly</ListItemButton>
         </Menu>

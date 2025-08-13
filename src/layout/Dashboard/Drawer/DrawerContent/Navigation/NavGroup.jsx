@@ -4,7 +4,6 @@ import { matchPath, useLocation } from 'react-router';
 
 // material-ui
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 
 import Typography from '@mui/material/Typography';
@@ -119,7 +118,7 @@ export default function NavGroup({ item, lastItem, remItems, lastItemId, setSele
                 </Box>
               )
             ) : (
-              <Divider sx={{ my: 0.5 }} />
+              <></>
             )}
           </>
         }

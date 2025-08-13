@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
     define: {
       global: 'window'
     },
-    base: isProduction ? './' : '/', // 
+    base: isProduction ? './' : '/',
     plugins: [react(), jsconfigPaths()]
   };
 });

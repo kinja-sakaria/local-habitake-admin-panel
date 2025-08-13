@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Grid from '@mui/material/Grid';
-import ListItemButton from '@mui/material/ListItemButton';
-import Menu from '@mui/material/Menu';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
@@ -14,8 +12,6 @@ import ReactApexChart from 'react-apexcharts';
 
 // project-imports
 import Dot from 'components/@extended/Dot';
-import IconButton from 'components/@extended/IconButton';
-import MoreIcon from 'components/@extended/MoreIcon';
 import MainCard from 'components/MainCard';
 import { GRID_COMMON_SPACING } from 'config';
 
@@ -28,7 +24,7 @@ const pieChartOptions = {
     type: 'donut',
     height: 320
   },
-  labels: ['Total income', 'Total rent', 'Download', 'Views'],
+  labels: ['Advertising Revenue', 'Subscription Plans', 'Listing Fees', 'Sales Commission'],
   legend: {
     show: false
   },
@@ -50,14 +46,14 @@ function ApexDonutChart() {
   const grey200 = theme.palette.secondary[200];
   const backColor = theme.palette.background.paper;
 
-  const [series] = useState([31, 26, 23, 20]);
+  const [series] = useState([60, 60, 23, 20]);
   const [options, setOptions] = useState(pieChartOptions);
 
   useEffect(() => {
-    const primaryMain = theme.palette.primary.main;
-    const primaryLighter = theme.palette.error.main;
-    const warning = theme.palette.warning.main;
-    const success = theme.palette.success.main;
+    const primaryMain = theme.palette.revenue.light;
+    const primaryLighter = theme.palette.revenue.lighter;
+    const warning = theme.palette.revenue.main;
+    const success = theme.palette.revenue.dark;
 
     setOptions((prevState) => ({
       ...prevState,
@@ -96,47 +92,12 @@ function ApexDonutChart() {
 // ==============================|| CHART WIDGETS - TOTAL INCOME ||============================== //
 
 export default function TotalIncome() {
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const open = Boolean(anchorEl);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
     <MainCard>
       <Grid container spacing={GRID_COMMON_SPACING}>
         <Grid size={12}>
           <Stack direction="row" sx={{ gap: 1, alignItems: 'center', justifyContent: 'space-between' }}>
             <Typography variant="h5">Total Income</Typography>
-            <IconButton
-              color="secondary"
-              id="wallet-button"
-              aria-controls={open ? 'wallet-menu' : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined}
-              onClick={handleClick}
-            >
-              <MoreIcon />
-            </IconButton>
-            <Menu
-              id="wallet-menu"
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              slotProps={{ list: { 'aria-labelledby': 'wallet-button', sx: { p: 1.25, minWidth: 150 } } }}
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            >
-              <ListItemButton onClick={handleClose}>Today</ListItemButton>
-              <ListItemButton onClick={handleClose}>Weekly</ListItemButton>
-              <ListItemButton onClick={handleClose}>Monthly</ListItemButton>
-            </Menu>
           </Stack>
         </Grid>
         <Grid size={12} sx={{ '.apexcharts-active': { color: 'common.white' } }}>
@@ -146,8 +107,8 @@ export default function TotalIncome() {
           <MainCard content={false} border={false} sx={{ bgcolor: 'background.default' }}>
             <Stack sx={{ gap: 0.5, alignItems: 'flex-start', p: 2 }}>
               <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
-                <Dot componentDiv />
-                <Typography>Item01</Typography>
+                <Dot componentDiv sx={{ bgcolor: 'revenue.main' }} />
+                <Typography>Subscription Plans</Typography>
               </Stack>
 
               <Typography variant="subtitle1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
@@ -166,8 +127,8 @@ export default function TotalIncome() {
           <MainCard content={false} border={false} sx={{ bgcolor: 'background.default' }}>
             <Stack sx={{ gap: 0.5, alignItems: 'flex-start', p: 2 }}>
               <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
-                <Dot componentDiv sx={{ bgcolor: 'primary.200' }} />
-                <Typography>Item02</Typography>
+                <Dot componentDiv sx={{ bgcolor: 'revenue.light' }} />
+                <Typography>Advertising Revenue</Typography>
               </Stack>
               <Typography variant="subtitle1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                 $23,876
@@ -185,8 +146,8 @@ export default function TotalIncome() {
           <MainCard content={false} border={false} sx={{ bgcolor: 'background.default' }}>
             <Stack sx={{ gap: 0.5, alignItems: 'flex-start', p: 2 }}>
               <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
-                <Dot componentDiv color="warning" />
-                <Typography>Item03</Typography>
+                <Dot componentDiv sx={{ bgcolor: 'revenue.lighter' }} />
+                <Typography>Sales Commission</Typography>
               </Stack>
               <Typography variant="subtitle1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                 $23,876
@@ -204,8 +165,8 @@ export default function TotalIncome() {
           <MainCard content={false} border={false} sx={{ bgcolor: 'background.default' }}>
             <Stack sx={{ gap: 0.5, alignItems: 'flex-start', p: 2 }}>
               <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
-                <Dot componentDiv color="success" />
-                <Typography>Item04</Typography>
+                <Dot componentDiv sx={{ bgcolor: 'revenue.dark' }} />
+                <Typography>Listing Fees</Typography>
               </Stack>
               <Typography variant="subtitle1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                 $23,876

@@ -10,22 +10,15 @@ import Box from '@mui/material/Box';
 
 // project-imports
 import Profile from './Profile';
-import Search from './Search';
-import IconButton from 'components/@extended/IconButton';
 import Transitions from 'components/@extended/Transitions';
 
 // assets
-import { MoreSquare } from 'iconsax-reactjs';
 
 // ==============================|| HEADER CONTENT - MOBILE ||============================== //
 
 export default function MobileSection() {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
-
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
 
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
@@ -47,23 +40,7 @@ export default function MobileSection() {
   return (
     <>
       <Box sx={{ flexShrink: 0, ml: 0.75 }}>
-        <IconButton
-          aria-label="open more menu"
-          ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-          color="secondary"
-          variant="light"
-          size="large"
-          sx={{
-            p: 1,
-            color: 'secondary.main',
-            bgcolor: open ? 'secondary.200' : 'secondary.100'
-          }}
-        >
-          <MoreSquare variant="Bulk" style={{ transform: 'rotate(90deg)' }} />
-        </IconButton>
+        <Profile />
       </Box>
       <Popper
         placement="bottom-end"
@@ -81,7 +58,6 @@ export default function MobileSection() {
               <ClickAwayListener onClickAway={handleClose}>
                 <AppBar color="inherit">
                   <Toolbar>
-                    <Search />
                     <Profile />
                   </Toolbar>
                 </AppBar>

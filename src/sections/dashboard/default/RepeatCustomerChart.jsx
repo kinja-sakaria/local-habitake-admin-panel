@@ -55,9 +55,9 @@ export default function RepeatCustomerChart() {
   useEffect(() => {
     setOptions((prevState) => ({
       ...prevState,
-      colors: [theme.palette.primary.main, theme.palette.primary[700]],
+      colors: [theme.palette.primary.dark, theme.palette.primary[700]],
       xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         labels: {
           style: {
             colors: secondary
@@ -91,9 +91,10 @@ export default function RepeatCustomerChart() {
   const [series] = useState([
     {
       name: 'Page Views',
-      data: [30, 60, 40, 70, 50, 90, 50, 55, 45, 60, 50, 65]
+      data: [0, 200, 400, 600, 800, 1000, 1200]
     }
   ]);
 
-  return <ReactApexChart options={options} series={series} type="area" height={284} />;
+  return <ReactApexChart options={options} series={series} type="area" height={471} />;
+  // 284
 }

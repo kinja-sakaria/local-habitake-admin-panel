@@ -64,15 +64,18 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
             pl: level === 2 ? 3.25 : drawerOpen ? (level <= 3 ? (level * 20) / 8 : (level * 20 + (level - 3) * 10) / 8) : 1.5,
             py: !drawerOpen && level === 1 ? 1.25 : 1,
             ...(drawerOpen && {
-              '&:hover': { bgcolor: 'transparent' },
-              '&.Mui-selected': { '&:hover': { bgcolor: 'transparent' }, bgcolor: 'transparent' }
+              '&:hover': { bgcolor: 'transparent', borderRadius: '100px' },
+              '&.Mui-selected': {
+                '&:hover': { bgcolor: 'rgba(52, 33, 107, 0.1)', borderRadius: '100px' },
+                bgcolor: 'rgba(52, 33, 107, 0.1)',
+                borderRadius: '100px'
+              }
             }),
             ...(drawerOpen &&
               level === 1 && {
                 mx: 1.25,
                 my: 0.5,
-                borderRadius: 1,
-                '&:hover': { bgcolor: 'secondary.200' }
+                '&:hover': { bgcolor: 'secondary.200', borderRadius: '100px' }
               }),
             ...(!drawerOpen && {
               px: 2.75,
@@ -91,17 +94,17 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
                 ...(isSelected && { color: iconSelectedColor }),
                 ...(!drawerOpen &&
                   level === 1 && {
-                    borderRadius: 1,
                     width: 46,
                     height: 46,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    '&:hover': { bgcolor: 'secondary.200' }
+                    '&:hover': { bgcolor: 'secondary.200', borderRadius: '10px' }
                   }),
                 ...(!drawerOpen &&
                   isSelected && {
-                    bgcolor: 'primary.lighter',
-                    '&:hover': { bgcolor: 'primary.lighter' }
+                    bgcolor: 'rgba(52, 33, 107, 0.1)',
+                    borderRadius: '10px',
+                    '&:hover': { bgcolor: 'rgba(52, 33, 107, 0.1)', borderRadius: '10px' }
                   })
               }}
             >

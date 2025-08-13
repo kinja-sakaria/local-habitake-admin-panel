@@ -2,7 +2,6 @@
 import { useTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { useNavigate } from 'react-router';
 
 // project-imports
 import EcommerceDataCard from 'components/cards/statistics/EcommerceDataCard';
@@ -29,9 +28,7 @@ import { useState } from 'react';
 
 export default function DashboardDefault() {
   const theme = useTheme();
-  const navigate = useNavigate();
   const [tab, setTab] = useState(1);
-
   const handleApproveAll = () => {
     alert('Approved all');
   };
@@ -41,13 +38,8 @@ export default function DashboardDefault() {
   };
 
   const handleViewAll = () => {
-    if (tab === 0) {
-      navigate('/user-management');
-    } else {
-      navigate('/ment');
-    }
+    alert('View all clicked');
   };
-
   return (
     <>
       <Grid container spacing={GRID_COMMON_SPACING}>
@@ -132,7 +124,7 @@ export default function DashboardDefault() {
               <ActionButtons onApproveAll={handleApproveAll} onRejectAll={handleRejectAll} onViewAll={handleViewAll} />
             </Stack>
             <Box mt={3}>
-              <VerificationTable activeTab={tab} />
+              <VerificationTable />
             </Box>
           </MainCard>
         </Grid>

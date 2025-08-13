@@ -42,7 +42,7 @@ export default function MainCard({
       sx={(theme) => {
         const style = {
           position: 'relative',
-          borderRadius: 1.5,
+          borderRadius: '16px',
           ...(border && { border: `1px solid ${theme.palette.divider}` }),
           ...(((themeContrast && boxShadow) || shadow) && { boxShadow: shadow ? shadow : theme.customShadows.z1 }),
           ...(codeHighlight && {
@@ -50,8 +50,8 @@ export default function MainCard({
               m: 0,
               p: '12px !important',
               fontFamily: theme.typography.fontFamily,
-              fontSize: '0.75rem'
-            }
+              fontSize: '0.75rem',
+            },
           }),
           ...(modal && {
             top: '50%',
@@ -61,9 +61,9 @@ export default function MainCard({
             '& .MuiCardContent-root': {
               overflowY: 'auto',
               minHeight: 'auto',
-              maxHeight: `calc(100vh - 200px)`
-            }
-          })
+              maxHeight: `calc(100vh - 200px)`,
+            },
+          }),
         };
 
         const userSx = typeof sx === 'function' ? sx(theme) : sx;
@@ -104,5 +104,5 @@ MainCard.propTypes = {
   codeString: PropTypes.string,
   modal: PropTypes.bool,
   ref: PropTypes.object,
-  others: PropTypes.any
+  others: PropTypes.any,
 };

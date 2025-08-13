@@ -17,8 +17,10 @@ import MoreIcon from 'components/@extended/MoreIcon';
 
 // ==============================|| CHART WIDGET - ECOMMERCE CARD  ||============================== //
 
-export default function EcommerceDataCard({ title, count, percentage, color, iconPrimary, children }) {
+export default function EcommerceDataCard({ title, count, percentage, color, iconPrimary, children, sx }) {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedPeriod, setSelectedPeriod] = useState('Monthly');
+
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -35,10 +37,12 @@ export default function EcommerceDataCard({ title, count, percentage, color, ico
         <Grid size={12}>
           <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
             <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
-              <Avatar variant="rounded" color={color}>
+              <Avatar variant="rounded" color={color} sx={sx}>
                 {iconPrimary}
               </Avatar>
-              <Typography variant="subtitle1">{title}</Typography>
+              <Typography variant="h5" color="secondary.800" sx={{ fontWeight: 700 }}>
+                {title}
+              </Typography>
             </Stack>
             <IconButton
               color="secondary"
@@ -65,9 +69,30 @@ export default function EcommerceDataCard({ title, count, percentage, color, ico
                 horizontal: 'right'
               }}
             >
-              <ListItemButton onClick={handleClose}>Today</ListItemButton>
-              <ListItemButton onClick={handleClose}>Weekly</ListItemButton>
-              <ListItemButton onClick={handleClose}>Monthly</ListItemButton>
+              <ListItemButton
+                onClick={() => {
+                  setSelectedPeriod('Daily');
+                  handleClose();
+                }}
+              >
+                Daily
+              </ListItemButton>
+              <ListItemButton
+                onClick={() => {
+                  setSelectedPeriod('Weekly');
+                  handleClose();
+                }}
+              >
+                Weekly
+              </ListItemButton>
+              <ListItemButton
+                onClick={() => {
+                  setSelectedPeriod('Monthly');
+                  handleClose();
+                }}
+              >
+                Monthly
+              </ListItemButton>
             </Menu>
           </Stack>
         </Grid>
@@ -75,7 +100,12 @@ export default function EcommerceDataCard({ title, count, percentage, color, ico
           <MainCard content={false} border={false} sx={{ bgcolor: 'background.default' }}>
             <Box sx={{ p: 3, pb: 1.25 }}>
               <Grid container spacing={3}>
-                <Grid size={7}>{children}</Grid>
+                <Grid size={7}>
+                  {children}
+                  <Typography variant="body2" align="center" sx={{ mt: 1, color: 'text.secondary' }}>
+                    {selectedPeriod}
+                  </Typography>
+                </Grid>
                 <Grid size={5}>
                   <Stack sx={{ gap: 1 }}>
                     <Typography variant="h5">{count}</Typography>

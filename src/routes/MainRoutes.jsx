@@ -1,54 +1,43 @@
+// MainRoutes.tsx
 import { lazy } from 'react';
+// import { Navigate } from 'react-router-dom';
 
 // project-imports
 import Loadable from 'components/Loadable';
 import DashboardLayout from 'layout/Dashboard';
 
-// render - Dashboard
+const Setting = Loadable(lazy(() => import('pages/setting/setting')));
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/default')));
-
-// render - utils components
-const Color = Loadable(lazy(() => import('pages/component-overview/color')));
-const Typography = Loadable(lazy(() => import('pages/component-overview/typography')));
-const Shadow = Loadable(lazy(() => import('pages/component-overview/shadows')));
-
-// render - sample page
-const SamplePage = Loadable(lazy(() => import('pages/extra-pages/sample-page')));
-
-// ==============================|| MAIN ROUTES ||============================== //
+const Notification = Loadable(lazy(() => import('pages/notification/notification')));
+const Transaction = Loadable(lazy(() => import('pages/transaction/transaction')));
 
 const MainRoutes = {
   path: '/',
   element: <DashboardLayout />,
   children: [
+    // {
+    //   index: true,
+    //   element: <Navigate to="/dashboard" replace />
+    // },
     {
-      path: '/',
+      path: 'dashboard',
       element: <DashboardDefault />
     },
     {
-      path: '/',
-      children: [
-        {
-          path: 'dashboard',
-          element: <DashboardDefault />
-        }
-      ]
+      path: 'property-management',
+      element: <DashboardDefault />
     },
     {
-      path: 'typography',
-      element: <Typography />
+      path: 'setting',
+      element: <Setting />
     },
     {
-      path: 'color',
-      element: <Color />
+      path: 'transaction',
+      element: <Transaction />
     },
     {
-      path: 'shadows',
-      element: <Shadow />
-    },
-    {
-      path: 'sample-page',
-      element: <SamplePage />
+      path: 'notification',
+      element: <Notification />
     }
   ]
 };

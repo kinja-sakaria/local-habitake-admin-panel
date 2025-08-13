@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 
@@ -22,7 +23,7 @@ const LoginRoutes = {
       element: <AuthLayout />,
       children: [
         {
-          index: true, // <== this is the redirect from "/"
+          index: true,
           element: <Navigate to="/login" replace />
         },
         {
