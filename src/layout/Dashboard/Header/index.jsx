@@ -42,7 +42,7 @@ export default function Header() {
           color: 'secondary.main',
           ...(drawerOpen ? { bgcolor: 'secondary.100' } : { bgcolor: 'secondary.200' }),
           ml: { xs: 0, lg: -2 },
-          p: 1
+          p: 1,
         }}
       >
         <HamburgerMenu />
@@ -59,8 +59,8 @@ export default function Header() {
       bgcolor: alpha(theme.palette.background.default, 0.8),
       backdropFilter: 'blur(8px)',
       zIndex: 1200,
-      width: { xs: '100%', lg: drawerOpen ? `calc(100% - ${DRAWER_WIDTH}px)` : `calc(100% - ${MINI_DRAWER_WIDTH}px)` }
-    })
+      width: { xs: '100%', lg: drawerOpen ? `calc(100% - ${DRAWER_WIDTH}px)` : `calc(100% - ${MINI_DRAWER_WIDTH}px)` },
+    }),
   };
 
   return (

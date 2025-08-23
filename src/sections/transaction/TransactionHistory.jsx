@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
 import NavigateBeforeRoundedIcon from '@mui/icons-material/NavigateBeforeRounded';
 import FirstPageRoundedIcon from '@mui/icons-material/FirstPageRounded';
@@ -33,7 +33,7 @@ const rows = Array.from({ length: 20 }, (_, i) => ({
   userId: 'SHTER89',
   paymentMethod: ['Credit Card', 'Debit Card', 'Net Banking'][i % 3],
   transactionId: ['10223453', '10223489', '10223490'][i % 3],
-  amount: '$500',
+  amount: ['$500', '$400', '$300'][i % 3],
   status: ['Completed', 'Failed', 'Pending'][i % 3],
 }));
 
@@ -53,11 +53,13 @@ const getStatusColor = (status) => {
 export default function TransactionHistory() {
   const [page, setPage] = useState(0);
   const [filters, setFilters] = useState([]);
+  const [selected, setSelected] = useState([]);
+  const [sortOrder, setSortOrder] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [tempFilters, setTempFilters] = useState([]);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [selected, setSelected] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [tempSortOrder, setTempSortOrder] = useState(null);
 
   const handleFilterToggle = (value) => {
     setTempFilters((prev) => (prev.includes(value) ? prev.filter((f) => f !== value) : [...prev, value]));
@@ -75,6 +77,16 @@ export default function TransactionHistory() {
         row.name.toLowerCase().includes(term) || row.userId.toLowerCase().includes(term) || row.transactionId.toLowerCase().includes(term)
       );
     });
+
+  const sortedRows = [...filteredRows].sort((a, b) => {
+    if (sortOrder === 'hightolowamount') {
+      return parseFloat(b.amount.replace(/[^0-9.-]+/g, '')) - parseFloat(a.amount.replace(/[^0-9.-]+/g, ''));
+    }
+    if (sortOrder === 'lowtohighamount') {
+      return parseFloat(a.amount.replace(/[^0-9.-]+/g, '')) - parseFloat(b.amount.replace(/[^0-9.-]+/g, ''));
+    }
+    return 0;
+  });
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -98,6 +110,7 @@ export default function TransactionHistory() {
 
   const handleApplyFilters = () => {
     setFilters(tempFilters);
+    setSortOrder(tempSortOrder);
     setMenuOpen(false);
   };
 
@@ -108,7 +121,8 @@ export default function TransactionHistory() {
       {/* Top bar: Search and Sort */}
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
         <TextField
-          placeholder="Search 100 records..."
+          // placeholder="Search 100 records..."
+          placeholder="Search..."
           variant="outlined"
           size="small"
           value={searchTerm}
@@ -197,6 +211,27 @@ export default function TransactionHistory() {
             <Checkbox checked={tempFilters.includes('failed')} color="success" />
             Failed
           </MenuItem>
+          <MenuItem
+            value="hightolowamount"
+            onClick={(e) => {
+              e.preventDefault();
+              setTempSortOrder(tempSortOrder === 'hightolowamount' ? null : 'hightolowamount');
+            }}
+          >
+            <Checkbox checked={tempSortOrder === 'hightolowamount'} color="success" />
+            High to low amount
+          </MenuItem>
+
+          <MenuItem
+            value="lowtohighamount"
+            onClick={(e) => {
+              e.preventDefault();
+              setTempSortOrder(tempSortOrder === 'lowtohighamount' ? null : 'lowtohighamount');
+            }}
+          >
+            <Checkbox checked={tempSortOrder === 'lowtohighamount'} color="success" />
+            Low to high amount
+          </MenuItem>
 
           <MenuItem
             value="pending"
@@ -271,7 +306,7 @@ export default function TransactionHistory() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredRows.length === 0 ? (
+            {sortedRows.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={7} align="center" sx={{ py: 3 }}>
                   <Typography variant="body1" color="textSecondary">
@@ -280,7 +315,7 @@ export default function TransactionHistory() {
                 </TableCell>
               </TableRow>
             ) : (
-              filteredRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+              sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 const selectedRow = isSelected(row.id);
                 const statusColor = getStatusColor(row.status);
                 return (

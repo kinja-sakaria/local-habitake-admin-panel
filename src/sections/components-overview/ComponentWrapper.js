@@ -10,11 +10,11 @@ const ComponentWrapper = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2.5),
   [theme.breakpoints.down('xl')]: {
     padding: theme.spacing(2.5),
-    paddingRight: 0
+    paddingRight: 0,
   },
   [theme.breakpoints.down('md')]: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }));
 
 export default ComponentWrapper;

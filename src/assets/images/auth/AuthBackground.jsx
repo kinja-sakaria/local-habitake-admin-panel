@@ -24,8 +24,8 @@ const AuthBackground = () => {
           position: 'absolute',
           top: 0,
           right: 0,
-          opacity: 1
-        }
+          opacity: 1,
+        },
       }}
     >
       <Box
@@ -37,7 +37,7 @@ const AuthBackground = () => {
           ml: 20,
           position: 'absolute',
           bottom: 180,
-          opacity: 1
+          opacity: 1,
         }}
       />
       <Box
@@ -49,7 +49,7 @@ const AuthBackground = () => {
           position: 'absolute',
           bottom: 0,
           left: -50,
-          opacity: 1
+          opacity: 1,
         }}
       />
     </Box>

@@ -10,6 +10,7 @@ const Setting = Loadable(lazy(() => import('pages/setting/setting')));
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/default')));
 const Notification = Loadable(lazy(() => import('pages/notification/notification')));
 const Transaction = Loadable(lazy(() => import('pages/transaction/transaction')));
+const UseManagement = Loadable(lazy(() => import('pages/user-management/usermanagement')));
 
 const MainRoutes = {
   path: '/',
@@ -21,25 +22,29 @@ const MainRoutes = {
     // },
     {
       path: 'dashboard',
-      element: <DashboardDefault />
+      element: <DashboardDefault />,
+    },
+    {
+      path: 'user-management',
+      element: <UseManagement />,
     },
     {
       path: 'property-management',
-      element: <DashboardDefault />
+      element: <DashboardDefault />,
     },
     {
       path: 'setting',
-      element: <Setting />
+      element: <Setting />,
     },
     {
       path: 'transaction',
-      element: <Transaction />
+      element: <Transaction />,
     },
     {
       path: 'notification',
-      element: <Notification />
-    }
-  ]
+      element: <Notification />,
+    },
+  ],
 };
 
 export default MainRoutes;

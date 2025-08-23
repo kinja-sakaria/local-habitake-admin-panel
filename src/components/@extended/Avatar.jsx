@@ -15,26 +15,26 @@ function getColorStyle({ theme, color, type }) {
     case 'filled':
       return {
         color: contrastText,
-        backgroundColor: main
+        backgroundColor: main,
       };
     case 'outlined':
       return {
         color: main,
         border: '1px solid',
         borderColor: main,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
       };
     case 'combined':
       return {
         color: main,
         border: '1px solid',
         borderColor: light,
-        backgroundColor: alpha(lighter, 0.8)
+        backgroundColor: alpha(lighter, 0.8),
       };
     default:
       return {
         color: main,
-        backgroundColor: alpha(lighter, 0.8)
+        backgroundColor: alpha(lighter, 0.8),
       };
   }
 }
@@ -51,8 +51,8 @@ function getSizeStyle(size) {
         height: 20,
         '& svg': {
           width: 10,
-          height: 10
-        }
+          height: 10,
+        },
       };
     case 'xs':
       return {
@@ -61,8 +61,8 @@ function getSizeStyle(size) {
         height: 24,
         '& svg': {
           width: 14,
-          height: 14
-        }
+          height: 14,
+        },
       };
     case 'sm':
       return {
@@ -71,8 +71,8 @@ function getSizeStyle(size) {
         height: 32,
         '& svg': {
           width: 18,
-          height: 18
-        }
+          height: 18,
+        },
       };
     case 'lg':
       return {
@@ -81,8 +81,8 @@ function getSizeStyle(size) {
         height: 52,
         '& svg': {
           width: 28,
-          height: 28
-        }
+          height: 28,
+        },
       };
     case 'xl':
       return {
@@ -91,8 +91,8 @@ function getSizeStyle(size) {
         height: 64,
         '& svg': {
           width: 36,
-          height: 36
-        }
+          height: 36,
+        },
       };
     case 'md':
     default:
@@ -102,8 +102,8 @@ function getSizeStyle(size) {
         height: 40,
         '& svg': {
           width: 20,
-          height: 20
-        }
+          height: 20,
+        },
       };
   }
 }
@@ -113,8 +113,8 @@ const AvatarStyle = styled(MuiAvatar, { shouldForwardProp: (prop) => prop !== 'c
     ...getSizeStyle(size),
     ...getColorStyle({ theme, color, type }),
     ...(size === 'badge' && {
-      borderColor: theme.palette.background.default
-    })
+      borderColor: theme.palette.background.default,
+    }),
   })
 );
 
@@ -133,5 +133,5 @@ Avatar.propTypes = {
   color: PropTypes.string,
   type: PropTypes.any,
   size: PropTypes.string,
-  others: PropTypes.any
+  others: PropTypes.any,
 };

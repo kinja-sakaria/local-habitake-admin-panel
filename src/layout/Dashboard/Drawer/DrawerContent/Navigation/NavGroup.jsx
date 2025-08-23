@@ -105,7 +105,7 @@ export default function NavGroup({ item, lastItem, remItems, lastItemId, setSele
                     sx={{
                       textTransform: 'uppercase',
                       fontSize: '0.688rem',
-                      color: 'secondary.dark'
+                      color: 'secondary.dark',
                     }}
                   >
                     {item.title}
@@ -140,5 +140,5 @@ NavGroup.propTypes = {
   setSelectedItems: PropTypes.oneOfType([PropTypes.string, PropTypes.any]),
   selectedItems: PropTypes.oneOfType([PropTypes.string, PropTypes.any]),
   setSelectedLevel: PropTypes.object,
-  selectedLevel: PropTypes.number
+  selectedLevel: PropTypes.number,
 };

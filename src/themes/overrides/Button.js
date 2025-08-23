@@ -17,7 +17,7 @@ function getColorStyle({ variant, color, theme }) {
   const commonShadow = {
     '&::after': { boxShadow: `0 0 5px 5px ${alpha(main, 0.9)}` },
     '&:active::after': { boxShadow: `0 0 0 0 ${alpha(main, 0.9)}` },
-    '&:focus-visible': { outline: `2px solid ${dark}`, outlineOffset: 2 }
+    '&:focus-visible': { outline: `2px solid ${dark}`, outlineOffset: 2 },
   };
 
   switch (variant) {
@@ -26,9 +26,9 @@ function getColorStyle({ variant, color, theme }) {
         ...(color === 'secondary' && { backgroundColor: dark }),
         '&:hover': {
           backgroundColor: dark,
-          ...(color === 'secondary' && { backgroundColor: darker })
+          ...(color === 'secondary' && { backgroundColor: darker }),
         },
-        ...commonShadow
+        ...commonShadow,
       };
     case 'shadow':
       return {
@@ -36,7 +36,7 @@ function getColorStyle({ variant, color, theme }) {
         backgroundColor: dark,
         boxShadow: shadows,
         '&:hover': { boxShadow: 'none', backgroundColor: darker },
-        ...commonShadow
+        ...commonShadow,
       };
     case 'outlined':
       return {
@@ -44,9 +44,9 @@ function getColorStyle({ variant, color, theme }) {
         '&:hover': {
           color: dark,
           backgroundColor: 'transparent',
-          borderColor: dark
+          borderColor: dark,
         },
-        ...commonShadow
+        ...commonShadow,
       };
     case 'dashed':
       return {
@@ -54,16 +54,16 @@ function getColorStyle({ variant, color, theme }) {
         borderColor: main,
         backgroundColor: lighter,
         '&:hover': { color: dark, borderColor: dark },
-        ...commonShadow
+        ...commonShadow,
       };
     case 'text':
     default:
       return {
         '&:hover': {
           color: dark,
-          backgroundColor: lighter
+          backgroundColor: lighter,
         },
-        ...commonShadow
+        ...commonShadow,
       };
   }
 }
@@ -80,7 +80,7 @@ export default function Button(theme) {
   return {
     MuiButton: {
       defaultProps: {
-        disableElevation: true
+        disableElevation: true,
       },
       styleOverrides: {
         root: {
@@ -95,7 +95,7 @@ export default function Button(theme) {
             height: '100%',
             borderRadius: 8,
             opacity: 0,
-            transition: 'all 0.5s'
+            transition: 'all 0.5s',
           },
 
           '&:active::after': {
@@ -104,26 +104,26 @@ export default function Button(theme) {
             left: 0,
             top: 0,
             opacity: 1,
-            transition: '0s'
-          }
+            transition: '0s',
+          },
         },
         contained: {
-          ...disabledStyle
+          ...disabledStyle,
         },
         outlined: {
-          ...disabledStyle
+          ...disabledStyle,
         },
         text: {
           boxShadow: 'none',
           '&:hover': {
-            boxShadow: 'none'
-          }
+            boxShadow: 'none',
+          },
         },
         endIcon: {
-          ...iconStyle
+          ...iconStyle,
         },
         startIcon: {
-          ...iconStyle
+          ...iconStyle,
         },
         dashed: {
           border: '1px dashed',
@@ -137,8 +137,8 @@ export default function Button(theme) {
           '&.Mui-disabled': {
             color: `${theme.palette.secondary.light} !important`,
             borderColor: `${theme.palette.secondary[400]} !important`,
-            backgroundColor: `${theme.palette.secondary[200]} !important`
-          }
+            backgroundColor: `${theme.palette.secondary[200]} !important`,
+          },
         },
         shadow: {
           ...primaryShadow,
@@ -151,8 +151,8 @@ export default function Button(theme) {
           '&.Mui-disabled': {
             color: `${theme.palette.secondary.light} !important`,
             borderColor: `${theme.palette.secondary[400]} !important`,
-            backgroundColor: `${theme.palette.secondary[200]} !important`
-          }
+            backgroundColor: `${theme.palette.secondary[200]} !important`,
+          },
         },
         containedPrimary: getColorStyle({ variant: 'contained', color: 'primary', theme }),
         containedSecondary: getColorStyle({ variant: 'contained', color: 'secondary', theme }),
@@ -175,37 +175,37 @@ export default function Button(theme) {
         sizeExtraSmall: {
           minWidth: 56,
           fontSize: '0.625rem',
-          padding: '2px 8px'
+          padding: '2px 8px',
         },
         sizeSmall: {
           '& svg': {
             width: 16,
-            height: 16
-          }
+            height: 16,
+          },
         },
         sizeMedium: {
           '& svg': {
             width: 18,
-            height: 18
-          }
+            height: 18,
+          },
         },
         sizeLarge: {
           '& svg': {
             width: 20,
-            height: 20
-          }
+            height: 20,
+          },
         },
         loading: {
           pointerEvents: 'none !important',
           '& svg': {
             width: 'inherit',
-            height: 'inherit'
+            height: 'inherit',
           },
           '&.MuiButton-loadingPositionCenter': {
-            color: 'transparent !important'
-          }
-        }
-      }
-    }
+            color: 'transparent !important',
+          },
+        },
+      },
+    },
   };
 }

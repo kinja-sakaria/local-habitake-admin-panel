@@ -1,10 +1,12 @@
-
+export { default as DeleteIcon } from './DeleteIcon';
 export { default as SettingIcon } from './SettingIcon';
 export { default as AiModalIcon } from './AiModalIcon';
 export { default as SupportIcon } from './SupportIcon';
 export { default as UserManagment } from './UserManagment';
+export { default as HourGlassIcon } from './HourGlassIcon';
 export { default as DashboardIcon } from './DashboardIcon';
 export { default as TransactionIcon } from './TransactionIcon';
+export { default as UserIdProofIcon } from './UserIdProofIcon';
 export { default as SubcriptionIcon } from './SubcriptionIcon';
 export { default as NotificationIcon } from './NotificationIcon';
 export { default as PropertyManagment } from './PropertyManagment';

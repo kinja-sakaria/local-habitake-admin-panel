@@ -19,15 +19,15 @@ function getColorStyle({ variant, theme, color }) {
 
   const commonShadow = {
     '&::after': {
-      boxShadow: `0 0 6px 6px ${alpha(main, 0.9)}`
+      boxShadow: `0 0 6px 6px ${alpha(main, 0.9)}`,
     },
     '&:active::after': {
-      boxShadow: `0 0 0 0 ${alpha(main, 0.9)}`
+      boxShadow: `0 0 0 0 ${alpha(main, 0.9)}`,
     },
     '&:focus-visible': {
       outline: `2px solid ${dark}`,
-      outlineOffset: 2
-    }
+      outlineOffset: 2,
+    },
   };
 
   switch (variant) {
@@ -36,19 +36,19 @@ function getColorStyle({ variant, theme, color }) {
         color: contrastText,
         backgroundColor: main,
         '&:hover': {
-          backgroundColor: dark
+          backgroundColor: dark,
         },
         ...(color === 'secondary'),
-        ...commonShadow
+        ...commonShadow,
       };
     case 'light':
       return {
         color: main,
         backgroundColor: lighter,
         '&:hover': {
-          backgroundColor: light
+          backgroundColor: light,
         },
-        ...commonShadow
+        ...commonShadow,
       };
     case 'shadow':
       return {
@@ -57,18 +57,18 @@ function getColorStyle({ variant, theme, color }) {
         backgroundColor: main,
         '&:hover': {
           boxShadow: 'none',
-          backgroundColor: dark
+          backgroundColor: dark,
         },
-        ...commonShadow
+        ...commonShadow,
       };
     case 'outlined':
       return {
         '&:hover': {
           backgroundColor: 'transparent',
           color: dark,
-          borderColor: dark
+          borderColor: dark,
         },
-        ...commonShadow
+        ...commonShadow,
       };
     case 'dashed':
       return {
@@ -76,15 +76,15 @@ function getColorStyle({ variant, theme, color }) {
         '&:hover': {
           color: dark,
           borderColor: dark,
-          backgroundColor: alpha(lighter, 0.2)
+          backgroundColor: alpha(lighter, 0.2),
         },
-        ...commonShadow
+        ...commonShadow,
       };
     case 'text':
     default:
       return {
         '&:hover': { color: dark, backgroundColor: lighter },
-        ...commonShadow
+        ...commonShadow,
       };
   }
 }
@@ -102,7 +102,7 @@ const IconButtonStyle = styled(MuiIconButton, { shouldForwardProp: (prop) => pro
       height: '100%',
       borderRadius: shape === 'rounded' ? '50%' : 8,
       opacity: 0,
-      transition: 'all 0.5s'
+      transition: 'all 0.5s',
     },
 
     ':active::after': {
@@ -111,25 +111,25 @@ const IconButtonStyle = styled(MuiIconButton, { shouldForwardProp: (prop) => pro
       left: 0,
       top: 0,
       opacity: 1,
-      transition: '0s'
+      transition: '0s',
     },
     ...(shape === 'rounded' && {
-      borderRadius: '50%'
+      borderRadius: '50%',
     }),
     ...(variant === 'outlined' && {
       border: '1px solid',
-      borderColor: 'inherit'
+      borderColor: 'inherit',
     }),
     ...(variant === 'dashed' && {
       border: '1px dashed',
-      borderColor: 'inherit'
+      borderColor: 'inherit',
     }),
     ...(variant !== 'text' && {
       '&.Mui-disabled': {
-        backgroundColor: theme.palette.secondary[200]
-      }
+        backgroundColor: theme.palette.secondary[200],
+      },
     }),
-    ...getColorStyle({ variant, theme, color })
+    ...getColorStyle({ variant, theme, color }),
   })
 );
 
@@ -155,5 +155,5 @@ IconButton.propTypes = {
   children: PropTypes.node,
   color: PropTypes.string,
   ref: PropTypes.any,
-  others: PropTypes.any
+  others: PropTypes.any,
 };

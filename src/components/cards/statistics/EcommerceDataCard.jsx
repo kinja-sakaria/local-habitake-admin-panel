@@ -62,11 +62,11 @@ export default function EcommerceDataCard({ title, count, percentage, color, ico
               slotProps={{ list: { 'aria-labelledby': 'wallet-button', sx: { p: 1.25, minWidth: 150 } } }}
               anchorOrigin={{
                 vertical: 'bottom',
-                horizontal: 'right'
+                horizontal: 'right',
               }}
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'right'
+                horizontal: 'right',
               }}
             >
               <ListItemButton
@@ -127,5 +127,5 @@ EcommerceDataCard.propTypes = {
   percentage: PropTypes.node,
   color: PropTypes.any,
   iconPrimary: PropTypes.node,
-  children: PropTypes.any
+  children: PropTypes.any,
 };

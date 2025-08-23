@@ -24,31 +24,31 @@ const LoginRoutes = {
       children: [
         {
           index: true,
-          element: <Navigate to="/login" replace />
+          element: <Navigate to="/login" replace />,
         },
         {
           path: 'login',
-          element: <AuthLogin />
+          element: <AuthLogin />,
         },
         {
           path: 'forgot-password',
-          element: <AuthForgotPassword />
+          element: <AuthForgotPassword />,
         },
         {
           path: 'otp-verification',
-          element: <AuthOtpVerification />
+          element: <AuthOtpVerification />,
         },
         {
           path: 'reset-password',
-          element: <AuthResetPassword />
+          element: <AuthResetPassword />,
         },
         {
           path: 'reset-password-conformation',
-          element: <AuthResetPasswordConfrim />
-        }
-      ]
-    }
-  ]
+          element: <AuthResetPasswordConfrim />,
+        },
+      ],
+    },
+  ],
 };
 
 export default LoginRoutes;

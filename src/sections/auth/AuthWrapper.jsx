@@ -24,7 +24,7 @@ export default function AuthWrapper({ children }) {
             sx={{
               justifyContent: 'center',
               alignItems: 'center',
-              minHeight: { xs: 'calc(100vh - 210px)', sm: 'calc(100vh - 134px)', md: 'calc(100vh - 112px)' }
+              minHeight: { xs: 'calc(100vh - 210px)', sm: 'calc(100vh - 134px)', md: 'calc(100vh - 112px)' },
             }}
           >
             <Grid>

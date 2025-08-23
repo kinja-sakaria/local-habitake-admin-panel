@@ -71,7 +71,7 @@ const userData = [
     value: '30000',
     idNumber: '1234 5678 9012',
     location: 'NY 1003, USA',
-  }
+  },
 ];
 
 export default function VerificationTable({ activeTab }) {
@@ -115,10 +115,10 @@ export default function VerificationTable({ activeTab }) {
               />
             </TableCell>
             <TableCell sx={{ fontSize: '18px' }}>Name</TableCell>
-            <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? "Type" : "Role"}</TableCell>
+            <TableCell sx={{ fontSize: '18px' }}>{activeTab === 1 ? 'Type' : 'Role'}</TableCell>
             <TableCell sx={{ fontSize: '18px' }}>Created Date</TableCell>
-            <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? "Value" : "Proof of ID"}</TableCell>
-            <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? "Location" : "ID Number"}</TableCell>
+            <TableCell sx={{ fontSize: '18px' }}>{activeTab === 1 ? 'Value' : 'Proof of ID'}</TableCell>
+            <TableCell sx={{ fontSize: '18px' }}>{activeTab === 1 ? 'Location' : 'ID Number'}</TableCell>
             <TableCell sx={{ fontSize: '18px', textAlign: 'center' }}>Action</TableCell>
           </TableRow>
         </TableHead>
@@ -132,18 +132,17 @@ export default function VerificationTable({ activeTab }) {
                 </TableCell>
                 <TableCell>
                   <Box display="flex" alignItems="center" gap={1} sx={{ fontSize: '18px' }}>
-                    {activeTab === 0 ? '' : <Avatar alt={user.name} src="/avatar.png" size="xs" />}
+                    {activeTab === 1 ? '' : <Avatar alt={user.name} src="/avatar.png" size="xs" />}
                     {user.name}
                   </Box>
                 </TableCell>
-                <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? (user.type || "-") : (user.role || "-")}
-                </TableCell>
-                <TableCell sx={{ fontSize: '18px' }}>{user.createdDate || "-"}</TableCell>
-                <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? (user.value || "-") : (user.proof || "-")}</TableCell>
-                <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? (user.location || "-") : (user.idNumber || "-")}</TableCell>
+                <TableCell sx={{ fontSize: '18px' }}>{activeTab === 1 ? user.type || '-' : user.role || '-'}</TableCell>
+                <TableCell sx={{ fontSize: '18px' }}>{user.createdDate || '-'}</TableCell>
+                <TableCell sx={{ fontSize: '18px' }}>{activeTab === 1 ? user.value || '-' : user.proof || '-'}</TableCell>
+                <TableCell sx={{ fontSize: '18px' }}>{activeTab === 1 ? user.location || '-' : user.idNumber || '-'}</TableCell>
                 <TableCell>
                   <Box display="flex" alignItems="center" gap={1}>
-                    <IconButton sx={{ color: "#565F68" }} color="secondary">
+                    <IconButton sx={{ color: '#565F68' }} color="secondary">
                       <Eye />
                     </IconButton>
                     <IconButton sx={{ color: '#DC2626' }} color="error">

@@ -11,14 +11,14 @@ const areaChartOptions = {
   chart: {
     type: 'area',
     toolbar: {
-      show: false
-    }
+      show: false,
+    },
   },
   dataLabels: {
-    enabled: false
+    enabled: false,
   },
   stroke: {
-    width: 1
+    width: 1,
   },
   fill: {
     type: 'gradient',
@@ -27,18 +27,18 @@ const areaChartOptions = {
       type: 'vertical',
       inverseColors: false,
       opacityFrom: 0.5,
-      opacityTo: 0
-    }
+      opacityTo: 0,
+    },
   },
   plotOptions: {
     bar: {
       columnWidth: '45%',
-      borderRadius: 4
-    }
+      borderRadius: 4,
+    },
   },
   grid: {
-    strokeDashArray: 4
-  }
+    strokeDashArray: 4,
+  },
 };
 
 // ==============================|| CHART - REPEAT CUSTOMER CHART ||============================== //
@@ -60,39 +60,39 @@ export default function RepeatCustomerChart() {
         categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         labels: {
           style: {
-            colors: secondary
-          }
+            colors: secondary,
+          },
         },
         axisBorder: {
           show: false,
-          color: line
+          color: line,
         },
         axisTicks: {
-          show: false
+          show: false,
         },
-        tickAmount: 11
+        tickAmount: 11,
       },
       yaxis: {
         labels: {
           style: {
-            colors: [secondary]
-          }
-        }
+            colors: [secondary],
+          },
+        },
       },
       grid: {
-        borderColor: line
+        borderColor: line,
       },
       theme: {
-        mode: 'light'
-      }
+        mode: 'light',
+      },
     }));
   }, [mode, primary, secondary, line, theme]);
 
   const [series] = useState([
     {
       name: 'Page Views',
-      data: [0, 200, 400, 600, 800, 1000, 1200]
-    }
+      data: [0, 200, 400, 600, 800, 1000, 1200],
+    },
   ]);
 
   return <ReactApexChart options={options} series={series} type="area" height={471} />;

@@ -44,7 +44,7 @@ export default function Breadcrumbs({
     marginLeft: 0,
     width: '1rem',
     height: '1rem',
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
   };
 
   let customLocation = location.pathname;
@@ -267,5 +267,5 @@ Breadcrumbs.propTypes = {
   title: PropTypes.bool,
   titleBottom: PropTypes.bool,
   sx: PropTypes.any,
-  others: PropTypes.any
+  others: PropTypes.any,
 };

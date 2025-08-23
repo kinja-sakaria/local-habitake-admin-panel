@@ -29,10 +29,10 @@ export default function AuthForgotPassword() {
       <Formik
         initialValues={{
           email: 'info@phoenixcoded.co',
-          submit: null
+          submit: null,
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required')
+          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
         })}
         onSubmit={(values) => {
           setSnackbarOpen(true);
@@ -63,7 +63,7 @@ export default function AuthForgotPassword() {
                       borderRadius: '100px',
                       fontSize: '18px',
                       fontWeight: 400,
-                      lineHeight: '100%'
+                      lineHeight: '100%',
                     }}
                   />
                   {touched.email && errors.email && (
@@ -90,20 +90,20 @@ export default function AuthForgotPassword() {
                       backgroundColor: '#34216B',
                       '&:hover': {
                         backgroundColor: '#34216B',
-                        borderRadius: '48px'
+                        borderRadius: '48px',
                       },
                       '&:focus': {
                         borderRadius: '48px',
-                        outline: 'none'
+                        outline: 'none',
                       },
                       '&:active': {
-                        borderRadius: '48px'
+                        borderRadius: '48px',
                       },
                       '&::after': {
                         content: '""',
                         display: 'block',
-                        borderRadius: '48px'
-                      }
+                        borderRadius: '48px',
+                      },
                     }}
                   >
                     Submit

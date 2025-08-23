@@ -51,8 +51,8 @@ export default function MainDrawer({ window }) {
               borderRight: '1px solid',
               borderColor: 'divider',
               backgroundImage: 'none',
-              boxShadow: 'inherit'
-            }
+              boxShadow: 'inherit',
+            },
           }}
         >
           {drawerHeader}

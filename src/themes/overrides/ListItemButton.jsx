@@ -12,11 +12,11 @@ export default function ListItemButton(theme) {
           '&.Mui-selected': {
             color: theme.palette.primary.main,
             '& .MuiListItemIcon-root': {
-              color: theme.palette.primary.main
-            }
-          }
-        }
-      }
-    }
+              color: theme.palette.primary.main,
+            },
+          },
+        },
+      },
+    },
   };
 }

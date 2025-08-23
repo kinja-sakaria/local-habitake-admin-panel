@@ -14,22 +14,22 @@ export default function Palette(mode, presetColor) {
       mode: mode,
       common: {
         black: '#000',
-        white: '#fff'
+        white: '#fff',
       },
       ...paletteColor,
       text: {
         primary: paletteColor.secondary[800],
         secondary: paletteColor.secondary.main,
-        disabled: paletteColor.secondary[400]
+        disabled: paletteColor.secondary[400],
       },
       action: {
-        disabled: paletteColor.secondary.light
+        disabled: paletteColor.secondary.light,
       },
       divider: alpha(paletteColor.secondary.light, 0.65),
       background: {
         paper: '#fff',
-        default: paletteColor.secondary.lighter
-      }
-    }
+        default: paletteColor.secondary.lighter,
+      },
+    },
   });
 }

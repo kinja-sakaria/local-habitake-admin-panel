@@ -40,7 +40,7 @@ export default function AuthResetPassword() {
       <Formik
         initialValues={{
           password: '123456',
-          submit: null
+          submit: null,
         }}
         validationSchema={Yup.object().shape({
           password: Yup.string()
@@ -50,7 +50,7 @@ export default function AuthResetPassword() {
 
           confirmPassword: Yup.string()
             .required('Please confirm your password')
-            .oneOf([Yup.ref('password'), null], 'Passwords must match')
+            .oneOf([Yup.ref('password'), null], 'Passwords must match'),
         })}
         onSubmit={(values) => {
           navigate('/reset-password-conformation');
@@ -150,17 +150,17 @@ export default function AuthResetPassword() {
                       backgroundColor: '#34216B',
                       '&:hover': {
                         backgroundColor: '#34216B',
-                        borderRadius: '48px'
+                        borderRadius: '48px',
                       },
                       '&:focus': {
                         borderRadius: '48px',
-                        outline: 'none'
+                        outline: 'none',
                       },
                       '&::after': {
                         content: '""',
                         display: 'block',
-                        borderRadius: '48px'
-                      }
+                        borderRadius: '48px',
+                      },
                     }}
                   >
                     Submit

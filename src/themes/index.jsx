@@ -29,23 +29,23 @@ export default function ThemeCustomization({ children }) {
           sm: 768,
           md: 1024,
           lg: 1266,
-          xl: 1440
-        }
+          xl: 1440,
+        },
       },
       direction: 'ltr',
       mixins: {
         toolbar: {
           minHeight: HEADER_HEIGHT,
           paddingTop: 8,
-          paddingBottom: 8
-        }
+          paddingBottom: 8,
+        },
       },
       palette: theme.palette,
       shape: {
-        borderRadius: 8
+        borderRadius: 8,
       },
       customShadows: themeCustomShadows,
-      typography: themeTypography
+      typography: themeTypography,
     }),
     [theme, themeTypography, themeCustomShadows]
   );

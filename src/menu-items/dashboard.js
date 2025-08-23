@@ -1,6 +1,16 @@
 // assets
 
-import { AiModalIcon, DashboardIcon, NotificationIcon, PropertyManagment, SettingIcon, SubcriptionIcon, SupportIcon, TransactionIcon, UserManagment } from '../components/asstes';
+import {
+  AiModalIcon,
+  DashboardIcon,
+  NotificationIcon,
+  PropertyManagment,
+  SettingIcon,
+  SubcriptionIcon,
+  SupportIcon,
+  TransactionIcon,
+  UserManagment,
+} from '../components/asstes';
 
 // icons
 const icons = {
@@ -27,7 +37,7 @@ const dashboard = {
       type: 'item',
       url: '/dashboard',
       icon: icons.dashboard,
-      breadcrumbs: false
+      breadcrumbs: false,
     },
     {
       id: 'usermanagement',
@@ -35,7 +45,7 @@ const dashboard = {
       type: 'item',
       url: '/user-management',
       icon: icons.userManagment,
-      breadcrumbs: false
+      breadcrumbs: false,
     },
     {
       id: 'propertymangement',
@@ -43,7 +53,7 @@ const dashboard = {
       type: 'item',
       url: '/property-management',
       icon: icons.propertyManagment,
-      breadcrumbs: false
+      breadcrumbs: false,
     },
 
     {
@@ -52,7 +62,7 @@ const dashboard = {
       type: 'item',
       url: '/subscription',
       icon: icons.subcription,
-      breadcrumbs: false
+      breadcrumbs: false,
     },
     {
       id: 'setting',
@@ -60,7 +70,7 @@ const dashboard = {
       type: 'item',
       url: '/setting',
       icon: icons.setting,
-      breadcrumbs: false
+      breadcrumbs: false,
     },
     {
       id: 'transaction',
@@ -68,7 +78,7 @@ const dashboard = {
       type: 'item',
       url: '/transaction',
       icon: icons.transactionIcon,
-      breadcrumbs: false
+      breadcrumbs: false,
     },
     {
       id: 'aimodeltraining',
@@ -76,7 +86,7 @@ const dashboard = {
       type: 'item',
       url: '/ai-model-training',
       icon: icons.aimodal,
-      breadcrumbs: false
+      breadcrumbs: false,
     },
     {
       id: 'support',
@@ -84,7 +94,7 @@ const dashboard = {
       type: 'item',
       url: '/support',
       icon: icons.support,
-      breadcrumbs: false
+      breadcrumbs: false,
     },
     {
       id: 'notification',
@@ -92,9 +102,9 @@ const dashboard = {
       type: 'item',
       url: '/notification',
       icon: icons.notification,
-      breadcrumbs: false
-    }
-  ]
+      breadcrumbs: false,
+    },
+  ],
 };
 
 export default dashboard;

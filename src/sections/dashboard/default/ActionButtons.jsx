@@ -13,7 +13,15 @@ export default function ActionButtons({ onApproveAll, onRejectAll, onViewAll }) 
       <Button variant="contained" color="error" onClick={onRejectAll} startIcon={<CloseIcon />} sx={{ borderRadius: '100px' }}>
         Reject all
       </Button>
-      <Link component={RouterLink} onClick={onViewAll}  variant="caption" color="success" fontSize="18px" fontWeight={700} underline="always">
+      <Link
+        component={RouterLink}
+        onClick={onViewAll}
+        variant="caption"
+        color="success"
+        fontSize="18px"
+        fontWeight={700}
+        underline="always"
+      >
         View all
       </Link>
     </Stack>

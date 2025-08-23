@@ -30,20 +30,20 @@ export default function AuthResetPasswordConfrim() {
                 backgroundColor: '#34216B',
                 '&:hover': {
                   backgroundColor: '#34216B',
-                  borderRadius: '48px'
+                  borderRadius: '48px',
                 },
                 '&:focus': {
                   borderRadius: '48px',
-                  outline: 'none'
+                  outline: 'none',
                 },
                 '&:active': {
-                  borderRadius: '48px'
+                  borderRadius: '48px',
                 },
                 '&::after': {
                   content: '""',
                   display: 'block',
-                  borderRadius: '48px'
-                }
+                  borderRadius: '48px',
+                },
               }}
               onClick={() => navigate('/login')}
             >

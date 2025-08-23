@@ -47,7 +47,7 @@ function TabPanel({ children, value, index, ...other }) {
 function a11yProps(index) {
   return {
     id: `profile-tab-${index}`,
-    'aria-controls': `profile-tabpanel-${index}`
+    'aria-controls': `profile-tabpanel-${index}`,
   };
 }
 
@@ -57,7 +57,7 @@ const tabStyle = {
   justifyContent: 'center',
   alignItems: 'center',
   textTransform: 'capitalize',
-  gap: 1.25
+  gap: 1.25,
 };
 
 // ==============================|| HEADER CONTENT - PROFILE ||============================== //
@@ -93,8 +93,8 @@ export default function ProfilePage() {
           '&:hover': { bgcolor: 'secondary.lighter' },
           '&:focus-visible': {
             outline: `2px solid ${theme.palette.secondary.dark}`,
-            outlineOffset: 2
-          }
+            outlineOffset: 2,
+          },
         })}
         aria-label="open profile"
         ref={anchorRef}
@@ -122,7 +122,7 @@ export default function ProfilePage() {
                 minWidth: 240,
                 maxWidth: 290,
                 [theme.breakpoints.down('md')]: { maxWidth: 250 },
-                borderRadius: 1.5
+                borderRadius: 1.5,
               })}
             >
               <ClickAwayListener onClickAway={handleClose}>

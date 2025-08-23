@@ -15,8 +15,8 @@ export default function AuthSocButton({ children, ...other }) {
         color: 'secondary.main',
         '&:hover,&:focus': {
           bgcolor: 'secondary.100',
-          borderColor: 'primary.main'
-        }
+          borderColor: 'primary.main',
+        },
       }}
       {...other}
     >

@@ -6,7 +6,7 @@ const NotFound = Loadable(lazy(() => import('pages/NotFound')));
 
 const ErrorRoutes = {
   path: '*',
-  element: <NotFound />
+  element: <NotFound />,
 };
 
 export default ErrorRoutes;

@@ -4,7 +4,7 @@ export default function ButtonBase(theme) {
   return {
     MuiButtonBase: {
       defaultProps: {
-        disableRipple: false
+        disableRipple: false,
       },
       styleOverrides: {
         root: {
@@ -13,17 +13,17 @@ export default function ButtonBase(theme) {
             pointerEvents: 'none',
             '&:hover': {
               borderColor: theme.palette.secondary.light,
-              color: theme.palette.secondary.light
+              color: theme.palette.secondary.light,
             },
             '&:focus-visible': {
-              outline: 'none'
+              outline: 'none',
             },
             '&:after': {
-              boxShadow: 'none'
-            }
-          }
-        }
-      }
-    }
+              boxShadow: 'none',
+            },
+          },
+        },
+      },
+    },
   };
 }

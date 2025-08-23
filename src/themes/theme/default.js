@@ -23,7 +23,7 @@ export default function Default(mode) {
       700: primaryColors[7],
       darker: primaryColors[8],
       900: primaryColors[9],
-      contrastText
+      contrastText,
     },
     secondary: {
       lighter: secondaryColors[0],
@@ -36,7 +36,7 @@ export default function Default(mode) {
       dark: secondaryColors[7],
       800: secondaryColors[8],
       darker: secondaryColors[9],
-      contrastText
+      contrastText,
     },
     error: {
       lighter: errorColors[0],
@@ -44,7 +44,7 @@ export default function Default(mode) {
       main: errorColors[2],
       dark: errorColors[3],
       darker: errorColors[4],
-      contrastText
+      contrastText,
     },
     warning: {
       lighter: warningColors[0],
@@ -52,7 +52,7 @@ export default function Default(mode) {
       main: warningColors[2],
       dark: warningColors[3],
       darker: warningColors[4],
-      contrastText
+      contrastText,
     },
     info: {
       lighter: infoColors[0],
@@ -61,7 +61,7 @@ export default function Default(mode) {
       dark: infoColors[3],
       darker: infoColors[4],
       100: infoColors[5],
-      contrastText
+      contrastText,
     },
     success: {
       lighter: successColors[0],
@@ -69,14 +69,14 @@ export default function Default(mode) {
       main: successColors[2],
       dark: successColors[3],
       darker: successColors[4],
-      contrastText
+      contrastText,
     },
     revenue: {
       lighter: revenueColors[0],
       light: revenueColors[1],
       main: revenueColors[2],
       dark: revenueColors[3],
-      contrastText
-    }
+      contrastText,
+    },
   };
 }

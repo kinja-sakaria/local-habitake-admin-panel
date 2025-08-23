@@ -1,4 +1,4 @@
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper, Checkbox } from '@mui/material';
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Checkbox } from '@mui/material';
 import { useState } from 'react';
 
 const roles = ['Admin', 'Seller/ Buyer', 'Agent (Real Estate Agency)'];
@@ -6,36 +6,36 @@ const roles = ['Admin', 'Seller/ Buyer', 'Agent (Real Estate Agency)'];
 const initialFeatures = [
   {
     name: 'Create & Edit Listings',
-    permissions: [true, true, false]
+    permissions: [true, true, false],
   },
   {
     name: 'Manage AI-Generated Images',
-    permissions: [true, '(Own Listings)', '(Own Listings)']
+    permissions: [true, '(Own Listings)', '(Own Listings)'],
   },
   {
     name: 'View Listings',
-    permissions: [true, true, true]
+    permissions: [true, true, true],
   },
   {
     name: 'Contact Sellers',
-    permissions: [true, true, false]
+    permissions: [true, true, false],
   },
   {
     name: 'Manage Advertisements',
-    permissions: [true, '(Paid Feature)', '(Paid Feature)']
+    permissions: [true, '(Paid Feature)', '(Paid Feature)'],
   },
   {
     name: 'View Analytics',
-    permissions: [true, '(Own Listings)', '(Own Listings)']
+    permissions: [true, '(Own Listings)', '(Own Listings)'],
   },
   {
     name: 'Verify & Suspend Accounts',
-    permissions: [true, false, false]
+    permissions: [true, false, false],
   },
   {
     name: 'Process Payments',
-    permissions: [true, false, false]
-  }
+    permissions: [true, false, false],
+  },
 ];
 
 export default function PermissionTable() {
@@ -92,7 +92,7 @@ export default function PermissionTable() {
                 borderTopLeftRadius: '12px',
                 borderBottomLeftRadius: '12px',
                 fontSize: '16px',
-                fontWeight: 600
+                fontWeight: 600,
               }}
             >
               Features
@@ -107,8 +107,8 @@ export default function PermissionTable() {
                   fontWeight: 600,
                   ...(idx === roles.length - 1 && {
                     borderTopRightRadius: '12px',
-                    borderBottomRightRadius: '12px'
-                  })
+                    borderBottomRightRadius: '12px',
+                  }),
                 }}
               >
                 {role}

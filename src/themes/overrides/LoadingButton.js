@@ -7,7 +7,7 @@ export default function LoadingButton() {
         root: {
           '& svg': {
             width: 18,
-            height: 18
+            height: 18,
           },
           paddingLeft: 16,
           paddingRight: 16,
@@ -15,17 +15,17 @@ export default function LoadingButton() {
             opacity: 0.6,
             textShadow: 'none',
             '& .MuiLoadingButton-loadingIndicatorCenter ~ .MuiLoadingButton-label': {
-              opacity: 0
+              opacity: 0,
             },
             '& .MuiLoadingButton-loadingIndicatorStart': {
-              left: 12
+              left: 12,
             },
             '& .MuiLoadingButton-loadingIndicatorEnd': {
-              right: 12
-            }
-          }
-        }
-      }
-    }
+              right: 12,
+            },
+          },
+        },
+      },
+    },
   };
 }

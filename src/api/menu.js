@@ -5,27 +5,27 @@ import useSWR, { mutate } from 'swr';
 
 const initialState = {
   isDashboardDrawerOpened: false,
-  isComponentDrawerOpened: true
+  isComponentDrawerOpened: true,
 };
 
 // ==============================|| API - MENU ||============================== //
 
 const endpoints = {
   key: 'api/menu',
-  master: 'master'
+  master: 'master',
 };
 
 export function useGetMenuMaster() {
   const { data, isLoading } = useSWR(endpoints.key + endpoints.master, () => initialState, {
     revalidateIfStale: false,
     revalidateOnFocus: false,
-    revalidateOnReconnect: false
+    revalidateOnReconnect: false,
   });
 
   const memoizedValue = useMemo(
     () => ({
       menuMaster: data,
-      menuMasterLoading: isLoading
+      menuMasterLoading: isLoading,
     }),
     [data, isLoading]
   );

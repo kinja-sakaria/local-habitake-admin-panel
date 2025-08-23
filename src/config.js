@@ -19,7 +19,7 @@ const config = {
   mode: 'light', // Pro Version
   presetColor: 'default', // Pro Version
   themeDirection: 'ltr', // Pro Version
-  themeContrast: false // Pro Version
+  themeContrast: false, // Pro Version
 };
 
 export default config;

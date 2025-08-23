@@ -34,8 +34,8 @@ export default function Navigation() {
       elements: item.children,
       icon: item.icon,
       ...(item.url && {
-        url: item.url
-      })
+        url: item.url,
+      }),
     }));
   }
 
@@ -80,7 +80,7 @@ export default function Navigation() {
         pt: drawerOpen ? 2 : 0,
         '& > ul:first-of-type': { mt: 0 },
         display: 'block',
-        alignItems: 'center'
+        alignItems: 'center',
       }}
     >
       {navGroups}

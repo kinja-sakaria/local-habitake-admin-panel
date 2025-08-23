@@ -6,9 +6,9 @@ export default function Tooltip(theme) {
       styleOverrides: {
         tooltip: {
           backgroundColor: theme.palette.secondary.darker,
-          color: theme.palette.background.paper
-        }
-      }
-    }
+          color: theme.palette.background.paper,
+        },
+      },
+    },
   };
 }

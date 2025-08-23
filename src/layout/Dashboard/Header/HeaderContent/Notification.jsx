@@ -33,7 +33,7 @@ const actionSX = {
   top: 'auto',
   right: 'auto',
   alignSelf: 'flex-start',
-  transform: 'none'
+  transform: 'none',
 };
 
 // ==============================|| HEADER CONTENT - NOTIFICATION ||============================== //
@@ -69,7 +69,7 @@ export default function NotificationPage() {
         sx={{
           p: 1,
           color: 'secondary.main',
-          bgcolor: open ? 'secondary.200' : 'secondary.100'
+          bgcolor: open ? 'secondary.200' : 'secondary.100',
         }}
       >
         <Badge badgeContent={read} color="success" sx={{ '& .MuiBadge-badge': { top: 2, right: 4 } }}>
@@ -107,8 +107,8 @@ export default function NotificationPage() {
                             border: `1px solid ${theme.palette.divider}`,
                             '&:hover': { bgcolor: 'primary.lighter', borderColor: 'primary.light' },
                             '& .MuiListItemSecondaryAction-root': { ...actionSX, position: 'relative' },
-                            '&:hover .MuiAvatar-root': { bgcolor: 'primary.main', color: 'background.paper' }
-                          }
+                            '&:hover .MuiAvatar-root': { bgcolor: 'primary.main', color: 'background.paper' },
+                          },
                         })}
                       >
                         <ListItem

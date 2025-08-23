@@ -35,7 +35,7 @@ export default function AuthOtpVerification() {
     <Formik
       initialValues={{ otp: '' }}
       validationSchema={Yup.object().shape({
-        otp: Yup.string().required('OTP is required').length(4, 'Enter 4 digits')
+        otp: Yup.string().required('OTP is required').length(4, 'Enter 4 digits'),
       })}
       onSubmit={(values) => {
         console.log('OTP submitted:', values.otp);
@@ -57,7 +57,7 @@ export default function AuthOtpVerification() {
                     type="text"
                     inputProps={{
                       maxLength: 1,
-                      style: { textAlign: 'center', fontSize: 18, color: '#5B6B79', fontWeight: 400 }
+                      style: { textAlign: 'center', fontSize: 18, color: '#5B6B79', fontWeight: 400 },
                     }}
                     value={digit}
                     onChange={(e) => handleOtpChange(i, e.target.value, setFieldValue)}
@@ -90,17 +90,17 @@ export default function AuthOtpVerification() {
                     backgroundColor: '#34216B',
                     '&:hover': {
                       backgroundColor: '#34216B',
-                      borderRadius: '48px'
+                      borderRadius: '48px',
                     },
                     '&:focus': {
                       borderRadius: '48px',
-                      outline: 'none'
+                      outline: 'none',
                     },
                     '&::after': {
                       content: '""',
                       display: 'block',
-                      borderRadius: '48px'
-                    }
+                      borderRadius: '48px',
+                    },
                   }}
                 >
                   Submit
@@ -124,5 +124,5 @@ export default function AuthOtpVerification() {
 }
 
 AuthOtpVerification.propTypes = {
-  onVerify: PropTypes.func
+  onVerify: PropTypes.func,
 };

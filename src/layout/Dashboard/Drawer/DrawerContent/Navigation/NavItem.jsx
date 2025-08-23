@@ -68,21 +68,21 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
               '&.Mui-selected': {
                 '&:hover': { bgcolor: 'rgba(52, 33, 107, 0.1)', borderRadius: '100px' },
                 bgcolor: 'rgba(52, 33, 107, 0.1)',
-                borderRadius: '100px'
-              }
+                borderRadius: '100px',
+              },
             }),
             ...(drawerOpen &&
               level === 1 && {
                 mx: 1.25,
                 my: 0.5,
-                '&:hover': { bgcolor: 'secondary.200', borderRadius: '100px' }
+                '&:hover': { bgcolor: 'secondary.200', borderRadius: '100px' },
               }),
             ...(!drawerOpen && {
               px: 2.75,
               justifyContent: 'center',
               '&:hover': { bgcolor: 'transparent' },
-              '&.Mui-selected': { '&:hover': { bgcolor: 'transparent' }, bgcolor: 'transparent' }
-            })
+              '&.Mui-selected': { '&:hover': { bgcolor: 'transparent' }, bgcolor: 'transparent' },
+            }),
           }}
           onClick={() => itemHandler()}
         >
@@ -98,14 +98,14 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
                     height: 46,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    '&:hover': { bgcolor: 'secondary.200', borderRadius: '10px' }
+                    '&:hover': { bgcolor: 'secondary.200', borderRadius: '10px' },
                   }),
                 ...(!drawerOpen &&
                   isSelected && {
                     bgcolor: 'rgba(52, 33, 107, 0.1)',
                     borderRadius: '10px',
-                    '&:hover': { bgcolor: 'rgba(52, 33, 107, 0.1)', borderRadius: '10px' }
-                  })
+                    '&:hover': { bgcolor: 'rgba(52, 33, 107, 0.1)', borderRadius: '10px' },
+                  }),
               }}
             >
               {itemIcon}
@@ -115,7 +115,7 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
           {!itemIcon && drawerOpen && (
             <ListItemIcon
               sx={{
-                minWidth: 30
+                minWidth: 30,
               }}
             >
               <Dot size={isSelected ? 6 : 5} color={isSelected ? 'primary' : 'secondary'} />
@@ -130,7 +130,7 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
                   sx={{
                     color: 'secondary.main',
                     ...(isSelected && { color: iconSelectedColor }),
-                    fontWeight: isSelected ? 500 : 400
+                    fontWeight: isSelected ? 500 : 400,
                   }}
                 >
                   {item.title}
@@ -162,12 +162,12 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
                   onClick: (event) => {
                     event.stopPropagation();
                     callAction();
-                  }
+                  },
                 })}
                 {...(action.type === NavActionType.LINK && {
                   component: Link,
                   to: action.url,
-                  target: action.target ? '_blank' : '_self'
+                  target: action.target ? '_blank' : '_self',
                 })}
                 color={isSelected ? 'primary' : 'secondary'}
                 variant="outlined"
@@ -180,7 +180,7 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
                   height: 20,
                   p: 0.25,
                   borderColor: isSelected ? 'primary.light' : 'secondary.light',
-                  '&:hover': { borderColor: isSelected ? 'primary.main' : 'secondary.main' }
+                  '&:hover': { borderColor: isSelected ? 'primary.main' : 'secondary.main' },
                 })}
               >
                 <ActionIcon size={12} style={{ marginLeft: 1 }} />

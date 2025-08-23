@@ -42,12 +42,8 @@ export default function VerificationTabs({ activeTab, onChange, userCount, prope
   );
 
   return (
-    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}  gap={3}>
-      <Tabs
-        value={activeTab}
-        onChange={onChange}
-        TabIndicatorProps={{ style: { backgroundColor: '#01A669' } }}
-      >
+    <Box sx={{ borderBottom: 1, borderColor: 'divider' }} gap={3}>
+      <Tabs value={activeTab} onChange={onChange} TabIndicatorProps={{ style: { backgroundColor: '#01A669' } }}>
         <Tab
           label={TabLabelWithCount('User', userCount, activeTab === 0)}
           sx={{

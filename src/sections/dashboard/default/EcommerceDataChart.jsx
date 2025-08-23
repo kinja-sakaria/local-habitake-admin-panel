@@ -19,35 +19,35 @@ export default function EcommerceDataChart({ color, height }) {
       id: 'new-stack-chart',
       type: 'bar',
       sparkline: {
-        enabled: true
+        enabled: true,
       },
       toolbar: {
-        show: false
+        show: false,
       },
-      offsetX: -2
+      offsetX: -2,
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     plotOptions: {
       bar: {
         borderRadius: 2,
-        columnWidth: '80%'
-      }
+        columnWidth: '80%',
+      },
     },
     xaxis: {
       crosshairs: {
-        width: 1
-      }
+        width: 1,
+      },
     },
     tooltip: {
       fixed: {
-        enabled: false
+        enabled: false,
       },
       x: {
-        show: false
-      }
-    }
+        show: false,
+      },
+    },
   };
 
   const { primary, secondary } = theme.palette.text;
@@ -58,15 +58,15 @@ export default function EcommerceDataChart({ color, height }) {
   useEffect(() => {
     setOptions((prevState) => ({
       ...prevState,
-      colors: [color]
+      colors: [color],
     }));
   }, [color, mode, primary, secondary, line, theme]);
 
   const [series] = useState([
     {
       name: 'Users',
-      data: [10, 30, 40, 20, 60, 50, 20, 15, 20, 25, 30, 25]
-    }
+      data: [10, 30, 40, 20, 60, 50, 20, 15, 20, 25, 30, 25],
+    },
   ]);
 
   return <ReactApexChart options={options} series={series} type="bar" height={height ? height : 50} />;

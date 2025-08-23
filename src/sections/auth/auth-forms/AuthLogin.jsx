@@ -46,14 +46,14 @@ export default function AuthLogin() {
         initialValues={{
           email: 'info@phoenixcoded.co',
           password: '123456',
-          submit: null
+          submit: null,
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
           password: Yup.string()
             .required('Password is required')
             .test('no-leading-trailing-whitespace', 'Password can not start or end with spaces', (value) => value === value.trim())
-            .max(10, 'Password must be less than 10 characters')
+            .max(10, 'Password must be less than 10 characters'),
         })}
         onSubmit={(values) => {
           console.log('Login successful', values);
@@ -167,17 +167,17 @@ export default function AuthLogin() {
                       backgroundColor: '#34216B',
                       '&:hover': {
                         backgroundColor: '#34216B',
-                        borderRadius: '48px'
+                        borderRadius: '48px',
                       },
                       '&:focus': {
                         borderRadius: '48px',
-                        outline: 'none'
+                        outline: 'none',
                       },
                       '&::after': {
                         content: '""',
                         display: 'block',
-                        borderRadius: '48px'
-                      }
+                        borderRadius: '48px',
+                      },
                     }}
                   >
                     Login

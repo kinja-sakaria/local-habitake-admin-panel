@@ -22,15 +22,15 @@ import { ArrowUp } from 'iconsax-reactjs';
 const pieChartOptions = {
   chart: {
     type: 'donut',
-    height: 320
+    height: 320,
   },
   labels: ['Advertising Revenue', 'Subscription Plans', 'Listing Fees', 'Sales Commission'],
   legend: {
-    show: false
+    show: false,
   },
   dataLabels: {
-    enabled: false
-  }
+    enabled: false,
+  },
 };
 
 // ==============================|| CHART ||============================== //
@@ -60,25 +60,25 @@ function ApexDonutChart() {
       colors: [primaryMain, warning, success, primaryLighter],
       xaxis: {
         labels: {
-          style: { colors: primary }
-        }
+          style: { colors: primary },
+        },
       },
       yaxis: {
         labels: {
           style: {
-            colors: [primary]
-          }
-        }
+            colors: [primary],
+          },
+        },
       },
       grid: {
-        borderColor: line
+        borderColor: line,
       },
       stroke: {
-        colors: [backColor]
+        colors: [backColor],
       },
       theme: {
-        mode: 'light'
-      }
+        mode: 'light',
+      },
     }));
   }, [mode, primary, line, grey200, backColor, theme]);
 

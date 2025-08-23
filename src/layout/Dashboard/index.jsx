@@ -41,7 +41,7 @@ export default function MainLayout() {
             position: 'relative',
             minHeight: 'calc(100vh - 124px)',
             display: 'flex',
-            flexDirection: 'column'
+            flexDirection: 'column',
           }}
         >
           <Breadcrumbs />
