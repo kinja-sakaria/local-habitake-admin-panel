@@ -91,9 +91,10 @@ export default function UserData({ activeTab, onViewUser }) {
   const [deleteUserId, setDeleteUserId] = useState(null);
 
   const columns = [
-    { key: 'name', label: 'Name' },
+    // { key: 'name', label: 'Name' },
+    ...(activeTab === 1 ? [{ key: 'name', label: 'Agency Name' }] : [{ key: 'name', label: 'Name' }]),
     { key: 'email', label: 'Email' },
-    ...(activeTab === 0 ? [{ key: 'phone', label: 'Phone' }] : []),
+    ...(activeTab !== 1 ? [{ key: 'phone', label: 'Phone' }] : []),
     { key: 'status', label: 'Status' },
     activeTab === 1
       ? { key: 'agencyteammember', label: 'Agency Team Member' }
@@ -340,11 +341,11 @@ export default function UserData({ activeTab, onViewUser }) {
                   onChange={handleSelectAllClick}
                 />
               </TableCell>
-              <TableCell sx={{ fontSize: '18px' }}>Name</TableCell>
+              <TableCell sx={{ fontSize: '18px' }}>{activeTab === 1 ? 'Agency Name' : 'Name'}</TableCell>
               <TableCell sx={{ fontSize: '18px' }}>Email</TableCell>
-              {activeTab === 0 && <TableCell sx={{ fontSize: '18px' }}>Phone</TableCell>}
+              {activeTab !== 1 && <TableCell sx={{ fontSize: '18px' }}>Phone</TableCell>}
               <TableCell sx={{ fontSize: '18px' }}>Status</TableCell>
-              {/* <TableCell sx={{ fontSize: '18px' }}>Role</TableCell> */}
+           
               <TableCell sx={{ fontSize: '18px' }}>
                 {activeTab === 1 ? 'Agency Team Member' : activeTab === 2 ? 'Registration Date' : 'Role'}
               </TableCell>
@@ -388,7 +389,7 @@ export default function UserData({ activeTab, onViewUser }) {
                       </Box>
                     </TableCell>
                     <TableCell sx={{ fontSize: '18px' }}>{row.email}</TableCell>
-                    {activeTab === 0 && <TableCell sx={{ fontSize: '18px' }}>{row.phone}</TableCell>}
+                    {activeTab !== 1 && <TableCell sx={{ fontSize: '18px' }}>{row.phone}</TableCell>}
                     <TableCell>
                       <Box
                         sx={{
