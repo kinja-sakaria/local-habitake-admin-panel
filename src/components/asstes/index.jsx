@@ -7,6 +7,7 @@ export { default as HourGlassIcon } from './HourGlassIcon';
 export { default as DashboardIcon } from './DashboardIcon';
 export { default as TransactionIcon } from './TransactionIcon';
 export { default as UserIdProofIcon } from './UserIdProofIcon';
+export { default as LocationFillIcon } from './LocationFillIcon';
 export { default as SubcriptionIcon } from './SubcriptionIcon';
 export { default as NotificationIcon } from './NotificationIcon';
 export { default as PropertyManagment } from './PropertyManagment';

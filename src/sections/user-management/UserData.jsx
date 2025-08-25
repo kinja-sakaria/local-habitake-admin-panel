@@ -22,7 +22,7 @@ import {
   IconButton,
   MenuItem,
   Select,
-  Stack
+  Stack,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -75,7 +75,7 @@ export default function UserData({ activeTab, onViewUser }) {
       agencyteammember: ['11', '12', '18'][i % 3],
       registrationDate: ['01/01/2025', '01/9/2025', '20/01/2025'][i % 3],
       role: ['Agent', 'Seller'][i % 2],
-      approvestatus: ['approve', 'reject', 'pending'][i % 3]
+      approvestatus: ['approve', 'reject', 'pending'][i % 3],
     };
   });
 
@@ -99,7 +99,7 @@ export default function UserData({ activeTab, onViewUser }) {
       ? { key: 'agencyteammember', label: 'Agency Team Member' }
       : activeTab === 2
         ? { key: 'registrationDate', label: 'Registration Date' }
-        : { key: 'role', label: 'Role' }
+        : { key: 'role', label: 'Role' },
   ];
 
   const handleSelectAllClick = (event) => {
@@ -186,15 +186,15 @@ export default function UserData({ activeTab, onViewUser }) {
             maxWidth: { xs: '100%', sm: 250 },
             '& .MuiOutlinedInput-root': {
               borderRadius: '100px',
-              fontSize: '16px'
-            }
+              fontSize: '16px',
+            },
           }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
                 <SearchIcon sx={{ color: '#5B6B79' }} />
               </InputAdornment>
-            )
+            ),
           }}
         />
 
@@ -228,12 +228,12 @@ export default function UserData({ activeTab, onViewUser }) {
               onClose={() => setMenuOpen(false)}
               sx={{
                 width: { xs: '100%', sm: 152 },
-                borderRadius: '100px'
+                borderRadius: '100px',
               }}
               MenuProps={{
                 PaperProps: { sx: { width: 200 } },
                 anchorOrigin: { vertical: 'bottom', horizontal: 'right' },
-                transformOrigin: { vertical: 'top', horizontal: 'right' }
+                transformOrigin: { vertical: 'top', horizontal: 'right' },
               }}
             >
               {['All', 'Seller', 'Agent'].map((role) => (
@@ -266,7 +266,7 @@ export default function UserData({ activeTab, onViewUser }) {
             onClose={() => setRoleMenuOpen(false)}
             sx={{
               width: { xs: '100%', sm: 189 },
-              borderRadius: '100px'
+              borderRadius: '100px',
             }}
             MenuProps={{
               PaperProps: {
@@ -278,10 +278,19 @@ export default function UserData({ activeTab, onViewUser }) {
                     fontSize: '14px',
                     fontWeight: 500,
                     color: '#5B6B79',
-                    borderBottom: '1px solid #E8EBEE'
-                  }
-                }
-              }
+                    borderBottom: '1px solid #E8EBEE',
+                  },
+                  '& .MuiMenuItem-root.Mui-selected': {
+                    backgroundColor: 'white !important',
+                  },
+                  '& .MuiMenuItem-root.Mui-selected:hover': {
+                    backgroundColor: 'white',
+                  },
+                  '& .MuiMenuItem-root.Mui-focusVisible': {
+                    backgroundColor: 'white !important',
+                  },
+                },
+              },
             }}
           >
             {columns.map(({ key, label }) => (
@@ -290,7 +299,7 @@ export default function UserData({ activeTab, onViewUser }) {
                 onClick={() =>
                   setSortConfig((prev) => ({
                     key,
-                    direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc'
+                    direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc',
                   }))
                 }
               >
@@ -312,7 +321,7 @@ export default function UserData({ activeTab, onViewUser }) {
         component={Paper}
         elevation={0}
         sx={{
-          borderRadius: 0
+          borderRadius: 0,
         }}
       >
         <Table>
@@ -321,7 +330,7 @@ export default function UserData({ activeTab, onViewUser }) {
               <TableCell
                 padding="checkbox"
                 sx={{
-                  paddingLeft: '20px'
+                  paddingLeft: '20px',
                 }}
               >
                 <Checkbox
@@ -363,7 +372,7 @@ export default function UserData({ activeTab, onViewUser }) {
                     <TableCell
                       padding="checkbox"
                       sx={{
-                        paddingLeft: '20px'
+                        paddingLeft: '20px',
                       }}
                     >
                       <Checkbox color="success" checked={selectedRow} onChange={() => handleRowClick(row.id)} />
@@ -391,7 +400,7 @@ export default function UserData({ activeTab, onViewUser }) {
                           textAlign: 'center',
                           color: statusColor.color,
                           bgcolor: statusColor.bg,
-                          textTransform: 'capitalize'
+                          textTransform: 'capitalize',
                         }}
                       >
                         {row.status}
@@ -452,7 +461,7 @@ export default function UserData({ activeTab, onViewUser }) {
               disabled={page === 0}
               sx={{
                 border: '1px solid #E8EBEE',
-                borderRadius: '100px'
+                borderRadius: '100px',
               }}
             >
               <FirstPageRoundedIcon />
@@ -462,7 +471,7 @@ export default function UserData({ activeTab, onViewUser }) {
               disabled={page === 0}
               sx={{
                 border: '1px solid #E8EBEE',
-                borderRadius: '100px'
+                borderRadius: '100px',
               }}
             >
               <NavigateBeforeRoundedIcon />
@@ -482,8 +491,8 @@ export default function UserData({ activeTab, onViewUser }) {
                     borderRadius: '100px',
                     '&:hover': {
                       bgcolor: 'success.main',
-                      color: 'white'
-                    }
+                      color: 'white',
+                    },
                   }}
                 >
                   {p}
@@ -497,7 +506,7 @@ export default function UserData({ activeTab, onViewUser }) {
               disabled={page >= totalPages - 1}
               sx={{
                 border: '1px solid #E8EBEE',
-                borderRadius: '100px'
+                borderRadius: '100px',
               }}
             >
               <NavigateNextRoundedIcon color="#565F68" />
@@ -507,7 +516,7 @@ export default function UserData({ activeTab, onViewUser }) {
               disabled={page >= totalPages - 1}
               sx={{
                 border: '1px solid #E8EBEE',
-                borderRadius: '100px'
+                borderRadius: '100px',
               }}
             >
               <LastPageRoundedIcon color="#565F68" />

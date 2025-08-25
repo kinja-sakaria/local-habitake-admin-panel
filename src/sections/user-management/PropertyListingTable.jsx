@@ -19,7 +19,7 @@ import {
   IconButton,
   MenuItem,
   Select,
-  Stack
+  Stack,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -59,7 +59,7 @@ export default function PropertyListingTable({ user, activeTab }) {
       country: 'NY 1003, USA',
       location: 'NY 1003, USA',
       price: '$5000',
-      listingPrice: '$5000'
+      listingPrice: '$5000',
     };
   });
 
@@ -75,7 +75,7 @@ export default function PropertyListingTable({ user, activeTab }) {
     activeTab === 2 ? { key: 'numberOfViews', label: 'Number of views' } : { key: 'registrationDate', label: 'Registration Date' },
     activeTab === 2 ? { key: 'location', label: 'Location' } : { key: 'country', label: 'Country' },
     activeTab === 2 ? { key: 'price', label: 'Price' } : { key: 'listingPrice', label: 'Listing Price' },
-    { key: 'status', label: 'Status' }
+    { key: 'status', label: 'Status' },
   ];
 
   const filteredRows = rows.filter((row) => {
@@ -137,15 +137,15 @@ export default function PropertyListingTable({ user, activeTab }) {
             width: 250,
             '& .MuiOutlinedInput-root': {
               borderRadius: '100px',
-              fontSize: '18px'
-            }
+              fontSize: '18px',
+            },
           }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
                 <SearchIcon sx={{ color: '#5B6B79' }} />
               </InputAdornment>
-            )
+            ),
           }}
         />
         <Box display="flex" gap={4}>
@@ -160,34 +160,34 @@ export default function PropertyListingTable({ user, activeTab }) {
             sx={{
               width: 189,
               '&.MuiOutlinedInput-root': {
-                borderRadius: '100px'
-              }
+                borderRadius: '100px',
+              },
             }}
             MenuProps={{
               PaperProps: {
                 sx: {
                   width: 200,
                   '& .MuiMenu-list': {
-                    padding: 0
+                    padding: 0,
                   },
                   '& .MuiMenuItem-root': {
                     padding: '10px 20px',
                     fontSize: '14px',
                     fontWeight: 500,
                     color: '#5B6B79',
-                    borderBottom: '1px solid #E8EBEE'
+                    borderBottom: '1px solid #E8EBEE',
                   },
                   '& .MuiMenuItem-root.Mui-selected': {
-                    backgroundColor: 'white !important'
+                    backgroundColor: 'white !important',
                   },
                   '& .MuiMenuItem-root.Mui-selected:hover': {
-                    backgroundColor: 'white'
+                    backgroundColor: 'white',
                   },
                   '& .MuiMenuItem-root.Mui-focusVisible': {
-                    backgroundColor: 'white !important'
-                  }
-                }
-              }
+                    backgroundColor: 'white !important',
+                  },
+                },
+              },
             }}
           >
             {columns.map(({ key, label }) => (
@@ -196,7 +196,7 @@ export default function PropertyListingTable({ user, activeTab }) {
                 onClick={() => {
                   setSortConfig((prev) => ({
                     key,
-                    direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc'
+                    direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc',
                   }));
                 }}
               >
@@ -206,7 +206,7 @@ export default function PropertyListingTable({ user, activeTab }) {
                     color="#333A54"
                     sx={{
                       fontSize: 14,
-                      cursor: 'pointer'
+                      cursor: 'pointer',
                     }}
                   >
                     {sortConfig.key === key ? (
@@ -240,7 +240,7 @@ export default function PropertyListingTable({ user, activeTab }) {
         component={Paper}
         elevation={0}
         sx={{
-          borderRadius: 0
+          borderRadius: 0,
         }}
       >
         <Table>
@@ -290,7 +290,7 @@ export default function PropertyListingTable({ user, activeTab }) {
                           textAlign: 'center',
                           color: statusColor.color,
                           bgcolor: statusColor.bg,
-                          textTransform: 'capitalize'
+                          textTransform: 'capitalize',
                         }}
                       >
                         {row.status}
@@ -334,7 +334,7 @@ export default function PropertyListingTable({ user, activeTab }) {
               disabled={page === 0}
               sx={{
                 border: '1px solid #E8EBEE',
-                borderRadius: '100px'
+                borderRadius: '100px',
               }}
             >
               <FirstPageRoundedIcon />
@@ -344,7 +344,7 @@ export default function PropertyListingTable({ user, activeTab }) {
               disabled={page === 0}
               sx={{
                 border: '1px solid #E8EBEE',
-                borderRadius: '100px'
+                borderRadius: '100px',
               }}
             >
               <NavigateBeforeRoundedIcon />
@@ -364,8 +364,8 @@ export default function PropertyListingTable({ user, activeTab }) {
                     borderRadius: '100px',
                     '&:hover': {
                       bgcolor: 'success.main',
-                      color: 'white'
-                    }
+                      color: 'white',
+                    },
                   }}
                 >
                   {p}
@@ -379,7 +379,7 @@ export default function PropertyListingTable({ user, activeTab }) {
               disabled={page >= totalPages - 1}
               sx={{
                 border: '1px solid #E8EBEE',
-                borderRadius: '100px'
+                borderRadius: '100px',
               }}
             >
               <NavigateNextRoundedIcon color="#565F68" />
@@ -389,7 +389,7 @@ export default function PropertyListingTable({ user, activeTab }) {
               disabled={page >= totalPages - 1}
               sx={{
                 border: '1px solid #E8EBEE',
-                borderRadius: '100px'
+                borderRadius: '100px',
               }}
             >
               <LastPageRoundedIcon color="#565F68" />

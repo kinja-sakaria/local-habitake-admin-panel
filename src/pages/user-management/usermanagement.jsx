@@ -5,7 +5,7 @@ import UserData from 'sections/user-management/UserData';
 import ActionButtons from 'sections/user-management/ActionButtons';
 import UserDetails from 'sections/user-management/UserProfile';
 
-export default function UseManagement() {
+export default function UserManagement() {
   const [activeTab, setActiveTab] = useState(0);
   const [selectedUser, setSelectedUser] = useState(null);
 
