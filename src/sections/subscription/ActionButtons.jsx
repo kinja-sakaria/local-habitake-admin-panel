@@ -15,7 +15,7 @@ export default function ActionButtons({ activeTab, onTabChange, onCreate }) {
             textTransform: 'none',
             color: activeTab !== 0 ? 'secondary.main' : 'white',
             fontSize: '16px',
-             border:'none'
+            border: 'none',
           }}
         >
           Subscription List
@@ -31,7 +31,7 @@ export default function ActionButtons({ activeTab, onTabChange, onCreate }) {
             textTransform: 'none',
             color: activeTab !== 1 ? 'secondary.main' : 'white',
             fontSize: '16px',
-            border:'none'
+            border: 'none',
           }}
         >
           Subscribers List

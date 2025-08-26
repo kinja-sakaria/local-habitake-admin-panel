@@ -3,7 +3,19 @@ import MainCard from 'components/MainCard';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import { Box, Button, Grid, Typography, Breadcrumbs, Link, OutlinedInput, Stack, InputLabel, InputAdornment, IconButton } from '@mui/material';
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  Breadcrumbs,
+  Link,
+  OutlinedInput,
+  Stack,
+  InputLabel,
+  InputAdornment,
+  IconButton,
+} from '@mui/material';
 
 export default function SubscriptionForm({ onCancel }) {
   const [features, setFeatures] = useState(['', '', '']);
@@ -84,28 +96,28 @@ export default function SubscriptionForm({ onCancel }) {
                   <InputAdornment position="start">
                     <Box
                       sx={{
-                        backgroundColor: "rgba(1, 166, 105, 0.1)",
-                        borderRadius: "100px 0 0 100px",
-                        height: "53px",
-                        display: "flex",
-                        alignItems: "center",
-                        px: 2,                       
+                        backgroundColor: 'rgba(1, 166, 105, 0.1)',
+                        borderRadius: '100px 0 0 100px',
+                        height: '53px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        px: 2,
                       }}
                     >
-                      <AttachMoneyIcon sx={{ fill: "#01A669" }} />
+                      <AttachMoneyIcon sx={{ fill: '#01A669' }} />
                     </Box>
                   </InputAdornment>
                 }
                 sx={{
-                  borderRadius: "100px",
-                  fontSize: "18px",
+                  borderRadius: '100px',
+                  fontSize: '18px',
                   fontWeight: 400,
-                  lineHeight: "100%",
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#E0E0E0",
+                  lineHeight: '100%',
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#E0E0E0',
                   },
-                    pl: 0, 
-                  }}
+                  pl: 0,
+                }}
               />
             </Stack>
           </Grid>
@@ -129,7 +141,7 @@ export default function SubscriptionForm({ onCancel }) {
                   sx={{ borderRadius: '100px', fontSize: '18px', fontWeight: 400, lineHeight: '100%' }}
                 />
 
-                 {/* ✅ Delete Button */}
+                {/* ✅ Delete Button */}
                 <IconButton
                   onClick={() => handleDeleteFeature(idx)}
                   sx={{
@@ -138,7 +150,7 @@ export default function SubscriptionForm({ onCancel }) {
                   }}
                 >
                   <DeleteIcon />
-                </IconButton> 
+                </IconButton>
               </Box>
             ))}
             <Box textAlign="end">
@@ -157,11 +169,12 @@ export default function SubscriptionForm({ onCancel }) {
             </Box>
           </Grid>
 
-          <Grid item xs={12} display="flex" justifyContent="flex-end" gap={2} mt='33.10px'>
-            <Button onClick={onCancel} 
+          <Grid item xs={12} display="flex" justifyContent="flex-end" gap={2}>
+            <Button
+              onClick={onCancel}
               sx={{
-                color: "#747474",
-                fontSize: "17.3px",
+                color: '#747474',
+                fontSize: '17.3px',
                 fontWeight: 500,
                 '&:hover': {
                   backgroundColor: 'transparent',
@@ -174,7 +187,7 @@ export default function SubscriptionForm({ onCancel }) {
             <Button
               variant="contained"
               sx={{
-                fontSize: "17.3px",
+                fontSize: '17.3px',
                 fontWeight: 500,
                 backgroundColor: 'primary.main',
                 color: '#fff',

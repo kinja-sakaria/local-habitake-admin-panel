@@ -5,7 +5,7 @@ import { Box, Card, Checkbox, Grid, Typography, FormControlLabel, List, ListItem
 
 export default function PricingPlans() {
   const [selectedPlan, setSelectedPlan] = useState('Standard');
-  
+
   const [features, setFeatures] = useState([
     { text: 'Lorem ipsum dolor', available: true },
     { text: 'Lorem ipsum dolor sit amet consectetur', available: true },
@@ -26,7 +26,6 @@ export default function PricingPlans() {
     updated[index].available = !updated[index].available;
     setFeatures(updated);
   };
-
 
   return (
     <Grid container spacing={GRID_COMMON_SPACING}>
@@ -58,12 +57,11 @@ export default function PricingPlans() {
                         sx={{
                           width: 20,
                           height: 20,
-                          borderRadius: "6px", 
-                          backgroundColor: "#E0E0E0", 
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        
+                          borderRadius: '6px',
+                          backgroundColor: '#E0E0E0',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
                         }}
                       >
                         <svg
@@ -76,8 +74,7 @@ export default function PricingPlans() {
                           strokeWidth="3"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          style={{ width: 12, height: 12 }} 
-
+                          style={{ width: 12, height: 12 }}
                         >
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
@@ -88,11 +85,11 @@ export default function PricingPlans() {
                         sx={{
                           width: 20,
                           height: 20,
-                          borderRadius: "6px",
-                          backgroundColor: "#01A669", 
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
+                          borderRadius: '6px',
+                          backgroundColor: '#01A669',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
                         }}
                       >
                         <svg
@@ -105,14 +102,13 @@ export default function PricingPlans() {
                           strokeWidth="3"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          style={{ width: 12, height: 12 }} 
+                          style={{ width: 12, height: 12 }}
                         >
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
                       </Box>
                     }
                   />
-
                 </ListItemIcon>
                 <ListItemText
                   primary={feature.text}

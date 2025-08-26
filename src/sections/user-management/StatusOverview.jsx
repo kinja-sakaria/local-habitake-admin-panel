@@ -19,13 +19,13 @@ import { GRID_COMMON_SPACING } from 'config';
 const pieChartOptions = {
   chart: {
     type: 'donut',
-    height: 320
+    height: 320,
   },
   legend: {
-    show: false
+    show: false,
   },
   dataLabels: {
-    enabled: false
+    enabled: false,
   },
   plotOptions: {
     pie: {
@@ -37,14 +37,14 @@ const pieChartOptions = {
             fontSize: '14px',
             fontWeight: 600,
             color: '#000',
-            offsetY: 10
+            offsetY: 10,
           },
           value: {
             show: true,
             fontSize: '18px',
             fontWeight: 700,
             color: '#000',
-            offsetY: -10
+            offsetY: -10,
           },
           total: {
             show: true,
@@ -54,12 +54,12 @@ const pieChartOptions = {
             formatter: function (w) {
               // sum all values to show 700
               return w.globals.seriesTotals.reduce((a, b) => a + b, 0);
-            }
-          }
-        }
-      }
-    }
-  }
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 // ==============================|| CHART ||============================== //
@@ -108,39 +108,39 @@ function ApexDonutChart({ activeTab }) {
               name: {
                 ...prevState.plotOptions?.pie?.donut?.labels?.name,
                 offsetY: 20,
-                breakword: true
+                breakword: true,
               },
               value: {
                 ...prevState.plotOptions?.pie?.donut?.labels?.value,
-                offsetY: -10
+                offsetY: -10,
               },
               total: {
                 ...prevState.plotOptions?.pie?.donut?.labels?.total,
-                label: totalLabel
-              }
-            }
-          }
-        }
+                label: totalLabel,
+              },
+            },
+          },
+        },
       },
       xaxis: {
         labels: {
-          style: { colors: primary }
-        }
+          style: { colors: primary },
+        },
       },
       yaxis: {
         labels: {
-          style: { colors: [primary] }
-        }
+          style: { colors: [primary] },
+        },
       },
       grid: {
-        borderColor: line
+        borderColor: line,
       },
       stroke: {
-        colors: [backColor]
+        colors: [backColor],
       },
       theme: {
-        mode: 'light'
-      }
+        mode: 'light',
+      },
     }));
   }, [activeTab, mode, primary, line, grey200, backColor, theme]);
 
@@ -157,7 +157,7 @@ export default function StatusOverview({ activeTab }) {
     activeTab === 2 ? { label: 'Residential', value: 350, color: 'pink' } : { label: 'Public Property', value: 350, color: 'pink' },
     activeTab === 2 ? { label: 'Rental', value: 300, color: 'teal' } : { label: 'Private Property', value: 300, color: 'teal' },
     activeTab === 2 ? { label: 'Commercial', value: 30, color: 'orange' } : { label: 'Approved Property', value: 30, color: 'orange' },
-    activeTab === 2 ? { label: 'Luxury', value: 20, color: 'goldenrod' } : { label: 'Pending Property', value: 20, color: 'goldenrod' }
+    activeTab === 2 ? { label: 'Luxury', value: 20, color: 'goldenrod' } : { label: 'Pending Property', value: 20, color: 'goldenrod' },
   ];
   return (
     <MainCard>

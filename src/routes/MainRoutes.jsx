@@ -8,11 +8,12 @@ import DashboardLayout from 'layout/Dashboard';
 
 const Setting = Loadable(lazy(() => import('pages/setting/setting')));
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/default')));
-const Notification = Loadable(lazy(() => import('pages/notification/notification')));
 const Transaction = Loadable(lazy(() => import('pages/transaction/transaction')));
-const UserManagement = Loadable(lazy(() => import('pages/user-management/usermanagement')));
-const PropertyManagement = Loadable(lazy(() => import('pages/property-management/propertymanagement')));
 const Subscription = Loadable(lazy(() => import('pages/subscription/subscription')));
+const Notification = Loadable(lazy(() => import('pages/notification/notification')));
+const UserManagement = Loadable(lazy(() => import('pages/user-management/usermanagement')));
+const AIModelTraining = Loadable(lazy(() => import('pages/ai-model-training/aiModelTraining')));
+const PropertyManagement = Loadable(lazy(() => import('pages/property-management/propertymanagement')));
 
 const MainRoutes = {
   path: '/',
@@ -45,6 +46,10 @@ const MainRoutes = {
     {
       path: 'transaction',
       element: <Transaction />,
+    },
+    {
+      path: 'ai-model-training',
+      element: <AIModelTraining />,
     },
     {
       path: 'notification',
