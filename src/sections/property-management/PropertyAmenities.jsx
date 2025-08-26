@@ -7,13 +7,13 @@ const PropertyAmenities = () => {
   const propertyDetails = [
     { label: 'Property Type', value: 'Residential' },
     { label: 'Category', value: 'Sell property' },
-    { label: 'Condition', value: 'Secondary' }
+    { label: 'Condition', value: 'Secondary' },
   ];
 
   const floorDetails = [
     { label: 'Total Floors', value: '08' },
     { label: 'Floor Number', value: '03' },
-    { label: 'Area', value: '2500 sq. ft' }
+    { label: 'Area', value: '2500 sq. ft' },
   ];
 
   return (
@@ -22,8 +22,8 @@ const PropertyAmenities = () => {
         sx={{
           padding: '40px',
           '& .MuiCardContent-root': {
-            padding: 0
-          }
+            padding: 0,
+          },
         }}
       >
         {/* Title */}
@@ -53,7 +53,7 @@ const PropertyAmenities = () => {
               key={index}
               sx={{
                 borderLeft: index !== 0 ? '1px solid #B0B3BD' : 'none',
-                paddingX: index !== 0 ? 2 : 0
+                paddingX: index !== 0 ? 2 : 0,
               }}
             >
               <Typography variant="h6" fontWeight={500} color="#B0B3BD">
@@ -77,7 +77,7 @@ const PropertyAmenities = () => {
               key={index}
               sx={{
                 borderLeft: index !== 0 ? '1px solid #B0B3BD' : 'none',
-                paddingX: index !== 0 ? 2 : 0
+                paddingX: index !== 0 ? 2 : 0,
               }}
             >
               <Typography variant="h6" fontWeight={500} color="#B0B3BD">

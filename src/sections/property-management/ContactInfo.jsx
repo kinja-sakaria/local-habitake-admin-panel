@@ -13,7 +13,7 @@ export default function ContactInfo() {
           {[
             { label: 'Full Name', value: 'John Deo' },
             { label: 'Email', value: 'Johndeo@gmail.com' },
-            { label: 'Phone Number', value: '12345678980' }
+            { label: 'Phone Number', value: '12345678980' },
           ].map((field, index) => (
             <Grid key={index} item size={{ xs: 12, sm: 4, md: 4 }}>
               <Stack sx={{ gap: 1 }}>
@@ -22,7 +22,7 @@ export default function ContactInfo() {
                     fontSize: '16px',
                     fontWeight: 500,
                     lineHeight: '100%',
-                    color: 'info.100'
+                    color: 'info.100',
                   }}
                 >
                   {field.label}
@@ -37,8 +37,8 @@ export default function ContactInfo() {
                     backgroundColor: '#F5F5F7',
                     '& input.Mui-disabled': {
                       color: (theme) => theme.palette.info[100], // ✅ Correct target
-                      WebkitTextFillColor: (theme) => theme.palette.info[100] // ✅ Safari/Chrome
-                    }
+                      WebkitTextFillColor: (theme) => theme.palette.info[100], // ✅ Safari/Chrome
+                    },
                   }}
                 />
               </Stack>

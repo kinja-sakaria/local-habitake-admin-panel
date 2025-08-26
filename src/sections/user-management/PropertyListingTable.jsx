@@ -251,7 +251,7 @@ export default function PropertyListingTable({ user, activeTab }) {
               <TableCell sx={{ fontSize: '18px' }}> {activeTab === 2 ? 'Number of views' : 'Registration Date'}</TableCell>
               <TableCell sx={{ fontSize: '18px' }}>{activeTab === 2 ? 'Location' : 'Country'}</TableCell>
               <TableCell sx={{ fontSize: '18px' }}>{activeTab === 2 ? 'Price' : 'Listing Price'}</TableCell>
-              <TableCell sx={{ fontSize: '18px' }}>Action</TableCell>
+              <TableCell sx={{ fontSize: '18px' }}>Status</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

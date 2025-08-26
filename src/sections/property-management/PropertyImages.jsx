@@ -9,7 +9,7 @@ const PropertyImages = () => {
     '/src/assets/images/property-details/living-room1.png',
     '/src/assets/images/property-details/living-room2.png',
     '/src/assets/images/property-details/living-room3.png',
-    '/src/assets/images/property-details/living-room4.png'
+    '/src/assets/images/property-details/living-room4.png',
   ];
 
   return (
@@ -34,7 +34,7 @@ const PropertyImages = () => {
             fontWeight: 500,
             fontSize: '12px',
             borderRadius: '8px',
-            color: '#333A54'
+            color: '#333A54',
           }}
         />
       </Box>
@@ -51,7 +51,7 @@ const PropertyImages = () => {
               borderRadius: '4px',
               cursor: 'pointer',
               height: '42px',
-              width: '62px'
+              width: '62px',
             }}
             onClick={() => setSelectedImage(src)}
           />

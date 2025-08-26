@@ -12,6 +12,7 @@ const Notification = Loadable(lazy(() => import('pages/notification/notification
 const Transaction = Loadable(lazy(() => import('pages/transaction/transaction')));
 const UserManagement = Loadable(lazy(() => import('pages/user-management/usermanagement')));
 const PropertyManagement = Loadable(lazy(() => import('pages/property-management/propertymanagement')));
+const Subscription = Loadable(lazy(() => import('pages/subscription/subscription')));
 
 const MainRoutes = {
   path: '/',
@@ -32,6 +33,10 @@ const MainRoutes = {
     {
       path: 'property-management',
       element: <PropertyManagement />,
+    },
+    {
+      path: 'subscription',
+      element: <Subscription />,
     },
     {
       path: 'setting',

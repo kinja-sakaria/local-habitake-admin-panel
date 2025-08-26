@@ -345,7 +345,7 @@ export default function UserData({ activeTab, onViewUser }) {
               <TableCell sx={{ fontSize: '18px' }}>Email</TableCell>
               {activeTab !== 1 && <TableCell sx={{ fontSize: '18px' }}>Phone</TableCell>}
               <TableCell sx={{ fontSize: '18px' }}>Status</TableCell>
-           
+
               <TableCell sx={{ fontSize: '18px' }}>
                 {activeTab === 1 ? 'Agency Team Member' : activeTab === 2 ? 'Registration Date' : 'Role'}
               </TableCell>

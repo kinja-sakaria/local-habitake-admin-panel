@@ -1,7 +1,8 @@
-import { Avatar, Button, Divider, Stack, Typography } from '@mui/material';
 import MainCard from 'components/MainCard';
-import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import CallIcon from '@mui/icons-material/Call';
 import { UserIdProofIcon } from 'components/asstes';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import { Avatar, Button, Divider, Stack, Typography } from '@mui/material';
 
 export default function UserProfileCard({ user, activeTab }) {
   return (
@@ -34,8 +35,8 @@ export default function UserProfileCard({ user, activeTab }) {
       <Typography variant="h5" textAlign="center" color="secondary.main" fontWeight={400} py="5px">
         {activeTab === 0 && user.role === 'Seller' && '(Seller)'}
         {activeTab === 0 && user.role === 'Agent' && '(Agent)'}
-        {activeTab === 1 && '(Buyer)'}
-        {activeTab === 2 && '(Agent)'}
+        {activeTab === 1 && '(Agent)'}
+        {activeTab === 2 && '(Buyer)'}
       </Typography>
 
       {/* Last updated */}
@@ -53,9 +54,9 @@ export default function UserProfileCard({ user, activeTab }) {
         </Typography>
       </Stack>
 
-      {/* Aadhar */}
+      {/* Aadhar & Phone*/}
       <Stack direction="row" alignItems="center" spacing={1} pb={2}>
-        <UserIdProofIcon />
+        {activeTab === 2 ? <CallIcon sx={{ fill: '#01A669' }} /> : <UserIdProofIcon />}
         <Typography variant="h5" fontWeight={400} color="secondary.main">
           {activeTab === 2 ? user.phone : 'Aadhar Card'}
         </Typography>

@@ -7,7 +7,7 @@ const PropertyDetailsCard = () => {
     { label: 'Bedroom', key: 'bedroom', paddingLeft: true, value: '02', icon: '/src/assets/images/property-details/bed.svg' },
     { label: 'Bathroom', key: 'bathroom', paddingLeft: true, value: '02', icon: '/src/assets/images/property-details/Bathtub.svg' },
     { label: 'Parking', key: 'parking', paddingLeft: true, value: '02', icon: '/src/assets/images/property-details/parking-spots.svg' },
-    { label: 'Views', key: 'views', paddingLeft: true, value: '02', icon: '/src/assets/images/property-details/property-views.svg' }
+    { label: 'Views', key: 'views', paddingLeft: true, value: '02', icon: '/src/assets/images/property-details/property-views.svg' },
   ];
 
   return (
@@ -26,7 +26,7 @@ const PropertyDetailsCard = () => {
           fontWeight: 500,
           borderColor: 'success.main',
           color: 'info.100',
-          fontSize: '14px'
+          fontSize: '14px',
         }}
       />
 
@@ -54,7 +54,7 @@ const PropertyDetailsCard = () => {
             sx={{
               borderRight: { xs: 'none', sm: index !== features.length - 1 ? '1px solid #B0B3BD' : 'none' },
               pr: 2,
-              pl: { xs: 0, sm: index > 0 ? 2 : 0 }
+              pl: { xs: 0, sm: index > 0 ? 2 : 0 },
             }}
           >
             <Box display="flex" alignItems="center" gap={1} mb={1}>
