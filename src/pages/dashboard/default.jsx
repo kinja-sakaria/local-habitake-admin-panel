@@ -44,7 +44,7 @@ export default function DashboardDefault() {
     if (tab === 0) {
       navigate('/user-management');
     } else {
-      navigate('/ment');
+      navigate('/property-management');
     }
   };
 
