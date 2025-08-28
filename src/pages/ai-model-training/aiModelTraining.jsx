@@ -11,9 +11,9 @@ export default function AIModelTraining() {
         AI Feedback & Training Dataset Builder
       </Typography>
       <MainCard sx={{ minHeight: '728px' }}>
-        <Typography fontSize="19.77px" color="secondary.800" mb={3} sx={{ fontWeight: 500 }}>
+        {/* <Typography fontSize="19.77px" color="secondary.800" mb={3} sx={{ fontWeight: 500 }}>
           AI Feedback & Training Dataset Builder
-        </Typography>
+        </Typography> */}
         <Grid container spacing={GRID_COMMON_SPACING}>
           <Grid
             item

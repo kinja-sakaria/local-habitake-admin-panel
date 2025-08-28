@@ -149,9 +149,9 @@ export default function SupportView() {
           flexShrink: 0,
         }}
       >
-        <Typography variant="h3" fontWeight={500} sx={{ p: 2, fontSize: { xs: '18px', md: '22px' } }}>
+        {/* <Typography variant="h3" fontWeight={500} sx={{ p: 2, fontSize: { xs: '18px', md: '22px' } }}>
           Support
-        </Typography>
+        </Typography> */}
         <Box py={2} marginX={{ xs: '16px', md: '28px' }}>
           <TextField
             fullWidth

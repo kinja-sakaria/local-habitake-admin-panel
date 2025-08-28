@@ -19,9 +19,9 @@ export default function NotificationForm() {
         mt: 5,
       }}
     >
-      <Typography align="center" color="secondary.main" sx={{ fontSize: '27.33px', fontWeight: 500, mb: '60px' }}>
+      {/* <Typography align="center" color="secondary.main" sx={{ fontSize: '27.33px', fontWeight: 500, mb: '60px' }}>
         NOTIFICATION
-      </Typography>
+      </Typography> */}
 
       <Stack spacing="60px">
         <Box>
