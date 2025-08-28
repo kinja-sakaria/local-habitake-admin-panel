@@ -3,13 +3,13 @@ import { Box, Chip, CardMedia } from '@mui/material';
 import { useState } from 'react';
 
 const PropertyImages = () => {
-  const [selectedImage, setSelectedImage] = useState('/src/assets/images/users/property-img.png');
+  const [selectedImage, setSelectedImage] = useState('/assets/images/users/property-img.png');
 
   const thumbnails = [
-    '/src/assets/images/property-details/living-room1.png',
-    '/src/assets/images/property-details/living-room2.png',
-    '/src/assets/images/property-details/living-room3.png',
-    '/src/assets/images/property-details/living-room4.png',
+    '/assets/images/property-details/living-room1.png',
+    '/assets/images/property-details/living-room2.png',
+    '/assets/images/property-details/living-room3.png',
+    '/assets/images/property-details/living-room4.png',
   ];
 
   return (

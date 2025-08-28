@@ -27,42 +27,42 @@ const conversations = [
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: '/src/assets/images/users/avatar-6.png',
+    avatar: '/assets/images/users/avatar-6.png',
   },
   {
     id: 2,
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: '/src/assets/images/users/avatar-5.png',
+    avatar: '/assets/images/users/avatar-5.png',
   },
   {
     id: 3,
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: '/src/assets/images/users/avatar-4.png',
+    avatar: '/assets/images/users/avatar-4.png',
   },
   {
     id: 4,
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: '/src/assets/images/users/avatar-3.png',
+    avatar: '/assets/images/users/avatar-3.png',
   },
   {
     id: 5,
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: '/src/assets/images/users/avatar-2.png',
+    avatar: '/assets/images/users/avatar-2.png',
   },
   {
     id: 6,
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: '/src/assets/images/users/avatar-1.png',
+    avatar: '/assets/images/users/avatar-1.png',
   },
   {
     id: 7,
@@ -87,7 +87,7 @@ const initialMessages = [
     sender: 'user',
     text: 'HelloHelloHelloHelloHelloHelloHelloHelloHello',
     time: '1:29 PM',
-    avatar: '/src/assets/images/users/avatar-2.png',
+    avatar: '/assets/images/users/avatar-2.png',
   },
   { id: 2, sender: 'admin', text: 'Hello sir, How may I assist you?', time: '1:30 PM' },
 ];
@@ -102,7 +102,7 @@ export default function SupportView() {
     if (!newMessage.trim()) return;
     setMessages([
       ...messages,
-      { id: messages.length + 1, sender: 'admin', text: newMessage, time: 'Now', avatar: '/src/assets/images/users/avatar-2.png' },
+      { id: messages.length + 1, sender: 'admin', text: newMessage, time: 'Now', avatar: '/assets/images/users/avatar-2.png' },
     ]);
     setNewMessage('');
   };
@@ -117,7 +117,7 @@ export default function SupportView() {
           sender: 'admin',
           text: `📄 ${file.name}`,
           time: 'Now',
-          avatar: '/src/assets/images/users/avatar-2.png',
+          avatar: '/assets/images/users/avatar-2.png',
         },
       ]);
     }
@@ -144,7 +144,7 @@ export default function SupportView() {
         sx={{
           width: { xs: '100%', md: 395 },
           borderRight: { md: '1px solid #E8EBEE', xs: 'none' },
-          display: { xs: showSidebar ? 'flex' : 'none', md: 'flex' }, 
+          display: { xs: showSidebar ? 'flex' : 'none', md: 'flex' },
           flexDirection: 'column',
           flexShrink: 0,
         }}

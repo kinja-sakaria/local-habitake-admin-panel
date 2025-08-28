@@ -32,7 +32,7 @@ export default function BeforeAITransformation() {
       {/* Image */}
       <CardMedia
         component="img"
-        image="/src/assets/images/users/property-img.png"
+        image="/assets/images/users/property-img.png"
         alt="Before AI Transformation"
         sx={{
           borderRadius: '12px',

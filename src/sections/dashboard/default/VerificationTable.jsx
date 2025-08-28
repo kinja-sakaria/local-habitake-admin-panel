@@ -74,7 +74,7 @@ const userData = [
   },
 ];
 
-export default function VerificationTable({ activeTab }) {
+export default function VerificationTable({ activeTab, onViewUser }) {
   const [selected, setSelected] = useState([]);
 
   const handleSelectAllClick = (event) => {
@@ -142,7 +142,11 @@ export default function VerificationTable({ activeTab }) {
                 <TableCell sx={{ fontSize: '18px' }}>{activeTab === 1 ? user.location || '-' : user.idNumber || '-'}</TableCell>
                 <TableCell>
                   <Box display="flex" alignItems="center" gap={1}>
-                    <IconButton sx={{ color: '#565F68' }} color="secondary">
+                    <IconButton
+                      sx={{ color: '#565F68' }}
+                      color="secondary"
+                      onClick={() => onViewUser(user)} // 👈 Pass selected user
+                    >
                       <Eye />
                     </IconButton>
                     <IconButton sx={{ color: '#DC2626' }} color="error">

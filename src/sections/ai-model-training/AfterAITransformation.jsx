@@ -26,7 +26,7 @@ export default function AfterAITransformation() {
       {/* Image */}
       <CardMedia
         component="img"
-        image="/src/assets/images/users/property-img.png"
+        image="/assets/images/users/property-img.png"
         alt="After AI Transformation"
         sx={{
           borderRadius: '12px',

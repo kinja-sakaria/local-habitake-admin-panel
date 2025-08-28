@@ -4,10 +4,10 @@ import { LocationFillIcon } from '../../components/asstes';
 
 const PropertyDetailsCard = () => {
   const features = [
-    { label: 'Bedroom', key: 'bedroom', paddingLeft: true, value: '02', icon: '/src/assets/images/property-details/bed.svg' },
-    { label: 'Bathroom', key: 'bathroom', paddingLeft: true, value: '02', icon: '/src/assets/images/property-details/Bathtub.svg' },
-    { label: 'Parking', key: 'parking', paddingLeft: true, value: '02', icon: '/src/assets/images/property-details/parking-spots.svg' },
-    { label: 'Views', key: 'views', paddingLeft: true, value: '02', icon: '/src/assets/images/property-details/property-views.svg' },
+    { label: 'Bedroom', key: 'bedroom', paddingLeft: true, value: '02', icon: '/assets/images/property-details/bed.svg' },
+    { label: 'Bathroom', key: 'bathroom', paddingLeft: true, value: '02', icon: '/assets/images/property-details/Bathtub.svg' },
+    { label: 'Parking', key: 'parking', paddingLeft: true, value: '02', icon: '/assets/images/property-details/parking-spots.svg' },
+    { label: 'Views', key: 'views', paddingLeft: true, value: '02', icon: '/assets/images/property-details/property-views.svg' },
   ];
 
   return (

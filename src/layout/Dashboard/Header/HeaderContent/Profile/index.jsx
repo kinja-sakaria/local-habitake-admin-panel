@@ -25,7 +25,7 @@ import Transitions from 'components/@extended/Transitions';
 import MainCard from 'components/MainCard';
 
 // assets
-import avatar1 from 'assets/images/users/avatar-6.png';
+import avatar1 from '/assets/images/users/avatar-6.png';
 import { Setting2, Profile, Logout } from 'iconsax-reactjs';
 
 // tab panel wrapper

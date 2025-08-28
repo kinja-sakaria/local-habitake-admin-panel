@@ -21,6 +21,7 @@ export default function ActionButtons({ onApproveAll, onRejectAll, onViewAll }) 
         fontSize="18px"
         fontWeight={700}
         underline="always"
+        sx={{ alignSelf: 'end' }}
       >
         View all
       </Link>

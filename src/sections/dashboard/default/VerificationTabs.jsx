@@ -36,7 +36,7 @@ export default function VerificationTabs({ activeTab, onChange, userCount, prope
           textAlign: 'center',
         }}
       >
-        {count}
+        0{count}
       </Box>
     </Box>
   );

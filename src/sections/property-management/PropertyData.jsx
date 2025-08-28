@@ -295,7 +295,7 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
                         <Checkbox color="success" checked={selectedRow} onChange={() => handleRowClick(row.id)} />
                       </TableCell>
                     )}
-                    <TableCell sx={{ fontSize: '18px' }}>{row.propertyname}</TableCell>
+                    <TableCell sx={{ fontSize: '18px', cursor: 'pointer' }}>{row.propertyname}</TableCell>
 
                     <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? row.visits : row.propertytype}</TableCell>
                     <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? row.propertytype : row.creator}</TableCell>
