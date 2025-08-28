@@ -7,6 +7,7 @@ import Loadable from 'components/Loadable';
 import DashboardLayout from 'layout/Dashboard';
 
 const Setting = Loadable(lazy(() => import('pages/setting/setting')));
+const Support = Loadable(lazy(() => import('pages/support/support')));
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/default')));
 const Transaction = Loadable(lazy(() => import('pages/transaction/transaction')));
 const Subscription = Loadable(lazy(() => import('pages/subscription/subscription')));
@@ -50,6 +51,10 @@ const MainRoutes = {
     {
       path: 'ai-model-training',
       element: <AIModelTraining />,
+    },
+    {
+      path: 'support',
+      element: <Support />,
     },
     {
       path: 'notification',

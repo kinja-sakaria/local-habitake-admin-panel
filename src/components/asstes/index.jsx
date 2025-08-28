@@ -1,3 +1,4 @@
+export { default as SendIcon } from './SendIcon';
 export { default as DeleteIcon } from './DeleteIcon';
 export { default as SettingIcon } from './SettingIcon';
 export { default as AiModalIcon } from './AiModalIcon';
