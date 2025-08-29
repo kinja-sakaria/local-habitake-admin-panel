@@ -284,7 +284,13 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
               sortedRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                 const selectedRow = isSelected(row.id);
                 return (
-                  <TableRow key={row.id} hover active={activeTab === 1 && selectedRow} onClick={() => onViewUser && onViewUser(row)}>
+                  <TableRow
+                    key={row.id}
+                    hover
+                    active={activeTab === 1 && selectedRow}
+                    onClick={() => onViewUser && onViewUser(row)}
+                    sx={{ cursor: 'pointer' }}
+                  >
                     {activeTab === 1 && (
                       <TableCell
                         padding="checkbox"
@@ -300,7 +306,7 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
                         />
                       </TableCell>
                     )}
-                    <TableCell sx={{ fontSize: '18px', cursor: 'pointer' }}>{row.propertyname}</TableCell>
+                    <TableCell sx={{ fontSize: '18px' }}>{row.propertyname}</TableCell>
 
                     <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? row.visits : row.propertytype}</TableCell>
                     <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? row.propertytype : row.creator}</TableCell>
