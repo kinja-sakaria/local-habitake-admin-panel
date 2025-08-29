@@ -23,7 +23,7 @@ import {
   IconButton,
   MenuItem,
   Select,
-  Stack,
+  Stack
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -40,7 +40,7 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
       creator: ['Ada Merino - seller', 'Ada Merino - Agent', 'Ada Merino - Agency', 'Ada Merino - Agency'][i % 4],
       registrationDate: ['01/01/2025', '01/9/2025', '20/01/2025'][i % 3],
       country: 'NY 1003, USA',
-      price: '$5000',
+      price: '$5000'
     };
   });
 
@@ -57,7 +57,7 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
     { key: 'propertytype', label: 'Property Type' },
     { key: 'creator', label: 'Creator' },
     { key: 'registrationDate', label: 'Registered On' },
-    { key: 'country', label: 'Country' },
+    { key: 'country', label: 'Country' }
   ];
 
   const handleSelectAllClick = (event) => {
@@ -164,15 +164,15 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
               maxWidth: { xs: '100%', sm: 250 },
               '& .MuiOutlinedInput-root': {
                 borderRadius: '100px',
-                fontSize: '16px',
-              },
+                fontSize: '16px'
+              }
             }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
                   <SearchIcon sx={{ color: '#5B6B79' }} />
                 </InputAdornment>
-              ),
+              )
             }}
           />
           {activeTab === 0 && (
@@ -187,7 +187,7 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
               value={sortConfig.key || ''}
               sx={{
                 width: { xs: '100%', sm: 189 },
-                borderRadius: '100px',
+                borderRadius: '100px'
               }}
               MenuProps={{
                 PaperProps: {
@@ -202,14 +202,14 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
                       borderBottom: '1px solid #E8EBEE',
                       '&.Mui-selected': {
                         backgroundColor: '#fff !important',
-                        color: '#333A54',
+                        color: '#333A54'
                       },
                       '&.Mui-selected:hover': {
-                        backgroundColor: '#f5f5f5 !important',
-                      },
-                    },
-                  },
-                },
+                        backgroundColor: '#f5f5f5 !important'
+                      }
+                    }
+                  }
+                }
               }}
             >
               {columns.map(({ key, label }) => (
@@ -219,7 +219,7 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
                   onClick={() =>
                     setSortConfig((prev) => ({
                       key,
-                      direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc',
+                      direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc'
                     }))
                   }
                 >
@@ -242,7 +242,7 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
         component={Paper}
         elevation={0}
         sx={{
-          borderRadius: 0,
+          borderRadius: 0
         }}
       >
         <Table>
@@ -252,7 +252,7 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
                 <TableCell
                   padding="checkbox"
                   sx={{
-                    paddingLeft: '20px',
+                    paddingLeft: '20px'
                   }}
                 >
                   <Checkbox
@@ -289,10 +289,15 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
                       <TableCell
                         padding="checkbox"
                         sx={{
-                          paddingLeft: '20px',
+                          paddingLeft: '20px'
                         }}
                       >
-                        <Checkbox color="success" checked={selectedRow} onChange={() => handleRowClick(row.id)} />
+                        <Checkbox
+                          color="success"
+                          checked={selectedRow}
+                          onClick={(e) => e.stopPropagation()}
+                          onChange={() => handleRowClick(row.id)}
+                        />
                       </TableCell>
                     )}
                     <TableCell sx={{ fontSize: '18px', cursor: 'pointer' }}>{row.propertyname}</TableCell>
@@ -340,7 +345,7 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
               disabled={page === 0}
               sx={{
                 border: '1px solid #E8EBEE',
-                borderRadius: '100px',
+                borderRadius: '100px'
               }}
             >
               <FirstPageRoundedIcon />
@@ -350,7 +355,7 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
               disabled={page === 0}
               sx={{
                 border: '1px solid #E8EBEE',
-                borderRadius: '100px',
+                borderRadius: '100px'
               }}
             >
               <NavigateBeforeRoundedIcon />
@@ -370,8 +375,8 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
                     borderRadius: '100px',
                     '&:hover': {
                       bgcolor: 'success.main',
-                      color: 'white',
-                    },
+                      color: 'white'
+                    }
                   }}
                 >
                   {p}
@@ -385,7 +390,7 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
               disabled={page >= totalPages - 1}
               sx={{
                 border: '1px solid #E8EBEE',
-                borderRadius: '100px',
+                borderRadius: '100px'
               }}
             >
               <NavigateNextRoundedIcon color="#565F68" />
@@ -395,7 +400,7 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
               disabled={page >= totalPages - 1}
               sx={{
                 border: '1px solid #E8EBEE',
-                borderRadius: '100px',
+                borderRadius: '100px'
               }}
             >
               <LastPageRoundedIcon color="#565F68" />
