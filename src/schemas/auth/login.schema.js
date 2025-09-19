@@ -11,7 +11,7 @@ const loginSchema = Yup.object().shape({
   password: Yup.string()
     .required('Password is required') 
     .min(12, 'Password must be at least 12 characters long.') 
-    .max(15, 'Password must not exceed 15 characters.') 
+    .max(20, 'Password must not exceed 20 characters.') 
     .matches(
       passwordRegex,
       'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.'
