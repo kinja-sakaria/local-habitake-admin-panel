@@ -8,6 +8,7 @@ export default defineConfig(({ mode }) => {
   const PORT = 3000;
 
   return {
+    base: env.VITE_APP_BASE_NAME || '/',
     server: {
       // this ensures that the browser opens upon server start
       open: true,
