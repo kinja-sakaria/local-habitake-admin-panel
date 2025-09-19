@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import  { useEffect, useRef, useState } from 'react';
 import {
   Box,
   Typography,
@@ -10,7 +10,7 @@ import {
   ListItemAvatar,
   ListItemText,
   Stack,
-  InputAdornment
+  InputAdornment,
 } from '@mui/material';
 import { SendIcon } from 'components/asstes';
 import SearchIcon from '@mui/icons-material/Search';
@@ -24,57 +24,57 @@ const conversations = [
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: '/assets/images/users/avatar-6.png'
+    avatar: '/assets/images/users/avatar-6.png',
   },
   {
     id: 2,
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: '/assets/images/users/avatar-5.png'
+    avatar: '/assets/images/users/avatar-5.png',
   },
   {
     id: 3,
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: '/assets/images/users/avatar-4.png'
+    avatar: '/assets/images/users/avatar-4.png',
   },
   {
     id: 4,
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: '/assets/images/users/avatar-3.png'
+    avatar: '/assets/images/users/avatar-3.png',
   },
   {
     id: 5,
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: '/assets/images/users/avatar-2.png'
+    avatar: '/assets/images/users/avatar-2.png',
   },
   {
     id: 6,
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: '/assets/images/users/avatar-1.png'
+    avatar: '/assets/images/users/avatar-1.png',
   },
   {
     id: 7,
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: 'https://i.pravatar.cc/50?img=3'
+    avatar: 'https://i.pravatar.cc/50?img=3',
   },
   {
     id: 8,
     name: 'Hope Haven',
     message: "Hi, How are you? What's ......",
     time: '1h ago',
-    avatar: 'https://i.pravatar.cc/50?img=3'
-  }
+    avatar: 'https://i.pravatar.cc/50?img=3',
+  },
 ];
 
 // Dummy messages
@@ -84,9 +84,9 @@ const initialMessages = [
     sender: 'user',
     text: 'HelloHelloHelloHelloHelloHelloHelloHelloHello',
     time: '1:29 PM',
-    avatar: '/assets/images/users/avatar-2.png'
+    avatar: '/assets/images/users/avatar-2.png',
   },
-  { id: 2, sender: 'admin', text: 'Hello sir, How may I assist you?', time: '1:30 PM' }
+  { id: 2, sender: 'admin', text: 'Hello sir, How may I assist you?', time: '1:30 PM' },
 ];
 
 export default function SupportView() {
@@ -96,14 +96,15 @@ export default function SupportView() {
   const [showSidebar, setShowSidebar] = useState(true);
   const [shouldScroll, setShouldScroll] = useState(false); // 👈 flag
 
+
   const handleSend = () => {
     if (!newMessage.trim()) return;
     setMessages([
       ...messages,
-      { id: messages.length + 1, sender: 'admin', text: newMessage, time: 'Now', avatar: '/assets/images/users/avatar-2.png' }
+      { id: messages.length + 1, sender: 'admin', text: newMessage, time: 'Now', avatar: '/assets/images/users/avatar-2.png' },
     ]);
     setNewMessage('');
-    setShouldScroll(true);
+     setShouldScroll(true);
   };
 
   const handleFileUpload = (event) => {
@@ -116,20 +117,20 @@ export default function SupportView() {
           sender: 'admin',
           text: `📄 ${file.name}`,
           time: 'Now',
-          avatar: '/assets/images/users/avatar-2.png'
-        }
+          avatar: '/assets/images/users/avatar-2.png',
+        },
       ]);
-      setShouldScroll(true);
+       setShouldScroll(true);
     }
   };
 
   // 👇 Scroll to bottom when messages change
-  useEffect(() => {
-    if (shouldScroll && messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-      setShouldScroll(false); // reset after scrolling
-    }
-  }, [messages, shouldScroll]);
+useEffect(() => {
+  if (shouldScroll && messagesEndRef.current) {
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    setShouldScroll(false); // reset after scrolling
+  }
+}, [messages, shouldScroll]);
 
   return (
     <Box
@@ -137,7 +138,7 @@ export default function SupportView() {
         display: 'flex',
         height: '100vh',
         overflow: 'hidden',
-        flexDirection: { xs: 'column', md: 'row' }
+        flexDirection: { xs: 'column', md: 'row' },
       }}
     >
       {/* Sidebar */}
@@ -147,7 +148,7 @@ export default function SupportView() {
           borderRight: { md: '1px solid #E8EBEE', xs: 'none' },
           display: { xs: showSidebar ? 'flex' : 'none', md: 'flex' },
           flexDirection: 'column',
-          flexShrink: 0
+          flexShrink: 0,
         }}
       >
         {/* <Typography variant="h3" fontWeight={500} sx={{ p: 2, fontSize: { xs: '18px', md: '22px' } }}>
@@ -165,7 +166,7 @@ export default function SupportView() {
                   <SearchIcon />
                 </InputAdornment>
               ),
-              sx: { borderRadius: 3 }
+              sx: { borderRadius: 3 },
             }}
           />
         </Box>
@@ -209,7 +210,7 @@ export default function SupportView() {
           flex: 1,
           display: { xs: showSidebar ? 'none' : 'flex', md: 'flex' },
           flexDirection: 'column',
-          width: '100%'
+          width: '100%',
         }}
       >
         {/* Header */}
@@ -218,7 +219,7 @@ export default function SupportView() {
             p: 2,
             borderBottom: '1px solid #E8EBEE',
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           {/* 👇 Back button only on mobile */}
@@ -242,7 +243,7 @@ export default function SupportView() {
             flex: 1,
             p: { xs: 1, md: 2 },
             overflowY: 'auto',
-            bgcolor: '#F8F9FA'
+            bgcolor: '#F8F9FA',
           }}
         >
           <Stack spacing={2}>
@@ -252,7 +253,7 @@ export default function SupportView() {
                 sx={{
                   display: 'flex',
                   alignItems: 'flex-end',
-                  justifyContent: msg.sender === 'admin' ? 'flex-end' : 'flex-start'
+                  justifyContent: msg.sender === 'admin' ? 'flex-end' : 'flex-start',
                 }}
               >
                 {msg.sender === 'user' && (
@@ -263,7 +264,7 @@ export default function SupportView() {
                       width: 35,
                       height: 35,
                       alignSelf: 'flex-start',
-                      display: { xs: 'none', sm: 'block' }
+                      display: { xs: 'none', sm: 'block' },
                     }}
                   />
                 )}
@@ -273,7 +274,7 @@ export default function SupportView() {
                       bgcolor: msg.sender === 'admin' ? 'success.main' : 'white',
                       color: msg.sender === 'admin' ? 'white' : '#00243F',
                       p: 1.5,
-                      borderRadius: 2
+                      borderRadius: 2,
                     }}
                   >
                     <Typography variant="body2" sx={{ wordBreak: 'break-word' }}>
@@ -310,10 +311,10 @@ export default function SupportView() {
               '& .MuiOutlinedInput-root': {
                 '& fieldset': { border: 'none' },
                 '&:hover fieldset': { border: 'none' },
-                '&.Mui-focused fieldset': { border: 'none' }
+                '&.Mui-focused fieldset': { border: 'none' },
               },
               '& .MuiOutlinedInput-root.Mui-focused': { boxShadow: 'none' },
-              '& .MuiInputBase-input': { fontSize: '16.43px' }
+              '& .MuiInputBase-input': { fontSize: '16.43px' },
             }}
           />
           <IconButton color="primary" onClick={handleSend}>

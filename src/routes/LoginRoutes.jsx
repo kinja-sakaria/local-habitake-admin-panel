@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 // project-imports
 import AuthLayout from 'layout/Auth';
 import Loadable from 'components/Loadable';
+import PublicRoute from './PublicRoute';
 
 // render - login
 const AuthLogin = Loadable(lazy(() => import('pages/auth/login')));
@@ -17,38 +18,54 @@ const AuthResetPasswordConfrim = Loadable(lazy(() => import('pages/auth/reset-pa
 
 const LoginRoutes = {
   path: '/',
+  element: <AuthLayout />,
   children: [
     {
-      path: '/',
-      element: <AuthLayout />,
-      children: [
-        {
-          index: true,
-          element: <Navigate to="/login" replace />,
-        },
-        {
-          path: 'login',
-          element: <AuthLogin />,
-        },
-        {
-          path: 'forgot-password',
-          element: <AuthForgotPassword />,
-        },
-        {
-          path: 'otp-verification',
-          element: <AuthOtpVerification />,
-        },
-        {
-          path: 'reset-password',
-          element: <AuthResetPassword />,
-        },
-        {
-          path: 'reset-password-conformation',
-          element: <AuthResetPasswordConfrim />,
-        },
-      ],
+      index: true,
+      element: <Navigate to="/login" replace />,
+    },
+    {
+      path: 'login',
+      element: (
+        <PublicRoute>
+          <AuthLogin />
+        </PublicRoute>
+      ),
+    },
+    {
+      path: 'forgot-password',
+      element: (
+        <PublicRoute>
+          <AuthForgotPassword />
+        </PublicRoute>
+      ),
+    },
+    {
+      path: 'otp-verification',
+      element: (
+        <PublicRoute>
+          <AuthOtpVerification />
+        </PublicRoute>
+      ),
+    },
+    {
+      path: 'reset-password',
+      element: (
+        <PublicRoute>
+          <AuthResetPassword />
+        </PublicRoute>
+      ),
+    },
+    {
+      path: 'reset-password-conformation',
+      element: (
+        <PublicRoute>
+          <AuthResetPasswordConfrim />
+        </PublicRoute>
+      ),
     },
   ],
 };
+
 
 export default LoginRoutes;

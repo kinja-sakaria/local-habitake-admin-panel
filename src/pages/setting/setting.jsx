@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
 
 // project imports
@@ -8,6 +9,7 @@ import PermissionTable from 'sections/setting/PermissionTable';
 import AiTransfromation from 'sections/setting/AiTransfromation';
 
 export default function Setting() {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabChange = (val) => {
@@ -17,7 +19,7 @@ export default function Setting() {
   return (
     <>
       <Typography variant="h3" color="#565F68" mb={3} sx={{ fontWeight: 500 }}>
-        Setting
+        {t('common.settings')}
       </Typography>
       <ActionButtons activeTab={activeTab} onTabChange={handleTabChange} />
       <MainCard sx={{ minHeight: '728px' }}>{activeTab === 0 ? <AiTransfromation /> : <PermissionTable />}</MainCard>

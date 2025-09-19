@@ -1,10 +1,11 @@
 // project-imports
-import dashboard from './dashboard';
+import { t } from 'i18next';
+import getDashboardMenu from './dashboard';
 
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems = {
-  items: [dashboard],
+  items: [getDashboardMenu(t)],
 };
 
 export default menuItems;

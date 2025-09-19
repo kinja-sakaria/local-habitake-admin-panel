@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 // material-ui
 import Divider from '@mui/material/Divider';
@@ -9,17 +10,23 @@ import Box from '@mui/material/Box';
 import NavGroup from './NavGroup';
 import NavItem from './NavItem';
 import { useGetMenuMaster } from 'api/menu';
-import menuItems from 'menu-items';
+import getDashboardMenu from 'menu-items/dashboard';
 
 // ==============================|| DRAWER CONTENT - NAVIGATION ||============================== //
 
 export default function Navigation() {
+  const { t } = useTranslation();
   const { menuMaster } = useGetMenuMaster();
   const drawerOpen = menuMaster.isDashboardDrawerOpened;
 
   const [selectedID, setSelectedID] = useState('');
   const [selectedItems, setSelectedItems] = useState('');
   const [selectedLevel, setSelectedLevel] = useState(0);
+
+  // Get the translated menu items
+  const menuItems = {
+    items: [getDashboardMenu(t)]
+  };
 
   const lastItem = null;
   let lastItemIndex = menuItems.items.length - 1;

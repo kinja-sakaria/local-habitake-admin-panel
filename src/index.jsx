@@ -1,5 +1,8 @@
 import { createRoot } from 'react-dom/client';
 
+// i18n
+import './i18n';
+
 // styles
 import './index.css';
 

@@ -1,5 +1,4 @@
 // assets
-
 import {
   AiModalIcon,
   DashboardIcon,
@@ -27,13 +26,13 @@ const icons = {
 
 // ==============================|| MENU ITEMS - DASHBOARD ||============================== //
 
-const dashboard = {
+const getDashboardMenu = (t) => ({
   id: 'group-dashboard',
   type: 'group',
   children: [
     {
       id: 'dashboard',
-      title: 'Dashboard',
+      title: t('menu.dashboard'),
       type: 'item',
       url: '/dashboard',
       icon: icons.dashboard,
@@ -41,7 +40,7 @@ const dashboard = {
     },
     {
       id: 'usermanagement',
-      title: 'User Management',
+      title: t('menu.userManagement'),
       type: 'item',
       url: '/user-management',
       icon: icons.userManagment,
@@ -49,16 +48,15 @@ const dashboard = {
     },
     {
       id: 'propertymangement',
-      title: 'Property Management',
+      title: t('menu.propertyManagement'),
       type: 'item',
       url: '/property-management',
       icon: icons.propertyManagment,
       breadcrumbs: false,
     },
-
     {
       id: 'subscription',
-      title: 'Subscription',
+      title: t('menu.subscription'),
       type: 'item',
       url: '/subscription',
       icon: icons.subcription,
@@ -66,7 +64,7 @@ const dashboard = {
     },
     {
       id: 'setting',
-      title: 'Setting',
+      title: t('menu.setting'),
       type: 'item',
       url: '/setting',
       icon: icons.setting,
@@ -74,7 +72,7 @@ const dashboard = {
     },
     {
       id: 'transaction',
-      title: 'Transaction',
+      title: t('menu.transaction'),
       type: 'item',
       url: '/transaction',
       icon: icons.transactionIcon,
@@ -82,7 +80,7 @@ const dashboard = {
     },
     {
       id: 'aimodeltraining',
-      title: 'AI Model Training',
+      title: t('menu.aiModelTraining'),
       type: 'item',
       url: '/ai-model-training',
       icon: icons.aimodal,
@@ -90,7 +88,7 @@ const dashboard = {
     },
     {
       id: 'support',
-      title: 'Support',
+      title: t('menu.support'),
       type: 'item',
       url: '/support',
       icon: icons.support,
@@ -98,13 +96,13 @@ const dashboard = {
     },
     {
       id: 'notification',
-      title: 'Notification',
+      title: t('menu.notification'),
       type: 'item',
       url: '/notification',
       icon: icons.notification,
       breadcrumbs: false,
     },
   ],
-};
+});
 
-export default dashboard;
+export default getDashboardMenu;

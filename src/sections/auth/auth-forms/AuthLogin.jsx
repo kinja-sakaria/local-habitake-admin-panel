@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import { useMutation } from '@apollo/client/react';
+
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 // material-ui
@@ -15,7 +17,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 // third-party
-import * as Yup from 'yup';
+
 import { Formik } from 'formik';
 
 // project-imports
@@ -24,41 +26,64 @@ import IconButton from 'components/@extended/IconButton';
 
 // assets
 import { Eye, EyeSlash } from 'iconsax-reactjs';
+import { LOGIN_USER } from 'graphql/userMutations';
+import loginSchema from '../../../schemas/auth/login.schema';
+import { useDispatch } from 'react-redux';
+import { Alert, Snackbar } from '@mui/material';
+import Cookies from 'js-cookie';
+import { loginSuccess } from 'store/slices/userSlice';
 
 // ============================|| JWT - LOGIN ||============================ //
 
 export default function AuthLogin() {
   const navigate = useNavigate();
-  const [checked, setChecked] = useState(false);
-
+  const dispatch = useDispatch();
+const [checked, setChecked] = useState(!!localStorage.getItem('rememberMe'));
   const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+  const [loginUser, { loading, error }] = useMutation(LOGIN_USER);
+  const togglePassword = useCallback(() => setShowPassword((p) => !p), []);
+
+  const closeSnackbar = (_, reason) => reason !== 'clickaway' && setSnackbar((s) => ({ ...s, open: false }));
+
+  const handleLoginSubmit = async (values, { setSubmitting, setErrors }) => {
+    try {
+      const { data } = await loginUser({
+        variables: { input: { email: values.email, password: values.password } },
+      });
+
+      const res = data?.adminLogin;
+      if (res?.success) {
+        Cookies.set('accessToken', res.accessToken, { expires: 7 });
+        Cookies.set('refreshToken', res.refreshToken, { expires: 7 });
+        dispatch(loginSuccess({ userId: res.userId, email: values.email }));
+
+        setSnackbar({ open: true, message: res.message || 'Login successful!', severity: 'success' });
+        navigate('/dashboard'); 
+      } else {
+        const msg = res?.message || 'Login failed';
+        setErrors({ submit: msg });
+        setSnackbar({ open: true, message: msg, severity: 'error' });
+      }
+    } catch (err) {
+      setErrors({ submit: err.message });
+      setSnackbar({ open: true, message: err.message, severity: 'error' });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <>
       <Formik
         initialValues={{
-          email: 'info@phoenixcoded.co',
-          password: '123456',
+          email: '',
+          password: '',
           submit: null,
         }}
-        validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-          password: Yup.string()
-            .required('Password is required')
-            .test('no-leading-trailing-whitespace', 'Password can not start or end with spaces', (value) => value === value.trim())
-            .max(10, 'Password must be less than 10 characters'),
-        })}
-        onSubmit={(values) => {
-          console.log('Login successful', values);
-          navigate('/dashboard');
-        }}
+        validationSchema={loginSchema}
+        onSubmit={handleLoginSubmit}
       >
         {({ errors, handleBlur, handleChange, handleSubmit, touched, values }) => (
           <form noValidate onSubmit={handleSubmit}>
@@ -105,8 +130,8 @@ export default function AuthLogin() {
                       <InputAdornment position="end">
                         <IconButton
                           aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
+                          onClick={togglePassword}
+                          // onMouseDown={handleMouseDownPassword}
                           edge="end"
                           color="secondary"
                         >
@@ -188,6 +213,22 @@ export default function AuthLogin() {
           </form>
         )}
       </Formik>
+      {/* Snackbar */}
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={3000}
+        onClose={closeSnackbar}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      >
+        <Alert
+          onClose={closeSnackbar}
+          severity={snackbar.severity}
+          variant="filled"
+          sx={{ width: '100%', color: 'white', fontSize: '16px' }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </>
   );
 }

@@ -1,0 +1,87 @@
+{
+  "common": {
+    "welcome": "Bienvenido",
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "dashboard": "Panel de control",
+    "settings": "Ajustes",
+    "profile": "Perfil",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "search": "Buscar",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "confirm": "Confirmar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "submit": "Enviar",
+    "reset": "Restablecer"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "users": "Usuarios",
+    "analytics": "Analíticas",
+    "reports": "Informes",
+    "administration": "Administración"
+  },
+  "auth": {
+    "signIn": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "signOut": "Cerrar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "rememberMe": "Recordarme",
+    "createAccount": "Crear cuenta",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "dontHaveAccount": "¿No tienes una cuenta?"
+  },
+  "dashboard": {
+   "totalUsers": "Usuario total",
+    "totalProperty": "Propiedad total",
+    "activeProperty": "Propiedad activa",
+    "activeUsers": "Usuario activa",
+    "revenue": "Ingresos totales",
+    "transactions":"Actas",
+    "verificationManagement":"Gestión de verificación"
+  },
+  "users": {
+    "title": "Gestión de Usuarios",
+    "addUser": "Agregar Usuario",
+    "editUser": "Editar Usuario",
+    "deleteUser": "Eliminar Usuario",
+    "userDetails": "Detalles del Usuario",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "role": "Rol",
+    "status": "Estado",
+    "lastLogin": "Último acceso",
+    "actions": "Acciones"
+  },
+  "messages": {
+    "saveSuccess": "Cambios guardados exitosamente",
+    "deleteSuccess": "Elemento eliminado exitosamente",
+    "errorOccurred": "Ocurrió un error",
+    "confirmDelete": "¿Estás seguro de que quieres eliminar este elemento?",
+    "noDataFound": "No se encontraron datos",
+    "invalidCredentials": "Credenciales inválidas",
+    "sessionExpired": "Tu sesión ha expirado"
+  },
+  "menu": {
+    "dashboard": "Panel",
+    "userManagement": "Gestión de usuarios",
+    "propertyManagement": "Gestión de Propiedades",
+    "subscription": "Suscripción",
+    "setting": "Configuración",
+    "transaction": "Transacción",
+    "aiModelTraining": "Entrenamiento de modelos de IA",
+    "support": "Apoyo",
+    "notification": "Notificación"
+  }
+}

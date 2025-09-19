@@ -25,6 +25,7 @@ import ActionButtons from '../../sections/dashboard/default/ActionButtons';
 import VerificationTable from '../../sections/dashboard/default/VerificationTable';
 import { Box, Stack } from '@mui/system';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
@@ -32,6 +33,7 @@ export default function DashboardDefault() {
   const theme = useTheme();
   const navigate = useNavigate();
   const [tab, setTab] = useState(1);
+  const { t } = useTranslation();
   const [selectedUser, setSelectedUser] = useState(null);
 
   const handleViewUser = (user) => {
@@ -71,7 +73,7 @@ export default function DashboardDefault() {
             {/* row 1 */}
             <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
               <EcommerceDataCard
-                title="Total User"
+                title={t('dashboard.totalUsers')}
                 count="3000"
                 color="primary"
                 iconPrimary={<img src={imgTotalUser} alt="total-user" />}
@@ -86,7 +88,7 @@ export default function DashboardDefault() {
             </Grid>
             <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
               <EcommerceDataCard
-                title="Active User"
+                title={t('dashboard.activeUsers')}
                 count="290"
                 color="success"
                 iconPrimary={<User color="#01A669" variant="Bold" />}
@@ -101,7 +103,7 @@ export default function DashboardDefault() {
             </Grid>
             <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
               <EcommerceDataCard
-                title="Total Property"
+                title={t('dashboard.totalProperty')}
                 count="1,568"
                 sx={{ bgcolor: ' rgba(0, 9, 41, 0.2)' }}
                 iconPrimary={<img src={imgTotalProperty} alt="total-property" />}

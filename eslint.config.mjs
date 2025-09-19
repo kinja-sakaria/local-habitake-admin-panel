@@ -63,11 +63,13 @@ export default [
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
       'no-unused-vars': 'off',
+      
 
       'no-restricted-imports': [
         'error',
         {
-          patterns: ['@mui/*/*/*', '!@mui/material/test-utils/*']
+          // patterns: ['@mui/*/*/*', '!@mui/material/test-utils/*']
+            "prettier/prettier": ["error", { "endOfLine": "lf" }]
         }
       ],
 
