@@ -7,7 +7,6 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 // third-party
-import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project-imports
@@ -15,31 +14,53 @@ import AnimateButton from 'components/@extended/AnimateButton';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
 import { Alert, Snackbar } from '@mui/material';
+import { FORGOTPASS_MUTATION } from 'graphql/userMutations';
+
+import { useMutation } from '@apollo/client/react';
+import { forgotPasswordSchema } from 'schems/auth/authSchemas';
 
 // ============================|| JWT - LOGIN ||============================ //
 
 export default function AuthForgotPassword() {
   const navigate = useNavigate();
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 
-  const handleSnackbarClose = () => setSnackbarOpen(false);
+  const [forgotPassword, { loading }] = useMutation(FORGOTPASS_MUTATION);
+
+  const closeSnackbar = (_, reason) => reason !== 'clickaway' && setSnackbar((s) => ({ ...s, open: false }));
+  const handleSubmit = async (values, { setSubmitting, setErrors }) => {
+    try {
+      const { data } = await forgotPassword({
+        variables: { email: values.email },
+      });
+
+      const res = data?.forgotPassword;
+      if (res?.success === true) {
+        localStorage.setItem('email', values.email);
+        setSnackbar({ open: true, message: res.message || 'Check mail for reset password link', severity: 'success' });
+        setTimeout(() => navigate('/otp-verification'), 1500);
+      } else {
+        const msg = res?.message;
+        setErrors({ submit: msg });
+        setSnackbar({ open: true, message: msg, severity: 'error' });
+      }
+    } catch (err) {
+      setErrors({ submit: err.message });
+      setSnackbar({ open: true, message: err.message, severity: 'error' });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <>
       <Formik
         initialValues={{
-          email: 'info@phoenixcoded.co',
+          email: '',
           submit: null,
         }}
-        validationSchema={Yup.object().shape({
-          email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-        })}
-        onSubmit={(values) => {
-          setSnackbarOpen(true);
-
-          // Redirect to OTP verification page
-          setTimeout(() => navigate('/otp-verification'), 1500);
-        }}
+        validationSchema={forgotPasswordSchema}
+        onSubmit={handleSubmit}
       >
         {({ errors, handleBlur, handleChange, touched, values, handleSubmit }) => (
           <form noValidate onSubmit={handleSubmit}>
@@ -116,13 +137,18 @@ export default function AuthForgotPassword() {
       </Formik>
       {/* Snackbar Notification */}
       <Snackbar
-        open={snackbarOpen}
+        open={snackbar.open}
         autoHideDuration={3000}
-        onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        onClose={closeSnackbar}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
-        <Alert onClose={handleSnackbarClose} severity="success" variant="filled" sx={{ width: '100%', color: 'white', fontSize: '16px' }}>
-          Check mail for reset password link
+        <Alert
+          onClose={closeSnackbar}
+          severity={snackbar.severity}
+          variant="filled"
+          sx={{ width: '100%', color: 'white', fontSize: '16px' }}
+        >
+          {snackbar.message}
         </Alert>
       </Snackbar>
     </>

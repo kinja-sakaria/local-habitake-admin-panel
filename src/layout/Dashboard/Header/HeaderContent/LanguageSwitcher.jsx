@@ -23,7 +23,7 @@ import MainCard from 'components/MainCard';
 import SimpleBar from 'components/third-party/SimpleBar';
 
 // assets
-import {  LanguageSquare,  } from 'iconsax-reactjs';
+import { LanguageSquare } from 'iconsax-reactjs';
 
 const actionSX = {
   mt: '6px',
@@ -42,10 +42,10 @@ export default function LanguageSwitcher() {
 
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
-  
+
   const languages = [
     { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'es', name: 'Spanish', flag: '🇪🇸' }
+    { code: 'es', name: 'Spanish', flag: '🇪🇸' },
   ];
 
   const handleToggle = () => {
@@ -81,7 +81,7 @@ export default function LanguageSwitcher() {
           bgcolor: open ? 'secondary.200' : 'secondary.100',
         }}
       >
-          <LanguageSquare variant="Bold" />
+        <LanguageSquare variant="Bold" />
       </IconButton>
       <Popper
         placement={downMD ? 'bottom' : 'bottom-end'}
@@ -94,9 +94,9 @@ export default function LanguageSwitcher() {
       >
         {({ TransitionProps }) => (
           <Transitions type="grow" position={downMD ? 'top' : 'top-right'} in={open} {...TransitionProps}>
-            <Paper sx={(theme) => ({ boxShadow: theme.customShadows.z1, borderRadius: 1.5, width: { xs: 200, sm: 200 },padding:1 })}>
+            <Paper sx={(theme) => ({ boxShadow: theme.customShadows.z1, borderRadius: 1.5, width: { xs: 200, sm: 200 }, padding: 1 })}>
               <ClickAwayListener onClickAway={handleClose}>
-                <MainCard border={false} content={false}>               
+                <MainCard border={false} content={false}>
                   <SimpleBar sx={{ height: '100%', maxHeight: 'calc(100vh - 250px)' }}>
                     <List component="nav" sx={{ p: 0, '& .MuiListItemIcon-root': { minWidth: 32 } }}>
                       {languages.map((language) => (

@@ -43,13 +43,13 @@
     "dontHaveAccount": "¿No tienes una cuenta?"
   },
   "dashboard": {
-   "totalUsers": "Usuario total",
+    "totalUsers": "Usuario total",
     "totalProperty": "Propiedad total",
     "activeProperty": "Propiedad activa",
     "activeUsers": "Usuario activa",
     "revenue": "Ingresos totales",
-    "transactions":"Actas",
-    "verificationManagement":"Gestión de verificación"
+    "transactions": "Actas",
+    "verificationManagement": "Gestión de verificación"
   },
   "users": {
     "title": "Gestión de Usuarios",

@@ -8,8 +8,6 @@ import Notification from './Notification';
 import Profile from './Profile';
 import LanguageSwitcher from './LanguageSwitcher';
 
-
-
 // ==============================|| HEADER - CONTENT ||============================== //
 
 export default function HeaderContent() {

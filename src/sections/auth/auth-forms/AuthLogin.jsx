@@ -31,7 +31,7 @@ import { useDispatch } from 'react-redux';
 import { Alert, Snackbar } from '@mui/material';
 import Cookies from 'js-cookie';
 import { loginSuccess } from 'store/slices/userSlice';
-import { loginSchema } from '../../../schemas/auth/authSchemas';
+import { loginSchema } from 'schems/auth/authSchemas';
 
 // ============================|| JWT - LOGIN ||============================ //
 
@@ -55,14 +55,13 @@ export default function AuthLogin() {
       });
 
       const res = data?.adminLogin;
-console.log("res",res)
       if (res?.success) {
         Cookies.set('accessToken', res.accessToken, { expires: 7 });
         Cookies.set('refreshToken', res.refreshToken, { expires: 7 });
         dispatch(loginSuccess({ userId: res.userId, email: values.email }));
 
         setSnackbar({ open: true, message: res.message || 'Login successful!', severity: 'success' });
-        // navigate('/dashboard'); 
+        // navigate('/dashboard');
       } else {
         const msg = res?.message || 'Login failed';
         setErrors({ submit: msg });

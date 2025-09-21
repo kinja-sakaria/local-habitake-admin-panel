@@ -25,9 +25,8 @@ export default function App() {
   return (
     <ReduxProvider store={store}>
       <ApolloProvider client={client}>
-          <AppContent />
+        <AppContent />
       </ApolloProvider>
     </ReduxProvider>
   );
 }
- 

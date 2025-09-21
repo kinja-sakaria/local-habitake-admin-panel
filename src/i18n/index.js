@@ -9,11 +9,11 @@ import esTranslations from './locales/es/translation.json';
 
 const resources = {
   en: {
-    translation: enTranslations
+    translation: enTranslations,
   },
   es: {
-    translation: esTranslations
-  }  
+    translation: esTranslations,
+  },
 };
 
 i18n
@@ -28,19 +28,19 @@ i18n
     resources,
     fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
-    
+
     interpolation: {
-      escapeValue: false // React already does escaping
+      escapeValue: false, // React already does escaping
     },
-    
+
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag'],
-      caches: ['localStorage']
+      caches: ['localStorage'],
     },
-    
+
     backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json'
-    }
+      loadPath: '/locales/{{lng}}/{{ns}}.json',
+    },
   });
 
 export default i18n;

@@ -1,4 +1,4 @@
-import  { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Box,
   Typography,
@@ -96,7 +96,6 @@ export default function SupportView() {
   const [showSidebar, setShowSidebar] = useState(true);
   const [shouldScroll, setShouldScroll] = useState(false); // 👈 flag
 
-
   const handleSend = () => {
     if (!newMessage.trim()) return;
     setMessages([
@@ -104,7 +103,7 @@ export default function SupportView() {
       { id: messages.length + 1, sender: 'admin', text: newMessage, time: 'Now', avatar: '/assets/images/users/avatar-2.png' },
     ]);
     setNewMessage('');
-     setShouldScroll(true);
+    setShouldScroll(true);
   };
 
   const handleFileUpload = (event) => {
@@ -120,17 +119,17 @@ export default function SupportView() {
           avatar: '/assets/images/users/avatar-2.png',
         },
       ]);
-       setShouldScroll(true);
+      setShouldScroll(true);
     }
   };
 
   // 👇 Scroll to bottom when messages change
-useEffect(() => {
-  if (shouldScroll && messagesEndRef.current) {
-    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    setShouldScroll(false); // reset after scrolling
-  }
-}, [messages, shouldScroll]);
+  useEffect(() => {
+    if (shouldScroll && messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+      setShouldScroll(false); // reset after scrolling
+    }
+  }, [messages, shouldScroll]);
 
   return (
     <Box

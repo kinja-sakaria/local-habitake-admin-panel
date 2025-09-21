@@ -1,52 +1,45 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import jsconfigPaths from 'vite-jsconfig-paths';
-import { fileURLToPath, URL } from 'url';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  const base = env.VITE_APP_BASE_NAME || '/';
+  const API_URL = `${env.VITE_APP_BASE_NAME}`;
   const PORT = 3000;
 
   return {
-    base,
     server: {
+      // this ensures that the browser opens upon server start
       open: true,
+      // this sets a default port to 3000
       port: PORT,
       host: true,
-      strictPort: true,
-      proxy: {
-        '/api': {
-          target: 'http://localhost:3001', // Your API server
-          changeOrigin: true,
-          secure: false,
-        },
-      },
     },
     preview: {
-      port: PORT,
+      open: true,
       host: true,
-      strictPort: true,
     },
     define: {
-      'process.env': { ...env, BASE_URL: JSON.stringify(base) },
+      global: 'window',
     },
     resolve: {
-      alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url)),
-      },
+      alias: [
+        // { find: '', replacement: path.resolve(__dirname, 'src') },
+        // {
+        //   find: /^~(.+)/,
+        //   replacement: path.join(process.cwd(), 'node_modules/$1')
+        // },
+        // {
+        //   find: /^src(.+)/,
+        //   replacement: path.join(process.cwd(), 'src/$1')
+        // }
+        // {
+        //   find: 'assets',
+        //   replacement: path.join(process.cwd(), 'src/assets')
+        // },
+      ],
     },
+    base: API_URL,
     plugins: [react(), jsconfigPaths()],
-    build: {
-      outDir: 'dist',
-      sourcemap: mode === 'development',
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            vendor: ['react', 'react-dom', 'react-router-dom'],
-          },
-        },
-      },
-    },
   };
 });

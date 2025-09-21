@@ -48,8 +48,8 @@
     "activeProperty": "Active Property",
     "activeUsers": "Active User",
     "revenue": "Total Revenue",
-    "transactions":"Transactions",
-    "verificationManagement":"Verification Management"
+    "transactions": "Transactions",
+    "verificationManagement": "Verification Management"
   },
   "users": {
     "title": "User Management",

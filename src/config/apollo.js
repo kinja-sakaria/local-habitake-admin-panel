@@ -15,5 +15,4 @@ const client = new ApolloClient({
 // console.log('GraphQL URI:', import.meta.env.VITE_GRAPHQL_URI);
 // console.log('API Key:', import.meta.env.VITE_PUBLIC_APPSYNC_API_KEY);
 
-
 export default client;

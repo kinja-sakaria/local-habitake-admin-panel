@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all
+  allConfig: js.configs.all,
 });
 
 export default [
@@ -24,7 +24,7 @@ export default [
       prettier,
       react,
       'react-hooks': reactHooks,
-      'jsx-a11y': jsxA11y
+      'jsx-a11y': jsxA11y,
     },
 
     languageOptions: {
@@ -32,15 +32,15 @@ export default [
       sourceType: 'module',
       parserOptions: {
         ecmaFeatures: {
-          jsx: true
-        }
-      }
+          jsx: true,
+        },
+      },
     },
 
     settings: {
       react: {
-        version: 'detect'
-      }
+        version: 'detect',
+      },
     },
 
     rules: {
@@ -63,22 +63,21 @@ export default [
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
       'no-unused-vars': 'off',
-      
 
       'no-restricted-imports': [
         'error',
         {
           // patterns: ['@mui/*/*/*', '!@mui/material/test-utils/*']
-            "prettier/prettier": ["error", { "endOfLine": "lf" }]
-        }
+          'prettier/prettier': ['error', { endOfLine: 'lf' }],
+        },
       ],
 
       'no-unused-vars': [
         'error',
         {
           vars: 'all',
-          args: 'none'
-        }
+          args: 'none',
+        },
       ],
 
       'prettier/prettier': [
@@ -90,13 +89,13 @@ export default [
           trailingComma: 'none',
           tabWidth: 2,
           useTabs: false,
-          endOfLine: 'lf'
-        }
-      ]
-    }
+          endOfLine: 'lf',
+        },
+      ],
+    },
   },
   {
     ignores: ['node_modules/**'],
-    files: ['src/**/*.{js,jsx}']
-  }
+    files: ['src/**/*.{js,jsx}'],
+  },
 ];

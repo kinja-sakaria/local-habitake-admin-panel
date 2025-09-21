@@ -25,7 +25,7 @@ export default function Navigation() {
 
   // Get the translated menu items
   const menuItems = {
-    items: [getDashboardMenu(t)]
+    items: [getDashboardMenu(t)],
   };
 
   const lastItem = null;
