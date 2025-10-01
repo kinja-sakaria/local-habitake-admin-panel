@@ -119,7 +119,6 @@ export default function SubscribersList({ activeTab }) {
   };
 
   const handleConfirmDelete = () => {
-    console.log('Deleting user id:', deleteUserId);
     setDeleteModalOpen(false);
     setDeleteUserId(null);
   };

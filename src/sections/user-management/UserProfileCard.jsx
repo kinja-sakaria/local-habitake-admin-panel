@@ -3,8 +3,11 @@ import CallIcon from '@mui/icons-material/Call';
 import { UserIdProofIcon } from 'components/asstes';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import { Avatar, Button, Divider, Stack, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 export default function UserProfileCard({ user, activeTab }) {
+  const { t } = useTranslation();
+
   return (
     <MainCard>
       {/* Verify Button */}
@@ -33,15 +36,15 @@ export default function UserProfileCard({ user, activeTab }) {
         {user.name || 'Merita Sadore'}
       </Typography>
       <Typography variant="h5" textAlign="center" color="secondary.main" fontWeight={400} py="5px">
-        {activeTab === 0 && user.role === 'Seller' && '(Seller)'}
-        {activeTab === 0 && user.role === 'Agent' && '(Agent)'}
-        {activeTab === 1 && '(Agent)'}
-        {activeTab === 2 && '(Buyer)'}
+        {activeTab === 0 && user.role === 'Seller' && `(${t('userProfile.seller')})`}
+        {activeTab === 0 && user.role === 'Agent' && `(${t('userProfile.agent')})`}
+        {activeTab === 1 && `(${t('userProfile.agent')})`}
+        {activeTab === 2 && `(${t('userProfile.buyer')})`}
       </Typography>
 
       {/* Last updated */}
       <Typography variant="h5" display="block" textAlign="center" color="secondary.main" fontWeight={400}>
-        Last updated : 20/03/2025 06:18 PM
+        {t('userProfile.lastUpdated')} : 20/03/2025 06:18 PM
       </Typography>
 
       <Divider sx={{ my: 2 }} />
@@ -58,7 +61,7 @@ export default function UserProfileCard({ user, activeTab }) {
       <Stack direction="row" alignItems="center" spacing={1} pb={2}>
         {activeTab === 2 ? <CallIcon sx={{ fill: '#01A669' }} /> : <UserIdProofIcon />}
         <Typography variant="h5" fontWeight={400} color="secondary.main">
-          {activeTab === 2 ? user.phone : 'Aadhar Card'}
+          {activeTab === 2 ? user.phone : t('userProfile.aadharCard')}
         </Typography>
       </Stack>
     </MainCard>
