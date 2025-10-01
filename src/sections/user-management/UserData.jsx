@@ -356,7 +356,7 @@ export default function UserData({ activeTab, onViewUser }) {
                     </Button>
 
                     {/* Sort by Role (only when activeTab === 0) */}
-                    {activeTab === 0 && (
+                    {/* {activeTab === 0 && (
                         <Select
                             displayEmpty
                             size="small"
@@ -402,7 +402,7 @@ export default function UserData({ activeTab, onViewUser }) {
                                 </MenuItem>
                             ))}
                         </Select>
-                    )}
+                    )} */}
 
                     {/* Sort by Columns */}
                     <Select

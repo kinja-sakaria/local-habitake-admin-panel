@@ -78,39 +78,40 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
     });
 
     // Bulk approval mutation
-    const [bulkApproveProperties, { loading: bulkLoading }] = useMutation(BULK_APPROVE_PROPERTIES, {
-        onCompleted: (data) => {
-            if (data.bulkApproveProperties.success) {
-                const { successCount, errorCount, totalProcessed } = data.bulkApproveProperties.data;
-                setNotification({
-                    open: true,
-                    message: t('properties.bulkApprovalSuccess', {
-                        success: successCount,
-                        error: errorCount,
-                        total: totalProcessed
-                    }),
-                    severity: errorCount > 0 ? 'warning' : 'success'
-                });
-                // Clear selections and refetch data
-                setSelected([]);
-                refetch();
-            } else {
-                setNotification({
-                    open: true,
-                    message: data.bulkApproveProperties.message || t('properties.bulkApprovalError'),
-                    severity: 'error'
-                });
-            }
-        },
-        onError: (error) => {
-            console.error('Bulk approval error:', error);
-            setNotification({
-                open: true,
-                message: error.message || t('properties.bulkApprovalErrorOccurred'),
-                severity: 'error'
-            });
-        }
-    });
+ const [bulkApproveProperties, { loading: bulkLoading }] = useMutation(
+  BULK_APPROVE_PROPERTIES,
+  {
+    refetchQueries: [
+      { query: LIST_PROPERTIES, variables: { limit: rowsPerPage, page: page, approvalStatus: 'APPROVED' } },
+      { query: LIST_PROPERTIES, variables: { limit: rowsPerPage, page: page, approvalStatus: 'PENDING' } },
+      { query: GET_APPROVED_PROPERTIES_COUNT },
+      { query: GET_PENDING_PROPERTIES_COUNT }
+    ],
+    awaitRefetchQueries: true,
+    onCompleted: (data) => {
+      if (data.bulkApproveProperties.success) {
+        const { successCount, errorCount, totalProcessed } = data.bulkApproveProperties.data;
+        setNotification({
+          open: true,
+          message: t('properties.bulkApprovalSuccess', {
+            success: successCount,
+            error: errorCount,
+            total: totalProcessed
+          }),
+          severity: errorCount > 0 ? 'warning' : 'success'
+        });
+        setSelected([]);
+      }
+    },
+    onError: (error) => {
+      setNotification({
+        open: true,
+        message: error.message || t('properties.bulkApprovalErrorOccurred'),
+        severity: 'error'
+      });
+    }
+  }
+);
 
     // Extract data from API response with exact schema match
     const apiData = data?.listProperties || {};
