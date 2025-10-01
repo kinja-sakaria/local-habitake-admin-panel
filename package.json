@@ -16,7 +16,7 @@
     "@vitejs/plugin-react": "^5.0.3",
     "apexcharts": "^5.3.5",
     "formik": "^2.4.6",
-    "framer-motion": "^12.23.16",
+    "framer-motion": "^12.23.22",
     "graphql": "^16.11.0",
     "i18next": "^25.5.2",
     "i18next-browser-languagedetector": "^8.2.0",
