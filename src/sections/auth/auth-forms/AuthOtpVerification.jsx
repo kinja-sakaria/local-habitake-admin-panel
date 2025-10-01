@@ -39,6 +39,7 @@ export default function AuthOtpVerification() {
   const [forgotPassword, { loading: resendLoading }] = useMutation(FORGOTPASS_MUTATION);
 
   const closeSnackbar = (_, reason) => reason !== 'clickaway' && setSnackbar((s) => ({ ...s, open: false }));
+
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     const email = localStorage.getItem('email');
     try {
@@ -75,8 +76,13 @@ export default function AuthOtpVerification() {
 
     try {
       const { data } = await forgotPassword({ variables: { email } });
-      const msg = data?.forgotPassword?.message || 'OTP sent successfully';
-      setSnackbar({ open: true, message: msg, severity: 'success' });
+      if (data?.forgotPassword?.success === true) {
+        const msg = data?.forgotPassword?.message || 'OTP sent successfully';
+        setSnackbar({ open: true, message: msg, severity: 'success' });
+      } else {
+        const msg = data?.forgotPassword?.message;
+        setSnackbar({ open: true, message: msg, severity: 'error' });
+      }
     } catch (err) {
       setSnackbar({ open: true, message: err.message, severity: 'error' });
     }

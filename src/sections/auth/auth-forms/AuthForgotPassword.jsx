@@ -16,34 +16,32 @@ import { useState } from 'react';
 import { Alert, Snackbar } from '@mui/material';
 import { FORGOTPASS_MUTATION } from 'graphql/userMutations';
 
-
-import { forgotPasswordSchema } from 'schemas/auth/authSchemas';
 import { useMutation } from '@apollo/client/react';
-
+import { forgotPasswordSchema } from 'schems/auth/authSchemas';
 
 // ============================|| JWT - LOGIN ||============================ //
 
 export default function AuthForgotPassword() {
   const navigate = useNavigate();
 
-   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 
   const [forgotPassword, { loading }] = useMutation(FORGOTPASS_MUTATION);
 
-
   const closeSnackbar = (_, reason) => reason !== 'clickaway' && setSnackbar((s) => ({ ...s, open: false }));
- const handleSubmit = async (values, { setSubmitting, setErrors }) => {
+
+  const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     try {
-         const { data } = await forgotPassword({
-              variables: { email: values.email },
-            });
+      const { data } = await forgotPassword({
+        variables: { email: values.email },
+      });
 
       const res = data?.forgotPassword;
-
       if (res?.success === true) {
-        
+        console.log('res', res);
         setSnackbar({ open: true, message: res.message || 'Check mail for reset password link', severity: 'success' });
         setTimeout(() => navigate('/otp-verification'), 1500);
+        localStorage.setItem('email', values.email);
       } else {
         const msg = res?.message;
         setErrors({ submit: msg });
@@ -57,18 +55,15 @@ export default function AuthForgotPassword() {
     }
   };
 
-  
   return (
     <>
       <Formik
-
-         initialValues={{
-                  email: '',
-                  submit: null,
-                }}
-                validationSchema={forgotPasswordSchema}
-                onSubmit={handleSubmit}
-
+        initialValues={{
+          email: '',
+          submit: null,
+        }}
+        validationSchema={forgotPasswordSchema}
+        onSubmit={handleSubmit}
       >
         {({ errors, handleBlur, handleChange, touched, values, handleSubmit }) => (
           <form noValidate onSubmit={handleSubmit}>

@@ -2,7 +2,7 @@
   "name": "habitake-admin-panel",
   "version": "2.1.0",
   "dependencies": {
-    "@apollo/client": "^4.0.7",
+    "@apollo/client": "^4.0.5",
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
@@ -15,6 +15,7 @@
     "@types/js-cookie": "^3.0.6",
     "@vitejs/plugin-react": "^5.0.3",
     "apexcharts": "^5.3.5",
+    "apollo-client": "^2.6.10",
     "formik": "^2.4.6",
     "framer-motion": "^12.23.16",
     "graphql": "^16.11.0",

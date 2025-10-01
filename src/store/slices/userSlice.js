@@ -42,7 +42,6 @@ const userSlice = createSlice({
       state.isAuthenticated = false;
       state.loading = false;
       state.error = null;
-
       Cookies.remove('user');
       Cookies.remove('accessToken');
       Cookies.remove('refreshToken');
