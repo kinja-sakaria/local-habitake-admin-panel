@@ -43,9 +43,10 @@ const getStatusColor = (status) => {
     case 'Suspend':
       return { color: '#FFA500', bg: 'rgba(255, 165, 0, 0.15)' };
     default:
-      return {};
+      return {}; 
   }
 };
+
 
 const getStatus = (status) => {
   switch (status) {
@@ -56,7 +57,7 @@ const getStatus = (status) => {
     case 'Suspend':
       return <HourGlassIcon size="20" />;
     default:
-      return {};
+      return null;
   }
 };
 
