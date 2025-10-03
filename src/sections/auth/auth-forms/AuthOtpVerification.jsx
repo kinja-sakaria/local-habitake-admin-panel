@@ -40,32 +40,34 @@ export default function AuthOtpVerification() {
 
   const closeSnackbar = (_, reason) => reason !== 'clickaway' && setSnackbar((s) => ({ ...s, open: false }));
 
-  const handleSubmit = async (values, { setSubmitting, setErrors }) => {
-    const email = localStorage.getItem('email');
-    try {
-      const { data } = await otpVerify({
-        variables: {
-          code: values.otp,
+ 
+const handleSubmit = async (values, { setSubmitting, setErrors }) => {
+  const email = localStorage.getItem('email');
+  try {
+    const { data } = await otpVerify({
+      variables: {
+        input: {
           email,
+          confirmationCode: values.otp,
         },
-      });
+      },
+    });
 
-      const res = data?.otpVerify;
-      if (res?.success === true) {
-        setSnackbar({ open: true, message: res.message || 'Otp Verify Sucessfully', severity: 'success' });
-        // setTimeout(() => navigate('/reset-password'), 1500);
-      } else {
-        const msg = res?.message;
-        setErrors({ submit: msg });
-        setSnackbar({ open: true, message: msg, severity: 'error' });
-      }
-    } catch (err) {
-      setErrors({ submit: err.message });
-      setSnackbar({ open: true, message: err.message, severity: 'error' });
-    } finally {
-      setSubmitting(false);
+    const res = data?.verifyEmailCode;
+    if (res?.success) {
+      setSnackbar({ open: true, message: res.message || 'OTP verified successfully', severity: 'success' });
+      // navigate('/reset-password');
+    } else {
+      setErrors({ submit: res?.message });
+      setSnackbar({ open: true, message: res?.message, severity: 'error' });
     }
-  };
+  } catch (err) {
+    setErrors({ submit: err.message });
+    setSnackbar({ open: true, message: err.message, severity: 'error' });
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   const handleResend = async () => {
     const email = localStorage.getItem('email');

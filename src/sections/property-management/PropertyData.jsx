@@ -4,7 +4,7 @@ import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
 import NavigateBeforeRoundedIcon from '@mui/icons-material/NavigateBeforeRounded';
 import FirstPageRoundedIcon from '@mui/icons-material/FirstPageRounded';
 import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
-import { Button, CircularProgress, Alert, Snackbar } from '@mui/material';
+import { Button, CircularProgress, Alert, Snackbar, Tooltip } from '@mui/material';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -28,11 +28,14 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { ArrowDown, ArrowUp } from 'iconsax-reactjs';
+import { ArrowDown, ArrowUp, Eye } from 'iconsax-reactjs';
 import ActionButtons from './ActionButtons';
 import { LIST_PROPERTIES, GET_APPROVED_PROPERTIES_COUNT, GET_PENDING_PROPERTIES_COUNT } from 'graphql/propertyQueries';
 import { BULK_APPROVE_PROPERTIES } from 'graphql/propertyMutations';
 import { useQuery, useMutation } from '@apollo/client/react';
+import { DeleteIcon } from 'components/asstes';
+import DeleteConfirmModal from 'components/modal/DeleteConfirmModal';
+import { DELETE_PROPERTY } from 'graphql/propertyMutations';
 
 export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
   const { t } = useTranslation();
@@ -41,6 +44,13 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [roleMenuOpen, setRoleMenuOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState({
+    type: 'bulk',
+    ids: [],
+  });
+
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
   const [notification, setNotification] = useState({ open: false, message: '', severity: 'success' });
 
@@ -62,7 +72,7 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
     variables: {
       limit: rowsPerPage,
       page: page,
-      approvalStatus: currentStatusFilter || undefined, // Use undefined when no filter
+      approvalStatus: currentStatusFilter || undefined,
     },
     notifyOnNetworkStatusChange: true,
     errorPolicy: 'all',
@@ -78,6 +88,21 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
   const { data: pendingCountData } = useQuery(GET_PENDING_PROPERTIES_COUNT, {
     errorPolicy: 'ignore',
     fetchPolicy: 'cache-and-network',
+  });
+  const [deleteProperty, { loading: deleteApiLoading }] = useMutation(DELETE_PROPERTY, {
+    refetchQueries: [
+      {
+        query: LIST_PROPERTIES,
+        variables: {
+          limit: rowsPerPage,
+          page,
+          approvalStatus: currentStatusFilter || undefined,
+        },
+      },
+      { query: GET_APPROVED_PROPERTIES_COUNT },
+      { query: GET_PENDING_PROPERTIES_COUNT },
+    ],
+    awaitRefetchQueries: true,
   });
 
   // Bulk approval mutation
@@ -205,32 +230,40 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
   const isSelected = useCallback((id) => selected.includes(id), [selected]);
 
   // Bulk approval handlers
-  const handleBulkApprove = useCallback(async () => {
-    if (selected.length === 0) {
-      setNotification({
-        open: true,
-        message: t('properties.selectPropertiesFirstApprove'),
-        severity: 'warning',
-      });
-      return;
-    }
+  const handleBulkApprove = useCallback(
+    async (ids) => {
+      const targetIds = ids && ids.length > 0 ? ids : selected;
 
-    try {
-      await bulkApproveProperties({
-        variables: {
-          input: {
-            propertyIds: selected,
-            approved: true,
-            notes: t('properties.bulkApprovalInProgress'),
+      if (targetIds.length === 0) {
+        setNotification({
+          open: true,
+          message: t('properties.selectPropertiesFirstApprove'),
+          severity: 'warning',
+        });
+        return;
+      }
+
+      try {
+        await bulkApproveProperties({
+          variables: {
+            input: {
+              propertyIds: targetIds,
+              approved: true,
+              notes: t('properties.bulkApprovalInProgress'),
+            },
           },
-        },
-      });
-    } catch (error) {
-      console.error('Bulk approve error:', error);
-    }
-  }, [selected, bulkApproveProperties, t]);
+        });
+        // clear only bulk selections
+        if (!ids) setSelected([]);
+      } catch (error) {
+        console.error('Bulk approve error:', error);
+      }
+    },
+    [selected, bulkApproveProperties, t]
+  );
 
-  const handleBulkReject = useCallback(async () => {
+  // reject all → open confirm modal
+  const handleRejectAllClick = () => {
     if (selected.length === 0) {
       setNotification({
         open: true,
@@ -239,21 +272,46 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
       });
       return;
     }
+    setDeleteTarget({ type: 'bulk', ids: selected });
+    setDeleteModalOpen(true);
+  };
 
+  // delete single → open confirm modal
+  const handleDeleteClick = (id) => {
+    setDeleteTarget({ type: 'single', ids: [id] });
+    setDeleteModalOpen(true);
+  };
+
+  // confirm modal action
+  const handleConfirmDelete = async () => {
+    setDeleteLoading(true);
     try {
-      await bulkApproveProperties({
-        variables: {
-          input: {
-            propertyIds: selected,
-            approved: false,
-            notes: t('properties.bulkRejectionInProgress'),
+      if (deleteTarget.type === 'bulk') {
+        // Bulk reject
+        await bulkApproveProperties({
+          variables: {
+            input: {
+              propertyIds: deleteTarget.ids,
+              approved: false,
+              notes: t('properties.bulkRejectionInProgress'),
+            },
           },
-        },
-      });
+        });
+        setSelected([]);
+      } else {
+        // Single delete API call
+        await deleteProperty({
+          variables: { propertyId: deleteTarget.ids[0] },
+        });
+      }
+
+      setDeleteModalOpen(false);
     } catch (error) {
-      console.error('Bulk reject error:', error);
+      console.error('Delete error:', error);
+    } finally {
+      setDeleteLoading(false);
     }
-  }, [selected, bulkApproveProperties, t]);
+  };
 
   const handleChangeRowsPerPage = useCallback((event) => {
     const newRowsPerPage = parseInt(event.target.value, 10);
@@ -334,8 +392,13 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
                 color="success"
                 startIcon={bulkLoading ? <CircularProgress size={20} color="inherit" /> : <DoneIcon />}
                 onClick={handleBulkApprove}
-                disabled={bulkLoading || selected.length === 0}
-                sx={{ borderRadius: '100px', width: { xs: '100%', sm: 'auto' } }}
+                // disabled={bulkLoading || selected.length === 0}
+                sx={{
+                  borderRadius: '100px',
+                  width: { xs: '100%', sm: 'auto' },
+                  opacity: bulkLoading || selected.length === 0 ? 0.5 : 1,
+                  pointerEvents: bulkLoading || selected.length === 0 ? 'none' : 'auto',
+                }}
               >
                 {t('properties.approveAll')}
               </Button>
@@ -343,9 +406,14 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
                 variant="contained"
                 color="error"
                 startIcon={bulkLoading ? <CircularProgress size={20} color="inherit" /> : <CloseIcon />}
-                onClick={handleBulkReject}
-                disabled={bulkLoading || selected.length === 0}
-                sx={{ borderRadius: '100px', width: { xs: '100%', sm: 'auto' } }}
+                onClick={handleRejectAllClick}
+                // disabled={bulkLoading || selected.length === 0}
+                sx={{
+                  borderRadius: '100px',
+                  width: { xs: '100%', sm: 'auto' },
+                  opacity: bulkLoading || selected.length === 0 ? 0.5 : 1,
+                  pointerEvents: bulkLoading || selected.length === 0 ? 'none' : 'auto',
+                }}
               >
                 {t('properties.rejectAll')}
               </Button>
@@ -469,6 +537,9 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
               <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? t('properties.creator') : t('properties.createdOn')}</TableCell>
               <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? t('properties.registeredOn') : t('properties.country')}</TableCell>
               <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? t('properties.country') : t('properties.price')}</TableCell>
+              <TableCell align="center" sx={{ fontSize: '18px' }}>
+                {activeTab === 1 && <>{t('users.actions')}</>}
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -526,6 +597,36 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
                     <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? row.creator : row.registrationDate}</TableCell>
                     <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? row.registrationDate : row.country}</TableCell>
                     <TableCell sx={{ fontSize: '18px' }}>{activeTab === 0 ? row.country : row.price}</TableCell>
+                    {activeTab === 1 && (
+                      <TableCell align="center">
+                        <Box display="flex" alignItems="center">
+                          <Tooltip title="Approve property" arrow>
+                            <IconButton
+                              sx={{ color: 'success.main' }}
+                              color="success"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleBulkApprove([row.id]);
+                              }}
+                            >
+                              <DoneIcon />
+                            </IconButton>
+                          </Tooltip>
+                          <Tooltip title="Delete property" arrow>
+                            <IconButton
+                              sx={{ color: '#DC2626' }}
+                              color="error"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeleteClick(row.id);
+                              }}
+                            >
+                              <DeleteIcon />
+                            </IconButton>
+                          </Tooltip>
+                        </Box>
+                      </TableCell>
+                    )}
                   </TableRow>
                 );
               })
@@ -638,7 +739,13 @@ export default function PropertyData({ activeTab, onViewUser, onTabChange }) {
           </Stack>
         </Box>
       </TableContainer>
-
+      <DeleteConfirmModal
+        title={deleteTarget.type === 'bulk' ? t('properties.confirmRejectProperties') : t('properties.confirmDeleteProperty')}
+        open={deleteModalOpen}
+        onClose={() => setDeleteModalOpen(false)}
+        onConfirm={handleConfirmDelete}
+        loading={deleteLoading}
+      />
       {/* Success/Error Notification */}
       <Snackbar
         open={notification.open}

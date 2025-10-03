@@ -33,6 +33,7 @@ import { LIST_USERS } from 'graphql/userQueries';
 import { DELETE_USER } from 'graphql/userMutations';
 import { useQuery, useMutation } from '@apollo/client/react';
 import { useTranslation } from 'react-i18next';
+import { DELETE_MULTIPLE_USER, SEARCH_USERS } from 'graphql/userMutations';
 
 const getStatusColor = (status) => {
   switch (status) {
@@ -43,10 +44,9 @@ const getStatusColor = (status) => {
     case 'Suspend':
       return { color: '#FFA500', bg: 'rgba(255, 165, 0, 0.15)' };
     default:
-      return {}; 
+      return {};
   }
 };
-
 
 const getStatus = (status) => {
   switch (status) {
@@ -73,261 +73,224 @@ export default function UserData({ activeTab, onViewUser }) {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [deleteUserId, setDeleteUserId] = useState(null);
   const [notification, setNotification] = useState({ open: false, message: '', severity: 'success' });
-  const { t } = useTranslation();
-
-  // Map activeTab to role filter
-  const getRoleFilter = useCallback((tab) => {
-    switch (tab) {
-      case 0:
-        return 'Seller'; // Seller tab
-      case 1:
-        return 'Agent'; // Agency tab (assuming Agent role for agencies)
-      case 2:
-        return 'Buyer'; // Buyer tab
-      default:
-        return null; // No filter for all users
-    }
-  }, []);
-
-  // Get all possible role variations for each tab
-  const getRoleVariations = useCallback((tab) => {
-    switch (tab) {
-      case 0:
-        return ['seller', 'agent']; // Seller tab - include sellers, agents, and admins
-      case 1:
-        return ['agent', 'agency']; // Agency tab - include agents, agencies, and admins
-      case 2:
-        return ['buyer', 'user']; // Buyer tab - include buyers, users, and admins
-      default:
-        return []; // No filter for all users
-    }
-  }, []);
-
-  const currentRoleFilter = getRoleFilter(activeTab);
-
-  // GraphQL query with proper variables including role filter
-  const { data, loading, error, refetch } = useQuery(LIST_USERS, {
-    variables: { page: page, limit: rowsPerPage, role: currentRoleFilter },
-    notifyOnNetworkStatusChange: true,
-    errorPolicy: 'all',
-    fetchPolicy: 'cache-and-network', // Always fetch fresh data
-  });
-
-  // Delete user mutation
-  const [deleteUser, { loading: deleteLoading, error: deleteError }] = useMutation(DELETE_USER, {
-    onCompleted: (data) => {
-      if (data.deleteUser.success) {
-        // Show success notification
-        setNotification({
-          open: true,
-          message: data.deleteUser.message || t('users.userDeletedSuccess'),
-          severity: 'success',
-        });
-        // Refetch the user list to update the table
-        refetch();
-        // Close the modal
-        setDeleteModalOpen(false);
-        setDeleteUserId(null);
-      } else {
-        console.error('Delete failed:', data.deleteUser.message);
-        setNotification({
-          open: true,
-          message: data.deleteUser.message || t('users.userDeleteError'),
-          severity: 'error',
-        });
-      }
-    },
-    onError: (error) => {
-      console.error('Delete mutation error:', error);
-      setNotification({
-        open: true,
-        message: error.message || t('users.userDeleteErrorOccurred'),
-        severity: 'error',
-      });
-    },
-  });
-
-  // Extract data from API response
-  const apiData = data?.listUsers || {};
-  const users = apiData.users || [];
-  const pagination = apiData.pagination || {};
-  const totalPages = pagination.total_pages || 1;
-  const totalCount = pagination.total_count || 0;
-  const currentPage = pagination.current_page || 1;
-  const hasNextPage = pagination.has_next_page || false;
-  const hasPrevPage = pagination.has_prev_page || false;
-
-  // Transform API data to table format with role filtering
-  const transformedUsers = useMemo(() => {
-    return users
-      .map((user, index) => ({
-        id: user.userId,
-        name: `${user?.firstName} ${user?.lastName}`.trim() || '',
-        email: user.email || 'N/A',
-        phone: user.phoneNumber || '-',
-        status: user.status || 'N/A',
-        agencyteammember: '0', // Default since not in API
-        registrationDate: new Date().toLocaleDateString(), // Default since not in API
-        role: user.role || 'N/A',
-        kycStatus: 'N/A', // Not in new API structure
-        username: 'N/A', // Not in new API structure
-        profilePicture: user.profilePicture || 'https://i.pravatar.cc/100',
-      }))
-      .filter((user) => {
-        // Client-side role filtering based on active tab
-        if (!currentRoleFilter) return true; // Show all if no role filter
-
-        // Get allowed role variations for current tab
-        const allowedRoles = getRoleVariations(activeTab);
-
-        // Normalize user role (case-insensitive)
-        const userRole = user.role.toLowerCase();
-
-        // Check if user role matches any allowed role for current tab
-        return allowedRoles.includes(userRole);
-      });
-  }, [users, currentRoleFilter, activeTab, getRoleVariations]);
-
-  const columns = [
-    ...(activeTab === 1 ? [{ key: 'name', label: t('users.agencyName') }] : [{ key: 'name', label: t('users.name') }]),
-    { key: 'email', label: t('users.email') },
-    ...(activeTab !== 1 ? [{ key: 'phone', label: t('users.phone') }] : []),
-    { key: 'status', label: t('users.status') },
-    activeTab === 1
-      ? { key: 'agencyteammember', label: t('users.agencyTeamMember') }
-      : activeTab === 2
-        ? { key: 'registrationDate', label: t('users.registrationDate') }
-        : { key: 'role', label: t('users.role') },
-  ];
-
-  // Optimized filtering and sorting with useMemo
-  const filteredAndSortedRows = useMemo(() => {
-    let filtered = transformedUsers.filter((row) => {
-      const matchesSearch =
-        searchTerm === '' ||
-        row.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        row.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        row.role.toLowerCase().includes(searchTerm.toLowerCase());
-
-      // Additional role filtering for the dropdown (case-insensitive)
-      const matchesAdditionalRole =
-        selectedRoles.length === 0 || selectedRoles.some((selectedRole) => row.role.toLowerCase() === selectedRole.toLowerCase());
-
-      return matchesSearch && matchesAdditionalRole;
-    });
-
-    // Sort the filtered results
-    if (sortConfig.key) {
-      filtered.sort((a, b) => {
-        let aVal = a[sortConfig.key];
-        let bVal = b[sortConfig.key];
-
-        if (typeof aVal === 'string') aVal = aVal.toLowerCase();
-        if (typeof bVal === 'string') bVal = bVal.toLowerCase();
-
-        if (aVal < bVal) return sortConfig.direction === 'asc' ? -1 : 1;
-        if (aVal > bVal) return sortConfig.direction === 'asc' ? 1 : -1;
-        return 0;
-      });
-    }
-
-    return filtered;
-  }, [transformedUsers, searchTerm, selectedRoles, sortConfig]);
-
-  const handleSelectAllClick = useCallback(
-    (event) => {
-      if (event.target.checked) {
-        const allIds = filteredAndSortedRows.map((row) => row.id);
-        setSelected(allIds);
-      } else {
-        setSelected([]);
-      }
-    },
-    [filteredAndSortedRows]
-  );
-
-  const handleRowClick = useCallback((id) => {
-    setSelected((prevSelected) => (prevSelected.includes(id) ? prevSelected.filter((item) => item !== id) : [...prevSelected, id]));
-  }, []);
-
-  const isSelected = useCallback((id) => selected.includes(id), [selected]);
-
-  const handleChangeRowsPerPage = useCallback((event) => {
-    const newRowsPerPage = parseInt(event.target.value, 10);
-    setRowsPerPage(newRowsPerPage);
-    setPage(1); // Reset to first page
-    // Clear selections when changing page size
-    setSelected([]);
-  }, []);
-
-  const handlePageChange = useCallback((newPage) => {
-    setPage(newPage);
-    // Clear selections when changing page
-    setSelected([]);
-  }, []);
-
-  const handleDeleteClick = useCallback((id) => {
-    setDeleteUserId(id);
-    setDeleteModalOpen(true);
-  }, []);
-
-  const handleConfirmDelete = useCallback(() => {
-    if (deleteUserId) {
-      deleteUser({
-        variables: { userIds: [deleteUserId] },
-        // Optimistically remove from UI
-        update: (cache, { data }) => {
-          if (data?.deleteUser?.success) {
-            // Remove from Apollo cache
-            const existing = cache.readQuery({
-              query: LIST_USERS,
-              variables: { page, limit: rowsPerPage, role: currentRoleFilter },
-            });
-
-            if (existing?.listUsers?.users) {
-              const newUsers = existing.listUsers.users.filter((user) => user.userId !== deleteUserId);
-              cache.writeQuery({
-                query: LIST_USERS,
-                variables: { page, limit: rowsPerPage, role: currentRoleFilter },
-                data: {
-                  listUsers: {
-                    ...existing.listUsers,
-                    users: newUsers,
-                  },
-                },
-              });
-            }
-          }
-        },
-      });
-    }
-  }, [deleteUserId, deleteUser, page, rowsPerPage, currentRoleFilter]);
-
-  // Debounced search to avoid too many API calls
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (searchTerm) {
-        // For now, we'll filter client-side
-        // In a real app, you might want to send search term to API
-      }
-    }, 300);
-
-    return () => clearTimeout(timeoutId);
-  }, [searchTerm]);
-
-  // Reset page when search term or role filter changes
-  useEffect(() => {
-    setPage(1);
-    setSelected([]); // Clear selections when filtering changes
-  }, [searchTerm, selectedRoles, currentRoleFilter]);
-
-  // Reset pagination when tab changes
-  useEffect(() => {
-    setPage(1);
-    setSelected([]);
-    setSearchTerm(''); // Clear search when switching tabs
-    setSelectedRoles([]); // Clear role filters when switching tabs
-  }, [activeTab]);
+   const { t } = useTranslation();
+ 
+   const isSearching = searchTerm.trim() !== '';
+ 
+   const getRoleFilter = useCallback((tab) => {
+     switch (tab) {
+       case 0:
+         return 'Seller';
+       case 1:
+         return 'Agent';
+       case 2:
+         return 'Buyer';
+       default:
+         return null;
+     }
+   }, []);
+ 
+   const getRoleVariations = useCallback((tab) => {
+     switch (tab) {
+       case 0:
+         return ['seller', 'agent'];
+       case 1:
+         return ['agent', 'agency'];
+       case 2:
+         return ['buyer', 'user'];
+       default:
+         return [];
+     }
+   }, []);
+ 
+   const currentRoleFilter = getRoleFilter(activeTab);
+   const QUERY = isSearching ? SEARCH_USERS : LIST_USERS;
+ 
+   const { data, loading, error, refetch } = useQuery(QUERY, {
+     variables: isSearching
+       ? { searchQuery: searchTerm, page, limit: rowsPerPage }
+       : { page, limit: rowsPerPage, role: currentRoleFilter },
+     notifyOnNetworkStatusChange: true,
+     errorPolicy: 'all',
+     fetchPolicy: 'cache-and-network',
+   });
+ 
+   const [deleteUser, { loading: deleteLoading }] = useMutation(DELETE_USER, {
+     onCompleted: (data) => {
+       if (data.deleteUser.success) {
+         setNotification({
+           open: true,
+           message: data.deleteUser.message || t('users.userDeletedSuccess'),
+           severity: 'success',
+         });
+         refetch();
+         setDeleteModalOpen(false);
+         setDeleteUserId(null);
+         setSelected([]);
+       } else {
+         setNotification({
+           open: true,
+           message: data.deleteUser.message || t('users.userDeleteError'),
+           severity: 'error',
+         });
+       }
+     },
+     onError: (error) => {
+       setNotification({
+         open: true,
+         message: error.message || t('users.userDeleteErrorOccurred'),
+         severity: 'error',
+       });
+     },
+   });
+ 
+   const apiData = isSearching ? data?.searchUsers : data?.listUsers;
+   const users = apiData?.users || [];
+   const pagination = apiData?.pagination || {};
+   const totalPages = pagination.total_pages || 1;
+   const totalCount = pagination.total_count || 0;
+   const currentPage = pagination.current_page || 1;
+   const hasNextPage = pagination.has_next_page || false;
+ 
+   const transformedUsers = useMemo(() => {
+     return users
+       .map((user) => ({
+         id: user.userId,
+         name: `${user?.firstName} ${user?.lastName}`.trim() || '',
+         email: user.email || 'N/A',
+         phone: user.phoneNumber || '-',
+         status: user.status || 'N/A',
+         agencyteammember: '0',
+         registrationDate: new Date().toLocaleDateString(),
+         role: user.role || 'N/A',
+         profilePicture: user.profilePicture || 'https://i.pravatar.cc/100',
+       }))
+       .filter((user) => {
+         if (!currentRoleFilter) return true;
+         const allowedRoles = getRoleVariations(activeTab);
+         const userRole = user.role.toLowerCase();
+         return allowedRoles.includes(userRole);
+       });
+   }, [users, currentRoleFilter, activeTab, getRoleVariations]);
+ 
+   const columns = [
+     ...(activeTab === 1 ? [{ key: 'name', label: t('users.agencyName') }] : [{ key: 'name', label: t('users.name') }]),
+     { key: 'email', label: t('users.email') },
+     ...(activeTab !== 1 ? [{ key: 'phone', label: t('users.phone') }] : []),
+     { key: 'status', label: t('users.status') },
+     activeTab === 1
+       ? { key: 'agencyteammember', label: t('users.agencyTeamMember') }
+       : activeTab === 2
+       ? { key: 'registrationDate', label: t('users.registrationDate') }
+       : { key: 'role', label: t('users.role') },
+   ];
+ 
+   const filteredAndSortedRows = useMemo(() => {
+     let filtered = transformedUsers.filter((row) => {
+       const matchesSearch =
+         searchTerm === '' ||
+         row.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+         row.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+         row.role.toLowerCase().includes(searchTerm.toLowerCase());
+ 
+       const matchesAdditionalRole =
+         selectedRoles.length === 0 || selectedRoles.some((selectedRole) => row.role.toLowerCase() === selectedRole.toLowerCase());
+ 
+       return matchesSearch && matchesAdditionalRole;
+     });
+ 
+     if (sortConfig.key) {
+       filtered.sort((a, b) => {
+         let aVal = a[sortConfig.key];
+         let bVal = b[sortConfig.key];
+         if (typeof aVal === 'string') aVal = aVal.toLowerCase();
+         if (typeof bVal === 'string') bVal = bVal.toLowerCase();
+         if (aVal < bVal) return sortConfig.direction === 'asc' ? -1 : 1;
+         if (aVal > bVal) return sortConfig.direction === 'asc' ? 1 : -1;
+         return 0;
+       });
+     }
+ 
+     return filtered;
+   }, [transformedUsers, searchTerm, selectedRoles, sortConfig]);
+ 
+   const handleSelectAllClick = useCallback(
+     (event) => {
+       if (event.target.checked) {
+         const allIds = filteredAndSortedRows.map((row) => row.id);
+         setSelected(allIds);
+       } else {
+         setSelected([]);
+       }
+     },
+     [filteredAndSortedRows]
+   );
+ 
+   const handleRowClick = useCallback((id) => {
+     setSelected((prevSelected) => (prevSelected.includes(id) ? prevSelected.filter((item) => item !== id) : [...prevSelected, id]));
+   }, []);
+ 
+   const isSelected = useCallback((id) => selected.includes(id), [selected]);
+ 
+   const handleChangeRowsPerPage = useCallback((event) => {
+     const newRowsPerPage = parseInt(event.target.value, 10);
+     setRowsPerPage(newRowsPerPage);
+     setPage(1);
+     setSelected([]);
+   }, []);
+ 
+   const handlePageChange = useCallback((newPage) => {
+     setPage(newPage);
+     setSelected([]);
+   }, []);
+ 
+   const handleDeleteClick = useCallback((id) => {
+     setDeleteUserId(id);
+     setDeleteModalOpen(true);
+   }, []);
+ 
+   const handleConfirmDelete = useCallback(() => {
+     if (deleteUserId) {
+       const userIds = Array.isArray(deleteUserId) ? deleteUserId : [deleteUserId];
+       deleteUser({
+         variables: { userIds },
+         update: (cache, { data }) => {
+           if (data?.deleteUser?.success) {
+             const existing = cache.readQuery({
+               query: LIST_USERS,
+               variables: { page, limit: rowsPerPage, role: currentRoleFilter },
+             });
+             if (existing?.listUsers?.users) {
+               const newUsers = existing.listUsers.users.filter((user) => !userIds.includes(user.userId));
+               cache.writeQuery({
+                 query: LIST_USERS,
+                 variables: { page, limit: rowsPerPage, role: currentRoleFilter },
+                 data: { listUsers: { ...existing.listUsers, users: newUsers } },
+               });
+             }
+           }
+         },
+       });
+     }
+   }, [deleteUserId, deleteUser, page, rowsPerPage, currentRoleFilter]);
+ 
+   useEffect(() => {
+     const timeoutId = setTimeout(() => {}, 300);
+     return () => clearTimeout(timeoutId);
+   }, [searchTerm]);
+ 
+   useEffect(() => {
+     setPage(1);
+     setSelected([]);
+   }, [searchTerm, selectedRoles, currentRoleFilter]);
+ 
+   useEffect(() => {
+     setPage(1);
+     setSelected([]);
+     setSearchTerm('');
+     setSelectedRoles([]);
+   }, [activeTab]);
+ 
 
   // Show loading state for initial load
   if (loading && !data) {
@@ -399,8 +362,13 @@ export default function UserData({ activeTab, onViewUser }) {
             variant="contained"
             color="error"
             startIcon={<DeleteIcon />}
-            sx={{ borderRadius: '100px', width: { xs: '100%', sm: 'auto' } }}
-            disabled={selected.length !== filteredAndSortedRows.length || filteredAndSortedRows.length === 0}
+            sx={{
+              borderRadius: '100px',
+              width: { xs: '100%', sm: 'auto' },
+              opacity: selected.length !== filteredAndSortedRows.length || filteredAndSortedRows.length === 0 ? 0.5 : 1,
+              pointerEvents: selected.length !== filteredAndSortedRows.length || filteredAndSortedRows.length === 0 ? 'none' : 'auto',
+            }}
+            // disabled={selected.length !== filteredAndSortedRows.length || filteredAndSortedRows.length === 0}
             onClick={() => {
               setDeleteUserId(selected);
               setDeleteModalOpen(true);
@@ -658,6 +626,7 @@ export default function UserData({ activeTab, onViewUser }) {
 
         {/* Delete confirmation modal */}
         <DeleteConfirmModal
+          title={Array.isArray(deleteUserId) ? t('users.confirmDeleteUsers') : t('users.confirmDeleteUser')}
           open={deleteModalOpen}
           onClose={() => setDeleteModalOpen(false)}
           onConfirm={handleConfirmDelete}

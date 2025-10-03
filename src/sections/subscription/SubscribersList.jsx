@@ -372,7 +372,12 @@ export default function SubscribersList({ activeTab }) {
               </Table>
 
               {/* Delete confirmation modal */}
-              <DeleteConfirmModal open={deleteModalOpen} onClose={() => setDeleteModalOpen(false)} onConfirm={handleConfirmDelete} />
+              <DeleteConfirmModal
+                title={t('properties.confirmDeletePlan')}
+                open={deleteModalOpen}
+                onClose={() => setDeleteModalOpen(false)}
+                onConfirm={handleConfirmDelete}
+              />
               {/* Custom Pagination */}
               <Box display="flex" justifyContent="space-between" alignItems="center" p={2}>
                 <Stack direction="row" alignItems="center" spacing={2}>

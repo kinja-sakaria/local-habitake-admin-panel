@@ -138,6 +138,11 @@
     "approvedProperty": "Propiedad Aprobada"
   },
   "properties": {
+    "confirmRejectProperties": "¿Está seguro de que desea rechazar las propiedades seleccionadas?",
+    "confirmDeleteProperty": "¿Está seguro que desea eliminar esta propiedad?",
+    "confirmDeletePlan": "¿Estás segura de que quieres eliminar este plan?",
+    "confirmDeleteUsers": "¿Está seguro de que desea eliminar los usuarios seleccionados?",
+    "confirmDeleteUser": "¿Está seguro de que desea eliminar este usuario?",
     "title": "Gestión de Propiedades",
     "propertyName": "Nombre de la Propiedad",
     "visits": "Visitas",

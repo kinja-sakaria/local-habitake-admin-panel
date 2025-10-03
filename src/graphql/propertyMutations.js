@@ -40,3 +40,12 @@ export const APPROVE_PROPERTY = gql`
     }
   }
 `;
+
+export const DELETE_PROPERTY = gql`
+  mutation DeleteAProperty($propertyId: ID!) {
+    deleteProperty(propertyId: $propertyId) {
+      success
+      message
+    }
+  }
+`;

@@ -2,7 +2,7 @@
 import { Dialog, DialogContent, DialogActions, Button, Typography, Box } from '@mui/material';
 import AlertIcon from 'assets/images/widget/alert-icon.png';
 
-const DeleteConfirmModal = ({ open, onClose, onConfirm }) => {
+const DeleteConfirmModal = ({ open, onClose, onConfirm, title }) => {
   return (
     <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
       <DialogContent
@@ -26,7 +26,7 @@ const DeleteConfirmModal = ({ open, onClose, onConfirm }) => {
             mb: 0,
           }}
         >
-          Are you sure you want to delete this user?
+          {title}
         </Typography>
       </DialogContent>
 
