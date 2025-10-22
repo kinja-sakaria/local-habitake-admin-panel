@@ -3042,7 +3042,7 @@ __metadata:
     react-apexcharts: "npm:^1.7.0"
     react-device-detect: "npm:^2.2.3"
     react-dom: "npm:^19.1.1"
-    react-i18next: "npm:^15.7.3"
+    react-i18next: "npm:^16.1.5"
     react-redux: "npm:^9.2.0"
     react-router: "npm:^7.9.1"
     react-router-dom: "npm:^7.9.1"
@@ -4328,14 +4328,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-i18next@npm:^15.7.3":
-  version: 15.7.4
-  resolution: "react-i18next@npm:15.7.4"
+"react-i18next@npm:^16.1.5":
+  version: 16.1.5
+  resolution: "react-i18next@npm:16.1.5"
   dependencies:
     "@babel/runtime": "npm:^7.27.6"
     html-parse-stringify: "npm:^3.0.1"
   peerDependencies:
-    i18next: ">= 23.4.0"
+    i18next: ">= 25.5.2"
     react: ">= 16.8.0"
     typescript: ^5
   peerDependenciesMeta:
@@ -4345,7 +4345,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: 10c0/643c5d3ced4b44084c871a55e876159561c14f378f90bf53286c1291082703e293573da18ad692b43b357b60d2f7251bc417feb0b522de8cec5c414e5ebdf6c1
+  checksum: 10c0/9a90c8d19297e3c5cd82efbd5f06ededdfa51ee3f42695e6224fc0dd138c00b6be44958b204b19bbc538f2bdea7ceef57ac0607a0df88825ec6fe311f4a9801e
   languageName: node
   linkType: hard
 
